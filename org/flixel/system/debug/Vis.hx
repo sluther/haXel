@@ -19,8 +19,8 @@ package org.flixel.system.debug
 		[Embed(source="../../data/vis/bounds.png")] protected var ImgBounds:Class;
 
 		protected var _bounds:Bitmap;
-		protected var _overBounds:Boolean;
-		protected var _pressingBounds:Boolean;
+		protected var _overBounds:Bool;
+		protected var _pressingBounds:Bool;
 		
 		/**
 		 * Instantiate the visual debugger panel.
@@ -29,7 +29,7 @@ package org.flixel.system.debug
 		{
 			super();
 			
-			var spacing:uint = 7;
+			var spacing:UInt = 7;
 			
 			_bounds = new ImgBounds();
 			addChild(_bounds);
@@ -44,7 +44,7 @@ package org.flixel.system.debug
 		/**
 		 * Clean up memory.
 		 */
-		public function destroy():void
+		public function destroy():Void
 		{
 			removeChild(_bounds);
 			_bounds = null;
@@ -59,7 +59,7 @@ package org.flixel.system.debug
 		/**
 		 * Called when the bounding box toggle is pressed.
 		 */
-		public function onBounds():void
+		public function onBounds():Void
 		{
 			FlxG.visualDebug = !FlxG.visualDebug;
 		}
@@ -71,7 +71,7 @@ package org.flixel.system.debug
 		 * 
 		 * @param	E	Flash event.
 		 */
-		protected function init(E:Event=null):void
+		protected function init(E:Event=null):Void
 		{
 			if(root == null)
 				return;
@@ -87,7 +87,7 @@ package org.flixel.system.debug
 		 * 
 		 * @param	E	Flash mouse event.
 		 */
-		protected function onMouseMove(E:MouseEvent=null):void
+		protected function onMouseMove(E:MouseEvent=null):Void
 		{
 			if(!checkOver())
 				unpress();
@@ -99,7 +99,7 @@ package org.flixel.system.debug
 		 * 
 		 * @param	E	Flash mouse event.
 		 */
-		protected function onMouseDown(E:MouseEvent=null):void
+		protected function onMouseDown(E:MouseEvent=null):Void
 		{
 			unpress();
 			if(_overBounds)
@@ -112,7 +112,7 @@ package org.flixel.system.debug
 		 * 
 		 * @param	E	Flash mouse event.
 		 */
-		protected function onMouseUp(E:MouseEvent=null):void
+		protected function onMouseUp(E:MouseEvent=null):Void
 		{
 			if(_overBounds && _pressingBounds)
 				onBounds();
@@ -129,7 +129,7 @@ package org.flixel.system.debug
 		 * 
 		 * @return	Whether the mouse was over any buttons or not.
 		 */
-		protected function checkOver():Boolean
+		protected function checkOver():Bool
 		{
 			_overBounds = false;
 			if((mouseX < 0) || (mouseX > width) || (mouseY < 0) || (mouseY > height))
@@ -142,7 +142,7 @@ package org.flixel.system.debug
 		/**
 		 * Sets all the pressed state variables for the buttons to false.
 		 */
-		protected function unpress():void
+		protected function unpress():Void
 		{
 			_pressingBounds = false;
 		}
@@ -150,7 +150,7 @@ package org.flixel.system.debug
 		/**
 		 * Figures out what buttons to highlight based on the _overWhatever and _pressingWhatever variables.
 		 */
-		protected function updateGUI():void
+		protected function updateGUI():Void
 		{
 			if(FlxG.visualDebug)
 			{

@@ -18,19 +18,19 @@ package org.flixel.system
 		/**
 		 * The random number generator seed value for this recording.
 		 */
-		public var seed:Number;
+		public var seed:Float;
 		/**
 		 * The current frame for this recording.
 		 */
-		public var frame:int;
+		public var frame:Int;
 		/**
 		 * The number of frames in this recording.
 		 */
-		public var frameCount:int;
+		public var frameCount:Int;
 		/**
 		 * Whether the replay has finished playing or not.
 		 */
-		public var finished:Boolean;
+		public var finished:Bool;
 		
 		/**
 		 * Internal container for all the frames in this replay.
@@ -39,11 +39,11 @@ package org.flixel.system
 		/**
 		 * Internal tracker for max number of frames we can fit before growing the <code>_frames</code> again.
 		 */
-		protected var _capacity:int;
+		protected var _capacity:Int;
 		/**
 		 * Internal helper variable for keeping track of where we are in <code>_frames</code> during recording or replay.
 		 */
-		protected var _marker:int;
+		protected var _marker:Int;
 		
 		/**
 		 * Instantiate a new replay object.  Doesn't actually do much until you call create() or load().
@@ -62,11 +62,11 @@ package org.flixel.system
 		/**
 		 * Clean up memory.
 		 */
-		public function destroy():void
+		public function destroy():Void
 		{
 			if(_frames == null)
 				return;
-			var i:int = frameCount-1;
+			var i:Int = frameCount-1;
 			while(i >= 0)
 				(_frames[i--] as FrameRecord).destroy();
 			_frames = null;
@@ -77,7 +77,7 @@ package org.flixel.system
 		 * 
 		 * @param	Seed	The current seed from the random number generator.
 		 */
-		public function create(Seed:Number):void
+		public function create(Seed:Float):Void
 		{
 			destroy();
 			init();
@@ -92,7 +92,7 @@ package org.flixel.system
 		 * 
 		 * @param	FileContents	A <code>String</code> object containing a gameplay recording.
 		 */
-		public function load(FileContents:String):void
+		public function load(FileContents:String):Void
 		{
 			init();
 			
@@ -101,8 +101,8 @@ package org.flixel.system
 			seed = Number(lines[0]);
 			
 			var line:String;
-			var i:uint = 1;
-			var l:uint = lines.length;
+			var i:UInt = 1;
+			var l:UInt = lines.length;
 			while(i < l)
 			{
 				line = lines[i++] as String;
@@ -123,7 +123,7 @@ package org.flixel.system
 		/**
 		 * Common initialization terms used by both <code>create()</code> and <code>load()</code> to set up the replay object.
 		 */
-		protected function init():void
+		protected function init():Void
 		{
 			_capacity = 100;
 			_frames = new Array(_capacity);
@@ -141,7 +141,7 @@ package org.flixel.system
 			if(frameCount <= 0)
 				return null;
 			var output:String = seed+"\n";
-			var i:uint = 0;
+			var i:UInt = 0;
 			while(i < frameCount)
 				output += _frames[i++].save() + "\n";
 			return output;
@@ -150,7 +150,7 @@ package org.flixel.system
 		/**
 		 * Get the current input data from the input managers and store it in a new frame record.
 		 */
-		public function recordFrame():void
+		public function recordFrame():Void
 		{
 			var keysRecord:Array = FlxG.keys.record();
 			var mouseRecord:MouseRecord = FlxG.mouse.record();
@@ -170,7 +170,7 @@ package org.flixel.system
 		/**
 		 * Get the current frame record data and load it into the input managers.
 		 */
-		public function playNextFrame():void
+		public function playNextFrame():Void
 		{
 			FlxG.resetInput();
 			
@@ -192,7 +192,7 @@ package org.flixel.system
 		/**
 		 * Reset the replay back to the first frame.
 		 */
-		public function rewind():void
+		public function rewind():Void
 		{
 			_marker = 0;
 			frame = 0;

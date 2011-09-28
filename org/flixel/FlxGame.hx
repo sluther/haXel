@@ -6,7 +6,9 @@ package org.flixel
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
-	import flash.events.*;
+	import flash.events.Event;
+	import flash.events.KeyboardEvent;
+	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	import flash.text.AntiAliasType;
 	import flash.text.GridFitType;
@@ -38,18 +40,18 @@ package org.flixel
 		 * Sets 0, -, and + to control the global volume sound volume.
 		 * @default true
 		 */
-		public var useSoundHotKeys:Boolean;
+		public var useSoundHotKeys:Bool;
 		/**
 		 * Tells flixel to use the default system mouse cursor instead of custom Flixel mouse cursors.
 		 * @default false
 		 */
-		public var useSystemCursor:Boolean;
+		public var useSystemCursor:Bool;
 		/**
 		 * Initialize and allow the flixel debugger overlay even in release mode.
 		 * Also useful if you don't use FlxPreloader!
 		 * @default false
 		 */
-		public var forceDebugger:Boolean;
+		public var forceDebugger:Bool;
 
 		/**
 		 * Current game state.
@@ -67,34 +69,34 @@ package org.flixel
 		/**
 		 * Whether the game object's basic initialization has finished yet.
 		 */
-		protected var _created:Boolean;
+		protected var _created:Bool;
 		
 		/**
 		 * Total number of milliseconds elapsed since game start.
 		 */
-		protected var _total:uint;
+		protected var _total:UInt;
 		/**
 		 * Total number of milliseconds elapsed since last update loop.
 		 * Counts down as we step through the game loop.
 		 */
-		protected var _accumulator:int;
+		protected var _accumulator:Int;
 		/**
 		 * Whether the Flash player lost focus.
 		 */
-		protected var _lostFocus:Boolean;
+		protected var _lostFocus:Bool;
 		/**
 		 * Milliseconds of time per step of the game loop.  FlashEvent.g. 60 fps = 16ms.
 		 */
-		internal var _step:uint;
+		internal var _step:UInt;
 		/**
 		 * Framerate of the Flash player (NOT the game loop). Default = 30.
 		 */
-		internal var _flashFramerate:uint;
+		internal var _flashFramerate:UInt;
 		/**
 		 * Max allowable accumulation (see _accumulator).
 		 * Should always (and automatically) be set to roughly 2x the flash player framerate.
 		 */
-		internal var _maxAccumulation:uint;
+		internal var _maxAccumulation:UInt;
 		/**
 		 * If a state change was requested, the new state object is stored here until we switch to it.
 		 */
@@ -102,7 +104,7 @@ package org.flixel
 		/**
 		 * A flag for keeping track of whether a game reset was requested or not.
 		 */
-		internal var _requestedReset:Boolean;
+		internal var _requestedReset:Bool;
 
 		/**
 		 * The "focus lost" screen (see <code>createFocusScreen()</code>).
@@ -115,7 +117,7 @@ package org.flixel
 		/**
 		 * Helps us auto-hide the sound tray after a volume change.
 		 */
-		protected var _soundTrayTimer:Number;
+		protected var _soundTrayTimer:Float;
 		/**
 		 * Helps display the volume bars on the sound tray.
 		 */
@@ -127,7 +129,7 @@ package org.flixel
 		/**
 		 * A handy boolean that keeps track of whether the debugger exists and is currently visible.
 		 */
-		internal var _debuggerUp:Boolean;
+		internal var _debuggerUp:Bool;
 		
 		/**
 		 * Container for a game replay object.
@@ -136,19 +138,19 @@ package org.flixel
 		/**
 		 * Flag for whether a playback of a recording was requested.
 		 */
-		internal var _replayRequested:Boolean;
+		internal var _replayRequested:Bool;
 		/**
 		 * Flag for whether a new recording was requested.
 		 */
-		internal var _recordingRequested:Boolean;
+		internal var _recordingRequested:Bool;
 		/**
 		 * Flag for whether a replay is currently playing.
 		 */
-		internal var _replaying:Boolean;
+		internal var _replaying:Bool;
 		/**
 		 * Flag for whether a new recording is being made.
 		 */
-		internal var _recording:Boolean;
+		internal var _recording:Bool;
 		/**
 		 * Array that keeps track of keypresses that can cancel a replay.
 		 * Handy for skipping cutscenes or getting out of attract modes!
@@ -157,7 +159,7 @@ package org.flixel
 		/**
 		 * Helps time out a replay if necessary.
 		 */
-		internal var _replayTimer:int;
+		internal var _replayTimer:Int;
 		/**
 		 * This function, if set, is triggered when the callback stops playing.
 		 */
@@ -174,7 +176,7 @@ package org.flixel
 		 * @param	FlashFramerate	Sets the actual display framerate for Flash player (default is 30 times per second).
 		 * @param	UseSystemCursor	Whether to use the default OS mouse pointer, or to use custom flixel ones.
 		 */
-		public function FlxGame(GameSizeX:uint,GameSizeY:uint,InitialState:Class,Zoom:Number=1,GameFramerate:uint=60,FlashFramerate:uint=30,UseSystemCursor:Boolean=false)
+		public function FlxGame(GameSizeX:UInt,GameSizeY:UInt,InitialState:Class,Zoom:Float=1,GameFramerate:UInt=60,FlashFramerate:UInt=30,UseSystemCursor:Bool=false)
 		{
 			//super high priority init stuff (focus, mouse, etc)
 			_lostFocus = false;
@@ -217,17 +219,17 @@ package org.flixel
 		 * 
 		 * @param	Silent	Whether or not it should beep.
 		 */
-		internal function showSoundTray(Silent:Boolean=false):void
+		internal function showSoundTray(Silent:Bool=false):Void
 		{
 			if(!Silent)
 				FlxG.play(SndBeep);
 			_soundTrayTimer = 1;
 			_soundTray.y = 0;
 			_soundTray.visible = true;
-			var globalVolume:uint = Math.round(FlxG.volume*10);
+			var globalVolume:UInt = Math.round(FlxG.volume*10);
 			if(FlxG.mute)
 				globalVolume = 0;
-			for (var i:uint = 0; i < _soundTrayBars.length; i++)
+			for (var i:UInt = 0; i < _soundTrayBars.length; i++)
 			{
 				if(i < globalVolume) _soundTrayBars[i].alpha = 1;
 				else _soundTrayBars[i].alpha = 0.5;
@@ -239,7 +241,7 @@ package org.flixel
 		 * 
 		 * @param	FlashEvent	Flash keyboard event.
 		 */
-		protected function onKeyUp(FlashEvent:KeyboardEvent):void
+		protected function onKeyUp(FlashEvent:KeyboardEvent):Void
 		{
 			if(_debuggerUp && _debugger.watch.editing)
 				return;
@@ -258,7 +260,7 @@ package org.flixel
 				}
 				if(useSoundHotKeys)
 				{
-					var c:int = FlashEvent.keyCode;
+					var c:Int = FlashEvent.keyCode;
 					var code:String = String.fromCharCode(FlashEvent.charCode);
 					switch(c)
 					{
@@ -296,16 +298,16 @@ package org.flixel
 		 * 
 		 * @param	FlashEvent	Flash keyboard event.
 		 */
-		protected function onKeyDown(FlashEvent:KeyboardEvent):void
+		protected function onKeyDown(FlashEvent:KeyboardEvent):Void
 		{
 			if(_debuggerUp && _debugger.watch.editing)
 				return;
 			if(_replaying && (_replayCancelKeys != null) && (_debugger == null) && (FlashEvent.keyCode != 192) && (FlashEvent.keyCode != 220))
 			{
-				var cancel:Boolean = false;
+				var cancel:Bool = false;
 				var replayCancelKey:String;
-				var i:uint = 0;
-				var l:uint = _replayCancelKeys.length;
+				var i:UInt = 0;
+				var l:UInt = _replayCancelKeys.length;
 				while(i < l)
 				{
 					replayCancelKey = _replayCancelKeys[i++];
@@ -331,7 +333,7 @@ package org.flixel
 		 * 
 		 * @param	FlashEvent	Flash mouse event.
 		 */
-		protected function onMouseDown(FlashEvent:MouseEvent):void
+		protected function onMouseDown(FlashEvent:MouseEvent):Void
 		{
 			if(_debuggerUp)
 			{
@@ -343,8 +345,8 @@ package org.flixel
 			if(_replaying && (_replayCancelKeys != null))
 			{
 				var replayCancelKey:String;
-				var i:uint = 0;
-				var l:uint = _replayCancelKeys.length;
+				var i:UInt = 0;
+				var l:UInt = _replayCancelKeys.length;
 				while(i < l)
 				{
 					replayCancelKey = _replayCancelKeys[i++] as String;
@@ -370,7 +372,7 @@ package org.flixel
 		 * 
 		 * @param	FlashEvent	Flash mouse event.
 		 */
-		protected function onMouseUp(FlashEvent:MouseEvent):void
+		protected function onMouseUp(FlashEvent:MouseEvent):Void
 		{
 			if((_debuggerUp && _debugger.hasMouse) || _replaying)
 				return;
@@ -382,7 +384,7 @@ package org.flixel
 		 * 
 		 * @param	FlashEvent	Flash mouse event.
 		 */
-		protected function onMouseWheel(FlashEvent:MouseEvent):void
+		protected function onMouseWheel(FlashEvent:MouseEvent):Void
 		{
 			if((_debuggerUp && _debugger.hasMouse) || _replaying)
 				return;
@@ -394,7 +396,7 @@ package org.flixel
 		 * 
 		 * @param	FlashEvent	Flash event.
 		 */
-		protected function onFocus(FlashEvent:Event=null):void
+		protected function onFocus(FlashEvent:Event=null):Void
 		{
 			if(!_debuggerUp && !useSystemCursor)
 				flash.ui.Mouse.hide();
@@ -409,7 +411,7 @@ package org.flixel
 		 * 
 		 * @param	FlashEvent	Flash event.
 		 */
-		protected function onFocusLost(FlashEvent:Event=null):void
+		protected function onFocusLost(FlashEvent:Event=null):Void
 		{
 			if((x != 0) || (y != 0))
 			{
@@ -427,10 +429,10 @@ package org.flixel
 		 * 
 		 * @param	FlashEvent	Flash event.
 		 */
-		protected function onEnterFrame(FlashEvent:Event=null):void
+		protected function onEnterFrame(FlashEvent:Event=null):Void
 		{			
-			var mark:uint = getTimer();
-			var elapsedMS:uint = mark-_total;
+			var mark:UInt = getTimer();
+			var elapsedMS:UInt = mark-_total;
 			_total = mark;
 			updateSoundTray(elapsedMS);
 			if(!_lostFocus)
@@ -473,7 +475,7 @@ package org.flixel
 		 * this function handles actual destroying the old state and related processes,
 		 * and calls creates on the new state and plugs it into the game object.
 		 */
-		protected function switchState():void
+		protected function switchState():Void
 		{ 
 			//Basic reset stuff
 			FlxG.resetCameras();
@@ -505,7 +507,7 @@ package org.flixel
 		 * the appropriate number of times each frame.
 		 * This block handles state changes, replays, all that good stuff.
 		 */
-		protected function step():void
+		protected function step():Void
 		{
 			//handle game reset request
 			if(_requestedReset)
@@ -591,7 +593,7 @@ package org.flixel
 		/**
 		 * This function just updates the soundtray object.
 		 */
-		protected function updateSoundTray(MS:Number):void
+		protected function updateSoundTray(MS:Float):Void
 		{
 			//animate stupid sound tray thing
 			
@@ -625,9 +627,9 @@ package org.flixel
 		 * This function is called by step() and updates the actual game state.
 		 * May be called multiple times per "frame" or draw call.
 		 */
-		protected function update():void
+		protected function update():Void
 		{			
-			var mark:uint = getTimer();
+			var mark:UInt = getTimer();
 			
 			FlxG.elapsed = FlxG.timeScale*(_step/1000);
 			FlxG.updateSounds();
@@ -642,9 +644,9 @@ package org.flixel
 		/**
 		 * Goes through the game state and draws all the game objects and special effects.
 		 */
-		protected function draw():void
+		protected function draw():Void
 		{
-			var mark:uint = getTimer();
+			var mark:UInt = getTimer();
 			FlxG.lockCameras();
 			_state.draw();
 			FlxG.drawPlugins();
@@ -658,7 +660,7 @@ package org.flixel
 		 * 
 		 * @param	FlashEvent	Just a Flash system event, not too important for our purposes.
 		 */
-		protected function create(FlashEvent:Event):void
+		protected function create(FlashEvent:Event):Void
 		{
 			if(root == null)
 				return;
@@ -704,7 +706,7 @@ package org.flixel
 		/**
 		 * Sets up the "sound tray", the little volume meter that pops down sometimes.
 		 */
-		protected function createSoundTray():void
+		protected function createSoundTray():Void
 		{
 			_soundTray.visible = false;
 			_soundTray.scaleX = 2;
@@ -727,10 +729,10 @@ package org.flixel
 			text.text = "VOLUME";
 			text.y = 16;
 			
-			var bx:uint = 10;
-			var by:uint = 14;
+			var bx:UInt = 10;
+			var by:UInt = 14;
 			_soundTrayBars = new Array();
-			var i:uint = 0;
+			var i:UInt = 0;
 			while(i < 10)
 			{
 				tmp = new Bitmap(new BitmapData(4,++i,false,0xffffff));
@@ -760,11 +762,11 @@ package org.flixel
 		/**
 		 * Sets up the darkened overlay with the big white "play" button that appears when a flixel game loses focus.
 		 */
-		protected function createFocusScreen():void
+		protected function createFocusScreen():Void
 		{
 			var gfx:Graphics = _focus.graphics;
-			var screenWidth:uint = FlxG.width*FlxCamera.defaultZoom;
-			var screenHeight:uint = FlxG.height*FlxCamera.defaultZoom;
+			var screenWidth:UInt = FlxG.width*FlxCamera.defaultZoom;
+			var screenHeight:UInt = FlxG.height*FlxCamera.defaultZoom;
 			
 			//draw transparent black backdrop
 			gfx.moveTo(0,0);
@@ -776,9 +778,9 @@ package org.flixel
 			gfx.endFill();
 			
 			//draw white arrow
-			var halfWidth:uint = screenWidth/2;
-			var halfHeight:uint = screenHeight/2;
-			var helper:uint = FlxU.min(halfWidth,halfHeight)/3;
+			var halfWidth:UInt = screenWidth/2;
+			var halfHeight:UInt = screenHeight/2;
+			var helper:UInt = FlxU.min(halfWidth,halfHeight)/3;
 			gfx.moveTo(halfWidth-helper,halfHeight-helper);
 			gfx.beginFill(0xffffff,0.65);
 			gfx.lineTo(halfWidth+helper,halfHeight);

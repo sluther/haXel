@@ -17,7 +17,7 @@ package org.flixel
 		 * Override this function, NOT the constructor, to initialize or set up your game state.
 		 * We do NOT recommend overriding the constructor, unless you want some crazy unpredictable things to happen!
 		 */
-		public function create():void
+		public function create():Void
 		{
 			
 		}

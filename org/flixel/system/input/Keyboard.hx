@@ -9,101 +9,101 @@ package org.flixel.system.input
 	 */
 	public class Keyboard extends Input
 	{
-		public var ESCAPE:Boolean;
-		public var F1:Boolean;
-		public var F2:Boolean;
-		public var F3:Boolean;
-		public var F4:Boolean;
-		public var F5:Boolean;
-		public var F6:Boolean;
-		public var F7:Boolean;
-		public var F8:Boolean;
-		public var F9:Boolean;
-		public var F10:Boolean;
-		public var F11:Boolean;
-		public var F12:Boolean;
-		public var ONE:Boolean;
-		public var TWO:Boolean;
-		public var THREE:Boolean;
-		public var FOUR:Boolean;
-		public var FIVE:Boolean;
-		public var SIX:Boolean;
-		public var SEVEN:Boolean;
-		public var EIGHT:Boolean;
-		public var NINE:Boolean;
-		public var ZERO:Boolean;
-		public var NUMPADONE:Boolean;
-		public var NUMPADTWO:Boolean;
-		public var NUMPADTHREE:Boolean;
-		public var NUMPADFOUR:Boolean;
-		public var NUMPADFIVE:Boolean;
-		public var NUMPADSIX:Boolean;
-		public var NUMPADSEVEN:Boolean;
-		public var NUMPADEIGHT:Boolean;
-		public var NUMPADNINE:Boolean;
-		public var NUMPADZERO:Boolean;
-		public var PAGEUP:Boolean;
-		public var PAGEDOWN:Boolean;
-		public var HOME:Boolean;
-		public var END:Boolean;
-		public var INSERT:Boolean;
-		public var MINUS:Boolean;
-		public var NUMPADMINUS:Boolean;
-		public var PLUS:Boolean;
-		public var NUMPADPLUS:Boolean;
-		public var DELETE:Boolean;
-		public var BACKSPACE:Boolean;
-		public var TAB:Boolean;
-		public var Q:Boolean;
-		public var W:Boolean;
-		public var E:Boolean;
-		public var R:Boolean;
-		public var T:Boolean;
-		public var Y:Boolean;
-		public var U:Boolean;
-		public var I:Boolean;
-		public var O:Boolean;
-		public var P:Boolean;
-		public var LBRACKET:Boolean;
-		public var RBRACKET:Boolean;
-		public var BACKSLASH:Boolean;
-		public var CAPSLOCK:Boolean;
-		public var A:Boolean;
-		public var S:Boolean;
-		public var D:Boolean;
-		public var F:Boolean;
-		public var G:Boolean;
-		public var H:Boolean;
-		public var J:Boolean;
-		public var K:Boolean;
-		public var L:Boolean;
-		public var SEMICOLON:Boolean;
-		public var QUOTE:Boolean;
-		public var ENTER:Boolean;
-		public var SHIFT:Boolean;
-		public var Z:Boolean;
-		public var X:Boolean;
-		public var C:Boolean;
-		public var V:Boolean;
-		public var B:Boolean;
-		public var N:Boolean;
-		public var M:Boolean;
-		public var COMMA:Boolean;
-		public var PERIOD:Boolean;
-		public var NUMPADPERIOD:Boolean;
-		public var SLASH:Boolean;
-		public var NUMPADSLASH:Boolean;
-		public var CONTROL:Boolean;
-		public var ALT:Boolean;
-		public var SPACE:Boolean;
-		public var UP:Boolean;
-		public var DOWN:Boolean;
-		public var LEFT:Boolean;
-		public var RIGHT:Boolean;
+		public var ESCAPE:Bool;
+		public var F1:Bool;
+		public var F2:Bool;
+		public var F3:Bool;
+		public var F4:Bool;
+		public var F5:Bool;
+		public var F6:Bool;
+		public var F7:Bool;
+		public var F8:Bool;
+		public var F9:Bool;
+		public var F10:Bool;
+		public var F11:Bool;
+		public var F12:Bool;
+		public var ONE:Bool;
+		public var TWO:Bool;
+		public var THREE:Bool;
+		public var FOUR:Bool;
+		public var FIVE:Bool;
+		public var SIX:Bool;
+		public var SEVEN:Bool;
+		public var EIGHT:Bool;
+		public var NINE:Bool;
+		public var ZERO:Bool;
+		public var NUMPADONE:Bool;
+		public var NUMPADTWO:Bool;
+		public var NUMPADTHREE:Bool;
+		public var NUMPADFOUR:Bool;
+		public var NUMPADFIVE:Bool;
+		public var NUMPADSIX:Bool;
+		public var NUMPADSEVEN:Bool;
+		public var NUMPADEIGHT:Bool;
+		public var NUMPADNINE:Bool;
+		public var NUMPADZERO:Bool;
+		public var PAGEUP:Bool;
+		public var PAGEDOWN:Bool;
+		public var HOME:Bool;
+		public var END:Bool;
+		public var INSERT:Bool;
+		public var MINUS:Bool;
+		public var NUMPADMINUS:Bool;
+		public var PLUS:Bool;
+		public var NUMPADPLUS:Bool;
+		public var DELETE:Bool;
+		public var BACKSPACE:Bool;
+		public var TAB:Bool;
+		public var Q:Bool;
+		public var W:Bool;
+		public var E:Bool;
+		public var R:Bool;
+		public var T:Bool;
+		public var Y:Bool;
+		public var U:Bool;
+		public var I:Bool;
+		public var O:Bool;
+		public var P:Bool;
+		public var LBRACKET:Bool;
+		public var RBRACKET:Bool;
+		public var BACKSLASH:Bool;
+		public var CAPSLOCK:Bool;
+		public var A:Bool;
+		public var S:Bool;
+		public var D:Bool;
+		public var F:Bool;
+		public var G:Bool;
+		public var H:Bool;
+		public var J:Bool;
+		public var K:Bool;
+		public var L:Bool;
+		public var SEMICOLON:Bool;
+		public var QUOTE:Bool;
+		public var ENTER:Bool;
+		public var SHIFT:Bool;
+		public var Z:Bool;
+		public var X:Bool;
+		public var C:Bool;
+		public var V:Bool;
+		public var B:Bool;
+		public var N:Bool;
+		public var M:Bool;
+		public var COMMA:Bool;
+		public var PERIOD:Bool;
+		public var NUMPADPERIOD:Bool;
+		public var SLASH:Bool;
+		public var NUMPADSLASH:Bool;
+		public var CONTROL:Bool;
+		public var ALT:Bool;
+		public var SPACE:Bool;
+		public var UP:Bool;
+		public var DOWN:Bool;
+		public var LEFT:Bool;
+		public var RIGHT:Bool;
 
 		public function Keyboard()
 		{
-			var i:uint;
+			var i:UInt;
 			
 			//LETTERS
 			i = 65;
@@ -180,7 +180,7 @@ package org.flixel.system.input
 		 * 
 		 * @param	FlashEvent	A <code>KeyboardEvent</code> object.
 		 */
-		public function handleKeyDown(FlashEvent:KeyboardEvent):void
+		public function handleKeyDown(FlashEvent:KeyboardEvent):Void
 		{
 			var object:Object = _map[FlashEvent.keyCode];
 			if(object == null) return;
@@ -194,7 +194,7 @@ package org.flixel.system.input
 		 * 
 		 * @param	FlashEvent	A <code>KeyboardEvent</code> object.
 		 */
-		public function handleKeyUp(FlashEvent:KeyboardEvent):void
+		public function handleKeyUp(FlashEvent:KeyboardEvent):Void
 		{
 			var object:Object = _map[FlashEvent.keyCode];
 			if(object == null) return;

@@ -1,6 +1,26 @@
 package org.flixel.plugin
 {
-	import org.flixel.*;
+	import org.flixel.FlxBasic;
+	import org.flixel.FlxButton;
+	import org.flixel.FlxCamera;
+	import org.flixel.FlxEmitter;
+	import org.flixel.FlxG;
+	import org.flixel.FlxGame;
+	import org.flixel.FlxGroup;
+	import org.flixel.FlxObject;
+	import org.flixel.FlxParticle;
+	import org.flixel.FlxPath;
+	import org.flixel.FlxPoint;
+	import org.flixel.FlxRect;
+	import org.flixel.FlxSave;
+	import org.flixel.FlxSound;
+	import org.flixel.FlxSprite;
+	import org.flixel.FlxState;
+	import org.flixel.FlxText;
+	import org.flixel.FlxTileblock;
+	import org.flixel.FlxTilemap;
+	import org.flixel.FlxTimer;
+	import org.flixel.FlxU;
 	
 	/**
 	 * A simple manager for tracking and drawing FlxPath debug data to the screen.
@@ -23,7 +43,7 @@ package org.flixel.plugin
 		/**
 		 * Clean up memory.
 		 */
-		override public function destroy():void
+		override public function destroy():Void
 		{
 			super.destroy();
 			clear();
@@ -34,15 +54,15 @@ package org.flixel.plugin
 		 * Called by <code>FlxG.drawPlugins()</code> after the game state has been drawn.
 		 * Cycles through cameras and calls <code>drawDebug()</code> on each one.
 		 */
-		override public function draw():void
+		override public function draw():Void
 		{
 			if(!FlxG.visualDebug || ignoreDrawDebug)
 				return;	
 			
 			if(cameras == null)
 				cameras = FlxG.cameras;
-			var i:uint = 0;
-			var l:uint = cameras.length;
+			var i:UInt = 0;
+			var l:UInt = cameras.length;
 			while(i < l)
 				drawDebug(cameras[i++]);
 		}
@@ -54,12 +74,12 @@ package org.flixel.plugin
 		 * 
 		 * @param	Camera	Which <code>FlxCamera</code> object to draw the debug data to.
 		 */
-		override public function drawDebug(Camera:FlxCamera=null):void
+		override public function drawDebug(Camera:FlxCamera=null):Void
 		{
 			if(Camera == null)
 				Camera = FlxG.camera;
 			
-			var i:int = _paths.length-1;
+			var i:Int = _paths.length-1;
 			var path:FlxPath;
 			while(i >= 0)
 			{
@@ -75,7 +95,7 @@ package org.flixel.plugin
 		 * 
 		 * @param	Path	The <code>FlxPath</code> you want to add to the manager.
 		 */
-		public function add(Path:FlxPath):void
+		public function add(Path:FlxPath):Void
 		{
 			_paths.push(Path);
 		}
@@ -86,9 +106,9 @@ package org.flixel.plugin
 		 * 
 		 * @param	Path	The <code>FlxPath</code> you want to remove from the manager.
 		 */
-		public function remove(Path:FlxPath):void
+		public function remove(Path:FlxPath):Void
 		{
-			var index:int = _paths.indexOf(Path);
+			var index:Int = _paths.indexOf(Path);
 			if(index >= 0)
 				_paths.splice(index,1);
 		}
@@ -96,9 +116,9 @@ package org.flixel.plugin
 		/**
 		 * Removes all the paths from the path debug display manager.
 		 */
-		public function clear():void
+		public function clear():Void
 		{
-			var i:int = _paths.length-1;
+			var i:Int = _paths.length-1;
 			var path:FlxPath;
 			while(i >= 0)
 			{

@@ -11,7 +11,7 @@ package org.flixel.system.replay
 		/**
 		 * Which frame of the game loop this record is from or for.
 		 */
-		public var frame:int;
+		public var frame:Int;
 		/**
 		 * An array of simple integer pairs referring to what key is pressed, and what state its in.
 		 */
@@ -41,7 +41,7 @@ package org.flixel.system.replay
 		 * @return A reference to this <code>FrameRecord</code> object.
 		 * 
 		 */
-		public function create(Frame:Number,Keys:Array=null,Mouse:MouseRecord=null):FrameRecord
+		public function create(Frame:Float,Keys:Array=null,Mouse:MouseRecord=null):FrameRecord
 		{
 			frame = Frame;
 			keys = Keys;
@@ -52,7 +52,7 @@ package org.flixel.system.replay
 		/**
 		 * Clean up memory.
 		 */
-		public function destroy():void
+		public function destroy():Void
 		{
 			keys = null;
 			mouse = null;
@@ -70,8 +70,8 @@ package org.flixel.system.replay
 			if(keys != null)
 			{
 				var object:Object;
-				var i:uint = 0;
-				var l:uint = keys.length;
+				var i:UInt = 0;
+				var l:UInt = keys.length;
 				while(i < l)
 				{
 					if(i > 0)
@@ -95,8 +95,8 @@ package org.flixel.system.replay
 		 */
 		public function load(Data:String):FrameRecord
 		{
-			var i:uint;
-			var l:uint;
+			var i:UInt;
+			var l:UInt;
 			
 			//get frame number
 			var array:Array = Data.split("k");
@@ -124,7 +124,7 @@ package org.flixel.system.replay
 					{
 						if(keys == null)
 							keys = new Array();
-						keys.push({code:int(keyPair[0] as String),value:int(keyPair[1] as String)});
+						keys.push({code:Int(keyPair[0] as String),value:Int(keyPair[1] as String)});
 					}
 				}
 			}

@@ -12,11 +12,11 @@ package org.flixel
 		/**
 		 * @default 0
 		 */
-		public var x:Number;
+		public var x:Float;
 		/**
 		 * @default 0
 		 */
-		public var y:Number;
+		public var y:Float;
 		
 		/**
 		 * Instantiate a new point object.
@@ -24,7 +24,7 @@ package org.flixel
 		 * @param	X		The X-coordinate of the point in space.
 		 * @param	Y		The Y-coordinate of the point in space.
 		 */
-		public function FlxPoint(X:Number=0, Y:Number=0)
+		public function FlxPoint(X:Float=0, Y:Float=0)
 		{
 			x = X;
 			y = Y;
@@ -36,7 +36,7 @@ package org.flixel
 		 * @param	X		The X-coordinate of the point in space.
 		 * @param	Y		The Y-coordinate of the point in space.
 		 */
-		public function make(X:Number=0, Y:Number=0):FlxPoint
+		public function make(X:Float=0, Y:Float=0):FlxPoint
 		{
 			x = X;
 			y = Y;

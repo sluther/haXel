@@ -30,7 +30,7 @@ package org.flixel.system
 		/**
 		 * Clean up memory.
 		 */
-		public function destroy():void
+		public function destroy():Void
 		{
 			object = null;
 			if(next != null)

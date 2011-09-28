@@ -19,31 +19,31 @@ package org.flixel.system
 		/**
 		 * The current X position of the buffer.
 		 */
-		public var x:Number;
+		public var x:Float;
 		/**
 		 * The current Y position of the buffer.
 		 */
-		public var y:Number;
+		public var y:Float;
 		/**
 		 * The width of the buffer (usually just a few tiles wider than the camera).
 		 */
-		public var width:Number;
+		public var width:Float;
 		/**
 		 * The height of the buffer (usually just a few tiles taller than the camera).
 		 */
-		public var height:Number;
+		public var height:Float;
 		/**
 		 * Whether the buffer needs to be redrawn.
 		 */
-		public var dirty:Boolean;
+		public var dirty:Bool;
 		/**
 		 * How many rows of tiles fit in this buffer.
 		 */
-		public var rows:uint;
+		public var rows:UInt;
 		/**
 		 * How many columns of tiles fit in this buffer.
 		 */
-		public var columns:uint;
+		public var columns:UInt;
 
 		protected var _pixels:BitmapData;	
 		protected var _flashRect:Rectangle;
@@ -57,7 +57,7 @@ package org.flixel.system
 		 * @param HeightInTiles	How many tiles tall the tilemap is.
 		 * @param Camera		Which camera this buffer relates to.
 		 */
-		public function FlxTilemapBuffer(TileWidth:Number,TileHeight:Number,WidthInTiles:uint,HeightInTiles:uint,Camera:FlxCamera=null)
+		public function FlxTilemapBuffer(TileWidth:Float,TileHeight:Float,WidthInTiles:UInt,HeightInTiles:UInt,Camera:FlxCamera=null)
 		{
 			if(Camera == null)
 				Camera = FlxG.camera;
@@ -79,7 +79,7 @@ package org.flixel.system
 		/**
 		 * Clean up memory.
 		 */
-		public function destroy():void
+		public function destroy():Void
 		{
 			_pixels = null;
 		}
@@ -90,7 +90,7 @@ package org.flixel.system
 		 * 
 		 * @param	Color	What color to fill with, in 0xAARRGGBB hex format.
 		 */
-		public function fill(Color:uint=0):void
+		public function fill(Color:UInt=0):Void
 		{
 			_pixels.fillRect(_flashRect,Color);
 		}
@@ -111,7 +111,7 @@ package org.flixel.system
 		 * @param	Camera		Which camera to draw the buffer onto.
 		 * @param	FlashPoint	Where to draw the buffer at in camera coordinates.
 		 */
-		public function draw(Camera:FlxCamera,FlashPoint:Point):void
+		public function draw(Camera:FlxCamera,FlashPoint:Point):Void
 		{
 			Camera.buffer.copyPixels(_pixels,_flashRect,FlashPoint,null,null,true);
 		}

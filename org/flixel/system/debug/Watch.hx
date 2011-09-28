@@ -16,13 +16,13 @@ package org.flixel.system.debug
 	 */
 	public class Watch extends FlxWindow
 	{
-		static protected const MAX_LOG_LINES:uint = 1024;
-		static protected const LINE_HEIGHT:uint = 15;
+		static protected const MAX_LOG_LINES:UInt = 1024;
+		static protected const LINE_HEIGHT:UInt = 15;
 		
 		/**
 		 * Whether a watch entry is currently being edited or not. 
 		 */		
-		public var editing:Boolean;
+		public var editing:Bool;
 		
 		protected var _names:Sprite;
 		protected var _values:Sprite;
@@ -39,7 +39,7 @@ package org.flixel.system.debug
 		 * @param BGColor		What color the window background should be, default is gray and transparent.
 		 * @param TopColor		What color the window header bar should be, default is black and transparent.
 		 */
-		public function Watch(Title:String, Width:Number, Height:Number, Resizable:Boolean=true, Bounds:Rectangle=null, BGColor:uint=0x7f7f7f7f, TopColor:uint=0x7f000000)
+		public function Watch(Title:String, Width:Float, Height:Float, Resizable:Bool=true, Bounds:Rectangle=null, BGColor:UInt=0x7f7f7f7f, TopColor:UInt=0x7f000000)
 		{
 			super(Title, Width, Height, Resizable, Bounds, BGColor, TopColor);
 			
@@ -63,14 +63,14 @@ package org.flixel.system.debug
 		/**
 		 * Clean up memory.
 		 */
-		override public function destroy():void
+		override public function destroy():Void
 		{
 			removeChild(_names);
 			_names = null;
 			removeChild(_values);
 			_values = null;
-			var i:int = 0;
-			var l:uint = _watching.length;
+			var i:Int = 0;
+			var l:UInt = _watching.length;
 			while(i < l)
 				(_watching[i++] as WatchEntry).destroy();
 			_watching = null;
@@ -86,12 +86,12 @@ package org.flixel.system.debug
 		 * @param VariableName	The <code>String</code> name of the variable you want to track, e.g. "width" or "x".
 		 * @param DisplayName	Optional <code>String</code> that can be displayed in the watch window instead of the basic class-name information.
 		 */
-		public function add(AnyObject:Object,VariableName:String,DisplayName:String=null):void
+		public function add(AnyObject:Object,VariableName:String,DisplayName:String=null):Void
 		{
 			//Don't add repeats
 			var watchEntry:WatchEntry;
-			var i:int = 0;
-			var l:uint = _watching.length;
+			var i:Int = 0;
+			var l:UInt = _watching.length;
 			while(i < l)
 			{
 				watchEntry = _watching[i++] as WatchEntry;
@@ -112,11 +112,11 @@ package org.flixel.system.debug
 		 * @param AnyObject		The <code>Object</code> containing the variable you want to remove, e.g. this or Player.velocity.
 		 * @param VariableName	The <code>String</code> name of the variable you want to remove, e.g. "width" or "x".  If left null, this will remove all variables of that object. 
 		 */
-		public function remove(AnyObject:Object,VariableName:String=null):void
+		public function remove(AnyObject:Object,VariableName:String=null):Void
 		{
 			//splice out the requested object
 			var watchEntry:WatchEntry;
-			var i:int = _watching.length-1;
+			var i:Int = _watching.length-1;
 			while(i >= 0)
 			{
 				watchEntry = _watching[i];
@@ -133,7 +133,7 @@ package org.flixel.system.debug
 			
 			//reset the display heights of the remaining objects
 			i = 0;
-			var l:uint = _watching.length;
+			var l:UInt = _watching.length;
 			while(i < l)
 			{
 				(_watching[i] as WatchEntry).setY(i*LINE_HEIGHT);
@@ -144,11 +144,11 @@ package org.flixel.system.debug
 		/**
 		 * Remove everything from the watch window.
 		 */
-		public function removeAll():void
+		public function removeAll():Void
 		{
 			var watchEntry:WatchEntry;
-			var i:int = 0;
-			var l:uint = _watching.length;
+			var i:Int = 0;
+			var l:UInt = _watching.length;
 			while(i < l)
 			{
 				watchEntry = _watching.pop();
@@ -163,11 +163,11 @@ package org.flixel.system.debug
 		/**
 		 * Update all the entries in the watch window.
 		 */
-		public function update():void
+		public function update():Void
 		{
 			editing = false;
-			var i:uint = 0;
-			var l:uint = _watching.length;
+			var i:UInt = 0;
+			var l:UInt = _watching.length;
 			while(i < l)
 			{
 				if(!(_watching[i++] as WatchEntry).updateValue())
@@ -178,10 +178,10 @@ package org.flixel.system.debug
 		/**
 		 * Force any watch entries currently being edited to submit their changes.
 		 */
-		public function submit():void
+		public function submit():Void
 		{
-			var i:uint = 0;
-			var l:uint = _watching.length;
+			var i:UInt = 0;
+			var l:UInt = _watching.length;
 			var watchEntry:WatchEntry;
 			while(i < l)
 			{
@@ -196,7 +196,7 @@ package org.flixel.system.debug
 		 * Update the Flash shapes to match the new size, and reposition the header, shadow, and handle accordingly.
 		 * Also adjusts the width of the entries and stuff, and makes sure there is room for all the entries.
 		 */
-		override protected function updateSize():void
+		override protected function updateSize():Void
 		{
 			if(_height < _watching.length*LINE_HEIGHT + 17)
 				_height = _watching.length*LINE_HEIGHT + 17;
@@ -205,8 +205,8 @@ package org.flixel.system.debug
 
 			_values.x = _width/2 + 2;
 
-			var i:int = 0;
-			var l:uint = _watching.length;
+			var i:Int = 0;
+			var l:UInt = _watching.length;
 			while(i < l)
 				(_watching[i++] as WatchEntry).updateWidth(_width/2,_width/2-10);
 		}

@@ -46,12 +46,12 @@ package org.flixel.system
 		/**
 		 * Whether the mouse is currently over one of the debugger windows or not.
 		 */
-		public var hasMouse:Boolean;
+		public var hasMouse:Bool;
 		
 		/**
 		 * Internal, tracks what debugger window layout user has currently selected.
 		 */
-		protected var _layout:uint;
+		protected var _layout:UInt;
 		/**
 		 * Internal, stores width and height of the Flash Player window.
 		 */
@@ -59,7 +59,7 @@ package org.flixel.system
 		/**
 		 * Internal, used to space out windows from the edges.
 		 */
-		protected var _gutter:uint;
+		protected var _gutter:UInt;
 		
 		/**
 		 * Instantiates the debugger overlay.
@@ -67,7 +67,7 @@ package org.flixel.system
 		 * @param Width		The width of the screen.
 		 * @param Height	The height of the screen.
 		 */
-		public function FlxDebugger(Width:Number,Height:Number)
+		public function FlxDebugger(Width:Float,Height:Float)
 		{
 			super();
 			visible = false;
@@ -123,7 +123,7 @@ package org.flixel.system
 		/**
 		 * Clean up memory.
 		 */
-		public function destroy():void
+		public function destroy():Void
 		{
 			_screen = null;
 			removeChild(log);
@@ -151,7 +151,7 @@ package org.flixel.system
 		 * 
 		 * @param	E	Flash mouse event.
 		 */
-		protected function onMouseOver(E:MouseEvent=null):void
+		protected function onMouseOver(E:MouseEvent=null):Void
 		{
 			hasMouse = true;
 		}
@@ -161,7 +161,7 @@ package org.flixel.system
 		 * 
 		 * @param	E	Flash mouse event.
 		 */
-		protected function onMouseOut(E:MouseEvent=null):void
+		protected function onMouseOut(E:MouseEvent=null):Void
 		{
 			hasMouse = false;
 		}
@@ -171,7 +171,7 @@ package org.flixel.system
 		 * 
 		 * @param	Layout		The layout style for the debugger windows, e.g. <code>FlxG.DEBUGGER_MICRO</code>.
 		 */
-		public function setLayout(Layout:uint):void
+		public function setLayout(Layout:UInt):Void
 		{
 			_layout = Layout;
 			resetLayout();
@@ -181,7 +181,7 @@ package org.flixel.system
 		 * Forces the debugger windows to reset to the last specified layout.
 		 * The default layout is <code>FlxG.DEBUGGER_STANDARD</code>.
 		 */
-		public function resetLayout():void
+		public function resetLayout():Void
 		{
 			switch(_layout)
 			{

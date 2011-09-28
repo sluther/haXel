@@ -30,7 +30,7 @@ package org.flixel.system
 		/**
 		 * @private
 		 */
-		protected var _init:Boolean;
+		protected var _init:Bool;
 		/**
 		 * @private
 		 */
@@ -46,11 +46,11 @@ package org.flixel.system
 		/**
 		 * Useful for storing "real" stage width if you're scaling your preloader graphics.
 		 */
-		protected var _width:uint;
+		protected var _width:UInt;
 		/**
 		 * Useful for storing "real" stage height if you're scaling your preloader graphics.
 		 */
-		protected var _height:uint;
+		protected var _height:UInt;
 		/**
 		 * @private
 		 */
@@ -62,7 +62,7 @@ package org.flixel.system
 		/**
 		 * @private
 		 */
-		protected var _min:uint;
+		protected var _min:UInt;
 
 		/**
 		 * This should always be the name of your main project/document class (e.g. GravityHook).
@@ -75,7 +75,7 @@ package org.flixel.system
 		/**
 		 * Change this if you want the flixel logo to show for more or less time.  Default value is 0 seconds.
 		 */
-		public var minDisplayTime:Number;
+		public var minDisplayTime:Float;
 		
 		/**
 		 * Constructor
@@ -131,12 +131,12 @@ package org.flixel.system
 			addEventListener(Event.ENTER_FRAME, onEnterFrame);
 		}
 		
-		private function goToMyURL(event:MouseEvent=null):void
+		private function goToMyURL(event:MouseEvent=null):Void
 		{
 			navigateToURL(new URLRequest("http://"+myURL));
 		}
 		
-		private function onEnterFrame(event:Event):void
+		private function onEnterFrame(event:Event):Void
         {
 			if(!this._init)
 			{
@@ -146,7 +146,7 @@ package org.flixel.system
 				this._init = true;
 			}
             graphics.clear();
-			var time:uint = getTimer();
+			var time:UInt = getTimer();
             if((framesLoaded >= totalFrames) && (time > _min))
             {
                 removeEventListener(Event.ENTER_FRAME, onEnterFrame);
@@ -161,7 +161,7 @@ package org.flixel.system
             }
             else
 			{
-				var percent:Number = root.loaderInfo.bytesLoaded/root.loaderInfo.bytesTotal;
+				var percent:Float = root.loaderInfo.bytesLoaded/root.loaderInfo.bytesTotal;
 				if((_min > 0) && (percent > time/_min))
 					percent = time/_min;
             	update(percent);
@@ -172,7 +172,7 @@ package org.flixel.system
 		 * Override this to create your own preloader objects.
 		 * Highly recommended you also override update()!
 		 */
-		protected function create():void
+		protected function create():Void
 		{
 			_min = 0;
 			if(!FlxG.debug)
@@ -220,8 +220,8 @@ package org.flixel.system
 			bitmap.height = _height;
 			_buffer.addChild(bitmap);
 			bitmap = new Bitmap(new BitmapData(_width,_height,false,0xffffff));
-			var i:uint = 0;
-			var j:uint = 0;
+			var i:UInt = 0;
+			var j:UInt = 0;
 			while(i < _height)
 			{
 				j = 0;
@@ -234,7 +234,7 @@ package org.flixel.system
 			_buffer.addChild(bitmap);
 		}
 		
-		protected function destroy():void
+		protected function destroy():Void
 		{
 			removeChild(_buffer);
 			_buffer = null;
@@ -249,7 +249,7 @@ package org.flixel.system
 		 * 
 		 * @param	Percent		How much of the program has loaded.
 		 */
-		protected function update(Percent:Number):void
+		protected function update(Percent:Float):Void
 		{
 			_bmpBar.scaleX = Percent*(_width-8);
 			_text.text = "FLX v"+FlxG.LIBRARY_MAJOR_VERSION+"."+FlxG.LIBRARY_MINOR_VERSION+" "+Math.floor(Percent*100)+"%";

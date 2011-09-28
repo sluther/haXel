@@ -39,7 +39,7 @@ package org.flixel.system.debug
 		/**
 		 * Whether the entry is currently being edited or not.
 		 */
-		public var editing:Boolean;
+		public var editing:Bool;
 		/**
 		 * The value of the field before it was edited.
 		 */
@@ -58,7 +58,7 @@ package org.flixel.system.debug
 		 * @param Field			The variable name we want to watch.
 		 * @param Custom		A custom display name (optional).
 		 */
-		public function WatchEntry(Y:Number,NameWidth:Number,ValueWidth:Number,Obj:Object,Field:String,Custom:String=null)
+		public function WatchEntry(Y:Float,NameWidth:Float,ValueWidth:Float,Obj:Object,Field:String,Custom:String=null)
 		{
 			editing = false;
 			
@@ -93,7 +93,7 @@ package org.flixel.system.debug
 		/**
 		 * Clean up memory.
 		 */
-		public function destroy():void
+		public function destroy():Void
 		{
 			object = null;
 			oldValue = null;
@@ -108,7 +108,7 @@ package org.flixel.system.debug
 		/**
 		 * Set the watch window Y height of the Flash <code>TextField</code> objects.
 		 */
-		public function setY(Y:Number):void
+		public function setY(Y:Float):Void
 		{
 			nameDisplay.y = Y;
 			valueDisplay.y = Y;
@@ -117,7 +117,7 @@ package org.flixel.system.debug
 		/**
 		 * Adjust the width of the Flash <code>TextField</code> objects.
 		 */
-		public function updateWidth(NameWidth:Number,ValueWidth:Number):void
+		public function updateWidth(NameWidth:Float,ValueWidth:Float):Void
 		{
 			nameDisplay.width = NameWidth;
 			valueDisplay.width = ValueWidth;
@@ -135,7 +135,7 @@ package org.flixel.system.debug
 		/**
 		 * Update the variable value on display with the current in-game value.
 		 */
-		public function updateValue():Boolean
+		public function updateValue():Bool
 		{
 			if(editing)
 				return false;
@@ -148,7 +148,7 @@ package org.flixel.system.debug
 		 * 
 		 * @param	FlashEvent	Flash mouse event.
 		 */
-		public function onMouseUp(FlashEvent:MouseEvent):void
+		public function onMouseUp(FlashEvent:MouseEvent):Void
 		{
 			editing = true;
 			oldValue = object[field];
@@ -164,7 +164,7 @@ package org.flixel.system.debug
 		 * 
 		 * @param	FlashEvent	Flash keyboard event.
 		 */
-		public function onKeyUp(FlashEvent:KeyboardEvent):void
+		public function onKeyUp(FlashEvent:KeyboardEvent):Void
 		{
 			if((FlashEvent.keyCode == 13) || (FlashEvent.keyCode == 9) || (FlashEvent.keyCode == 27)) //enter or tab or escape
 			{
@@ -178,7 +178,7 @@ package org.flixel.system.debug
 		/**
 		 * Cancel the current edits and stop editing.
 		 */
-		public function cancel():void
+		public function cancel():Void
 		{
 			valueDisplay.text = oldValue.toString();
 			doneEditing();
@@ -187,7 +187,7 @@ package org.flixel.system.debug
 		/**
 		 * Submit the current edits and stop editing.
 		 */
-		public function submit():void
+		public function submit():Void
 		{
 			object[field] = valueDisplay.text;
 			doneEditing();
@@ -196,7 +196,7 @@ package org.flixel.system.debug
 		/**
 		 * Helper function, switches the text field back to display mode.
 		 */
-		protected function doneEditing():void
+		protected function doneEditing():Void
 		{
 			valueDisplay.type = TextFieldType.DYNAMIC;
 			valueDisplay.setTextFormat(_whiteText);

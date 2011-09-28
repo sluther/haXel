@@ -15,15 +15,15 @@ package org.flixel
 		/**
 		 * Used with public variable <code>status</code>, means not highlighted or pressed.
 		 */
-		static public var NORMAL:uint = 0;
+		static public var NORMAL:UInt = 0;
 		/**
 		 * Used with public variable <code>status</code>, means highlighted (usually from mouse over).
 		 */
-		static public var HIGHLIGHT:uint = 1;
+		static public var HIGHLIGHT:UInt = 1;
 		/**
 		 * Used with public variable <code>status</code>, means pressed (usually from mouse click).
 		 */
-		static public var PRESSED:uint = 2;
+		static public var PRESSED:UInt = 2;
 		
 		/**
 		 * The text that appears on the button.
@@ -54,7 +54,7 @@ package org.flixel
 		/**
 		 * Shows the current state of the button.
 		 */
-		public var status:uint;
+		public var status:UInt;
 		/**
 		 * Set this to play a sound when the mouse goes over the button.
 		 * We recommend using the helper function setSounds()!
@@ -79,16 +79,16 @@ package org.flixel
 		/**
 		 * Used for checkbox-style behavior.
 		 */
-		protected var _onToggle:Boolean;
+		protected var _onToggle:Bool;
 		
 		/**
 		 * Tracks whether or not the button is currently pressed.
 		 */
-		protected var _pressed:Boolean;
+		protected var _pressed:Bool;
 		/**
 		 * Whether or not the button has initialized itself yet.
 		 */
-		protected var _initialized:Boolean;
+		protected var _initialized:Bool;
 		
 		/**
 		 * Creates a new <code>FlxButton</code> object with a gray background
@@ -99,7 +99,7 @@ package org.flixel
 		 * @param	Label		The text that you want to appear on the button.
 		 * @param	OnClick		The function to call whenever the button is clicked.
 		 */
-		public function FlxButton(X:Number=0,Y:Number=0,Label:String=null,OnClick:Function=null)
+		public function FlxButton(X:Float=0,Y:Float=0,Label:String=null,OnClick:Function=null)
 		{
 			super(X,Y);
 			if(Label != null)
@@ -129,7 +129,7 @@ package org.flixel
 		/**
 		 * Called by the game state when state is changed (if this object belongs to the state)
 		 */
-		override public function destroy():void
+		override public function destroy():Void
 		{
 			if(FlxG.stage != null)
 				FlxG.stage.removeEventListener(MouseEvent.MOUSE_UP, onMouseUp);
@@ -158,7 +158,7 @@ package org.flixel
 		 * we run a little pre-check here to make sure that we only add
 		 * the mouse handler when it is actually safe to do so.
 		 */
-		override public function preUpdate():void
+		override public function preUpdate():Void
 		{
 			super.preUpdate();
 			
@@ -175,7 +175,7 @@ package org.flixel
 		/**
 		 * Called by the game loop automatically, handles mouseover and click detection.
 		 */
-		override public function update():void
+		override public function update():Void
 		{
 			updateButton(); //Basic button logic
 
@@ -202,7 +202,7 @@ package org.flixel
 		/**
 		 * Basic button update logic
 		 */
-		protected function updateButton():void
+		protected function updateButton():Void
 		{
 			//Figure out if the button is highlighted or pressed or what
 			// (ignore checkbox behavior for now).
@@ -211,9 +211,9 @@ package org.flixel
 				if(cameras == null)
 					cameras = FlxG.cameras;
 				var camera:FlxCamera;
-				var i:uint = 0;
-				var l:uint = cameras.length;
-				var offAll:Boolean = true;
+				var i:UInt = 0;
+				var l:UInt = cameras.length;
+				var offAll:Bool = true;
 				while(i < l)
 				{
 					camera = cameras[i++] as FlxCamera;
@@ -275,7 +275,7 @@ package org.flixel
 		/**
 		 * Just draws the button graphic and text label to the screen.
 		 */
-		override public function draw():void
+		override public function draw():Void
 		{
 			super.draw();
 			if(label != null)
@@ -289,7 +289,7 @@ package org.flixel
 		/**
 		 * Updates the size of the text field to match the button.
 		 */
-		override protected function resetHelpers():void
+		override protected function resetHelpers():Void
 		{
 			super.resetHelpers();
 			if(label != null)
@@ -311,7 +311,7 @@ package org.flixel
 		 * @param SoundUp			What embedded sound effect to play when the mouse releases the button. Default is null, or no sound.
 		 * @param SoundUpVolume		How load the that sound should be.
 		 */
-		public function setSounds(SoundOver:Class=null, SoundOverVolume:Number=1.0, SoundOut:Class=null, SoundOutVolume:Number=1.0, SoundDown:Class=null, SoundDownVolume:Number=1.0, SoundUp:Class=null, SoundUpVolume:Number=1.0):void
+		public function setSounds(SoundOver:Class=null, SoundOverVolume:Float=1.0, SoundOut:Class=null, SoundOutVolume:Float=1.0, SoundDown:Class=null, SoundDownVolume:Float=1.0, SoundUp:Class=null, SoundUpVolume:Float=1.0):Void
 		{
 			if(SoundOver != null)
 				soundOver = FlxG.loadSound(SoundOver, SoundOverVolume);
@@ -326,7 +326,7 @@ package org.flixel
 		/**
 		 * Use this to toggle checkbox-style behavior.
 		 */
-		public function get on():Boolean
+		public function get on():Bool
 		{
 			return _onToggle;
 		}
@@ -334,7 +334,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		public function set on(On:Boolean):void
+		public function set on(On:Bool):Void
 		{
 			_onToggle = On;
 		}
@@ -342,7 +342,7 @@ package org.flixel
 		/**
 		 * Internal function for handling the actual callback call (for UI thread dependent calls like <code>FlxU.openURL()</code>).
 		 */
-		protected function onMouseUp(event:MouseEvent):void
+		protected function onMouseUp(event:MouseEvent):Void
 		{
 			if(!exists || !visible || !active || (status != PRESSED))
 				return;

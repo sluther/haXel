@@ -1,7 +1,7 @@
 package org.flixel.system.input
 {
 	/**
-	 * Basic input class that manages the fast-access Booleans and detailed key-state tracking.
+	 * Basic input class that manages the fast-access :Bools and detailed key-state tracking.
 	 * Keyboard extends this with actual specific key data.
 	 * 
 	 * @author Adam Atomic
@@ -19,7 +19,7 @@ package org.flixel.system.input
 		/**
 		 * @private
 		 */
-		internal const _total:uint = 256;
+		internal const _total:UInt = 256;
 		
 		/**
 		 * Constructor
@@ -33,9 +33,9 @@ package org.flixel.system.input
 		/**
 		 * Updates the key states (for tracking just pressed, just released, etc).
 		 */
-		public function update():void
+		public function update():Void
 		{
-			var i:uint = 0;
+			var i:UInt = 0;
 			while(i < _total)
 			{
 				var o:Object = _map[i++];
@@ -49,9 +49,9 @@ package org.flixel.system.input
 		/**
 		 * Resets all the keys.
 		 */
-		public function reset():void
+		public function reset():Void
 		{
-			var i:uint = 0;
+			var i:UInt = 0;
 			while(i < _total)
 			{
 				var o:Object = _map[i++];
@@ -69,7 +69,7 @@ package org.flixel.system.input
 		 * 
 		 * @return	Whether the key is pressed
 		 */
-		public function pressed(Key:String):Boolean { return this[Key]; }
+		public function pressed(Key:String):Bool { return this[Key]; }
 		
 		/**
 		 * Check to see if this key was just pressed.
@@ -78,7 +78,7 @@ package org.flixel.system.input
 		 * 
 		 * @return	Whether the key was just pressed
 		 */
-		public function justPressed(Key:String):Boolean { return _map[_lookup[Key]].current == 2; }
+		public function justPressed(Key:String):Bool { return _map[_lookup[Key]].current == 2; }
 		
 		/**
 		 * Check to see if this key is just released.
@@ -87,7 +87,7 @@ package org.flixel.system.input
 		 * 
 		 * @return	Whether the key is just released.
 		 */
-		public function justReleased(Key:String):Boolean { return _map[_lookup[Key]].current == -1; }
+		public function justReleased(Key:String):Bool { return _map[_lookup[Key]].current == -1; }
 		
 		/**
 		 * If any keys are not "released" (0),
@@ -99,7 +99,7 @@ package org.flixel.system.input
 		public function record():Array
 		{
 			var data:Array = null;
-			var i:uint = 0;
+			var i:UInt = 0;
 			while(i < _total)
 			{
 				var o:Object = _map[i++];
@@ -118,10 +118,10 @@ package org.flixel.system.input
 		 * 
 		 * @param	Record	Array of data about key states.
 		 */
-		public function playback(Record:Array):void
+		public function playback(Record:Array):Void
 		{
-			var i:uint = 0;
-			var l:uint = Record.length;
+			var i:UInt = 0;
+			var l:UInt = Record.length;
 			var o:Object;
 			var o2:Object;
 			while(i < l)
@@ -141,7 +141,7 @@ package org.flixel.system.input
 		 * 
 		 * @return	The key code for that key.
 		 */
-		public function getKeyCode(KeyName:String):int
+		public function getKeyCode(KeyName:String):Int
 		{
 			return _lookup[KeyName];
 		}
@@ -151,9 +151,9 @@ package org.flixel.system.input
 		 * 
 		 * @return	Whether any keys are currently pressed.
 		 */
-		public function any():Boolean
+		public function any():Bool
 		{
-			var i:uint = 0;
+			var i:UInt = 0;
 			while(i < _total)
 			{
 				var o:Object = _map[i++];
@@ -169,7 +169,7 @@ package org.flixel.system.input
 		 * @param	KeyName		String name of the key (e.g. "LEFT" or "A")
 		 * @param	KeyCode		The numeric Flash code for this key.
 		 */
-		protected function addKey(KeyName:String,KeyCode:uint):void
+		protected function addKey(KeyName:String,KeyCode:UInt):Void
 		{
 			_lookup[KeyName] = KeyCode;
 			_map[KeyCode] = { name: KeyName, current: 0, last: 0 };
@@ -178,7 +178,7 @@ package org.flixel.system.input
 		/**
 		 * Clean up memory.
 		 */
-		public function destroy():void
+		public function destroy():Void
 		{
 			_lookup = null;
 			_map = null;

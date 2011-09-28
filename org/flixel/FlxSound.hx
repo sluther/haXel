@@ -17,16 +17,16 @@ package org.flixel
 		 * The X position of this sound in world coordinates.
 		 * Only really matters if you are doing proximity/panning stuff.
 		 */
-		public var x:Number;
+		public var x:Float;
 		/**
 		 * The Y position of this sound in world coordinates.
 		 * Only really matters if you are doing proximity/panning stuff.
 		 */
-		public var y:Number;
+		public var y:Float;
 		/**
 		 * Whether or not this sound should be automatically destroyed when you switch states.
 		 */
-		public var survive:Boolean;
+		public var survive:Bool;
 		/**
 		 * The ID3 song name.  Defaults to null.  Currently only works for streamed sounds.
 		 */
@@ -38,19 +38,19 @@ package org.flixel
 		/**
 		 * Stores the average wave amplitude of both stereo channels
 		 */
-		public var amplitude:Number;
+		public var amplitude:Float;
 		/**
 		 * Just the amplitude of the left stereo channel
 		 */
-		public var amplitudeLeft:Number;
+		public var amplitudeLeft:Float;
 		/**
 		 * Just the amplitude of the left stereo channel
 		 */
-		public var amplitudeRight:Number;
+		public var amplitudeRight:Float;
 		/**
 		 * Whether to call destroy() when the sound has finished.
 		 */
-		public var autoDestroy:Boolean;
+		public var autoDestroy:Bool;
 
 		/**
 		 * Internal tracker for a Flash sound object.
@@ -67,19 +67,19 @@ package org.flixel
 		/**
 		 * Internal tracker for the position in runtime of the music playback.
 		 */
-		protected var _position:Number;
+		protected var _position:Float;
 		/**
 		 * Internal tracker for how loud the sound is.
 		 */
-		protected var _volume:Number;
+		protected var _volume:Float;
 		/**
 		 * Internal tracker for total volume adjustment.
 		 */
-		protected var _volumeAdjust:Number;
+		protected var _volumeAdjust:Float;
 		/**
 		 * Internal tracker for whether the sound is looping or not.
 		 */
-		protected var _looped:Boolean;
+		protected var _looped:Bool;
 		/**
 		 * Internal tracker for the sound's "target" (for proximity and panning).
 		 */
@@ -87,31 +87,31 @@ package org.flixel
 		/**
 		 * Internal tracker for the maximum effective radius of this sound (for proximity and panning).
 		 */
-		protected var _radius:Number;
+		protected var _radius:Float;
 		/**
 		 * Internal tracker for whether to pan the sound left and right.  Default is false.
 		 */
-		protected var _pan:Boolean;
+		protected var _pan:Bool;
 		/**
 		 * Internal timer used to keep track of requests to fade out the sound playback.
 		 */
-		protected var _fadeOutTimer:Number;
+		protected var _fadeOutTimer:Float;
 		/**
 		 * Internal helper for fading out sounds.
 		 */
-		protected var _fadeOutTotal:Number;
+		protected var _fadeOutTotal:Float;
 		/**
 		 * Internal flag for whether to pause or stop the sound when it's done fading out.
 		 */
-		protected var _pauseOnFadeOut:Boolean;
+		protected var _pauseOnFadeOut:Bool;
 		/**
 		 * Internal timer for fading in the sound playback.
 		 */
-		protected var _fadeInTimer:Number;
+		protected var _fadeInTimer:Float;
 		/**
 		 * Internal helper for fading in sounds.
 		 */
-		protected var _fadeInTotal:Number;
+		protected var _fadeInTotal:Float;
 		
 		/**
 		 * The FlxSound constructor gets all the variables initialized, but NOT ready to play a sound yet.
@@ -125,7 +125,7 @@ package org.flixel
 		/**
 		 * An internal function for clearing all the variables used by sounds.
 		 */
-		protected function createSound():void
+		protected function createSound():Void
 		{
 			destroy();
 			x = 0;
@@ -160,7 +160,7 @@ package org.flixel
 		/**
 		 * Clean up memory.
 		 */
-		override public function destroy():void
+		override public function destroy():Void
 		{
 			kill();
 
@@ -177,13 +177,13 @@ package org.flixel
 		/**
 		 * Handles fade out, fade in, panning, proximity, and amplitude operations each frame.
 		 */
-		override public function update():void
+		override public function update():Void
 		{
 			if(_position != 0)
 				return;
 			
-			var radial:Number = 1.0;
-			var fade:Number = 1.0;
+			var radial:Float = 1.0;
+			var fade:Float = 1.0;
 			
 			//Distance-based volume control
 			if(_target != null)
@@ -194,7 +194,7 @@ package org.flixel
 				
 				if(_pan)
 				{
-					var d:Number = (_target.x-x)/_radius;
+					var d:Float = (_target.x-x)/_radius;
 					if(d < -1) d = -1;
 					else if(d > 1) d = 1;
 					_transform.pan = d;
@@ -234,7 +234,7 @@ package org.flixel
 			}
 		}
 		
-		override public function kill():void
+		override public function kill():Void
 		{
 			super.kill();
 			if(_channel != null)
@@ -250,7 +250,7 @@ package org.flixel
 		 * 
 		 * @return	This <code>FlxSound</code> instance (nice for chaining stuff together, if you're into that).
 		 */
-		public function loadEmbedded(EmbeddedSound:Class, Looped:Boolean=false, AutoDestroy:Boolean=false):FlxSound
+		public function loadEmbedded(EmbeddedSound:Class, Looped:Bool=false, AutoDestroy:Bool=false):FlxSound
 		{
 			stop();
 			createSound();
@@ -271,7 +271,7 @@ package org.flixel
 		 * 
 		 * @return	This <code>FlxSound</code> instance (nice for chaining stuff together, if you're into that).
 		 */
-		public function loadStream(SoundURL:String, Looped:Boolean=false, AutoDestroy:Boolean=false):FlxSound
+		public function loadStream(SoundURL:String, Looped:Bool=false, AutoDestroy:Bool=false):FlxSound
 		{
 			stop();
 			createSound();
@@ -296,7 +296,7 @@ package org.flixel
 		 * 
 		 * @return	This FlxSound instance (nice for chaining stuff together, if you're into that).
 		 */
-		public function proximity(X:Number,Y:Number,Object:FlxObject,Radius:Number,Pan:Boolean=true):FlxSound
+		public function proximity(X:Float,Y:Float,Object:FlxObject,Radius:Float,Pan:Bool=true):FlxSound
 		{
 			x = X;
 			y = Y;
@@ -311,13 +311,13 @@ package org.flixel
 		 * 
 		 * @param	ForceRestart	Whether to start the sound over or not.  Default value is false, meaning if the sound is already playing or was paused when you call <code>play()</code>, it will continue playing from its current position, NOT start again from the beginning.
 		 */
-		public function play(ForceRestart:Boolean=false):void
+		public function play(ForceRestart:Bool=false):Void
 		{
 			if(_position < 0)
 				return;
 			if(ForceRestart)
 			{
-				var oldAutoDestroy:Boolean = autoDestroy;
+				var oldAutoDestroy:Bool = autoDestroy;
 				autoDestroy = false;
 				stop();
 				autoDestroy = oldAutoDestroy;
@@ -367,7 +367,7 @@ package org.flixel
 		/**
 		 * Unpause a sound.  Only works on sounds that have been paused.
 		 */
-		public function resume():void
+		public function resume():Void
 		{
 			if(_position <= 0)
 				return;
@@ -391,7 +391,7 @@ package org.flixel
 		/**
 		 * Call this function to pause this sound.
 		 */
-		public function pause():void
+		public function pause():Void
 		{
 			if(_channel == null)
 			{
@@ -414,7 +414,7 @@ package org.flixel
 		/**
 		 * Call this function to stop this sound.
 		 */
-		public function stop():void
+		public function stop():Void
 		{
 			_position = 0;
 			if(_channel != null)
@@ -430,7 +430,7 @@ package org.flixel
 		 * @param	Seconds			The amount of time the fade out operation should take.
 		 * @param	PauseInstead	Tells the sound to pause on fadeout, instead of stopping.
 		 */
-		public function fadeOut(Seconds:Number,PauseInstead:Boolean=false):void
+		public function fadeOut(Seconds:Float,PauseInstead:Bool=false):Void
 		{
 			_pauseOnFadeOut = PauseInstead;
 			_fadeInTimer = 0;
@@ -444,7 +444,7 @@ package org.flixel
 		 * 
 		 * @param	Seconds		The amount of time the fade-in operation should take.
 		 */
-		public function fadeIn(Seconds:Number):void
+		public function fadeIn(Seconds:Float):Void
 		{
 			_fadeOutTimer = 0;
 			_fadeInTimer = Seconds;
@@ -455,7 +455,7 @@ package org.flixel
 		/**
 		 * Set <code>volume</code> to a value between 0 and 1 to change how this sound is.
 		 */
-		public function get volume():Number
+		public function get volume():Float
 		{
 			return _volume;
 		}
@@ -463,7 +463,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		public function set volume(Volume:Number):void
+		public function set volume(Volume:Float):Void
 		{
 			_volume = Volume;
 			if(_volume < 0)
@@ -478,7 +478,7 @@ package org.flixel
 		 * 
 		 * @return	The adjusted volume of the sound.
 		 */
-		public function getActualVolume():Number
+		public function getActualVolume():Float
 		{
 			return _volume*_volumeAdjust;
 		}
@@ -486,7 +486,7 @@ package org.flixel
 		/**
 		 * Call after adjusting the volume to update the sound channel's settings.
 		 */
-		internal function updateTransform():void
+		internal function updateTransform():Void
 		{
 			_transform.volume = (FlxG.mute?0:1)*FlxG.volume*_volume*_volumeAdjust;
 			if(_channel != null)
@@ -498,7 +498,7 @@ package org.flixel
 		 * 
 		 * @param	event		An <code>Event</code> object.
 		 */
-		protected function looped(event:Event=null):void
+		protected function looped(event:Event=null):Void
 		{
 		    if (_channel == null)
 		    	return;
@@ -512,7 +512,7 @@ package org.flixel
 		 * 
 		 * @param	event		An <code>Event</code> object.
 		 */
-		protected function stopped(event:Event=null):void
+		protected function stopped(event:Event=null):Void
 		{
 			if(!_looped)
 	        	_channel.removeEventListener(Event.SOUND_COMPLETE,stopped);
@@ -529,7 +529,7 @@ package org.flixel
 		 * 
 		 * @param	event	An <code>Event</code> object.
 		 */
-		protected function gotID3(event:Event=null):void
+		protected function gotID3(event:Event=null):Void
 		{
 			FlxG.log("got ID3 info!");
 			if(_sound.id3.songName.length > 0)

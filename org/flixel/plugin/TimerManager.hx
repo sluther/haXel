@@ -1,6 +1,26 @@
 package org.flixel.plugin
 {
-	import org.flixel.*;
+	import org.flixel.FlxBasic;
+	import org.flixel.FlxButton;
+	import org.flixel.FlxCamera;
+	import org.flixel.FlxEmitter;
+	import org.flixel.FlxG;
+	import org.flixel.FlxGame;
+	import org.flixel.FlxGroup;
+	import org.flixel.FlxObject;
+	import org.flixel.FlxParticle;
+	import org.flixel.FlxPath;
+	import org.flixel.FlxPoint;
+	import org.flixel.FlxRect;
+	import org.flixel.FlxSave;
+	import org.flixel.FlxSound;
+	import org.flixel.FlxSprite;
+	import org.flixel.FlxState;
+	import org.flixel.FlxText;
+	import org.flixel.FlxTileblock;
+	import org.flixel.FlxTilemap;
+	import org.flixel.FlxTimer;
+	import org.flixel.FlxU;
 	
 	/**
 	 * A simple manager for tracking and updating game timer objects.
@@ -23,7 +43,7 @@ package org.flixel.plugin
 		/**
 		 * Clean up memory.
 		 */
-		override public function destroy():void
+		override public function destroy():Void
 		{
 			clear();
 			_timers = null;
@@ -33,9 +53,9 @@ package org.flixel.plugin
 		 * Called by <code>FlxG.updatePlugins()</code> before the game state has been updated.
 		 * Cycles through timers and calls <code>update()</code> on each one.
 		 */
-		override public function update():void
+		override public function update():Void
 		{
-			var i:int = _timers.length-1;
+			var i:Int = _timers.length-1;
 			var timer:FlxTimer;
 			while(i >= 0)
 			{
@@ -51,7 +71,7 @@ package org.flixel.plugin
 		 * 
 		 * @param	Timer	The <code>FlxTimer</code> you want to add to the manager.
 		 */
-		public function add(Timer:FlxTimer):void
+		public function add(Timer:FlxTimer):Void
 		{
 			_timers.push(Timer);
 		}
@@ -62,9 +82,9 @@ package org.flixel.plugin
 		 * 
 		 * @param	Timer	The <code>FlxTimer</code> you want to remove from the manager.
 		 */
-		public function remove(Timer:FlxTimer):void
+		public function remove(Timer:FlxTimer):Void
 		{
-			var index:int = _timers.indexOf(Timer);
+			var index:Int = _timers.indexOf(Timer);
 			if(index >= 0)
 				_timers.splice(index,1);
 		}
@@ -72,9 +92,9 @@ package org.flixel.plugin
 		/**
 		 * Removes all the timers from the timer manager.
 		 */
-		public function clear():void
+		public function clear():Void
 		{
-			var i:int = _timers.length-1;
+			var i:Int = _timers.length-1;
 			var timer:FlxTimer;
 			while(i >= 0)
 			{

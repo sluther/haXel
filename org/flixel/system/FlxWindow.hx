@@ -33,11 +33,11 @@ package org.flixel.system
 		/**
 		 * Width of the window.  Using Sprite.width is super unreliable for some reason!
 		 */
-		protected var _width:uint;
+		protected var _width:UInt;
 		/**
 		 * Height of the window.  Using Sprite.height is super unreliable for some reason!
 		 */
-		protected var _height:uint;
+		protected var _height:UInt;
 		/**
 		 * Controls where the window is allowed to be positioned.
 		 */
@@ -67,11 +67,11 @@ package org.flixel.system
 		/**
 		 * Helper for interaction.
 		 */
-		protected var _overHeader:Boolean;
+		protected var _overHeader:Bool;
 		/**
 		 * Helper for interaction.
 		 */
-		protected var _overHandle:Boolean;
+		protected var _overHandle:Bool;
 		/**
 		 * Helper for interaction.
 		 */
@@ -79,15 +79,15 @@ package org.flixel.system
 		/**
 		 * Helper for interaction.
 		 */
-		protected var _dragging:Boolean;
+		protected var _dragging:Bool;
 		/**
 		 * Helper for interaction.
 		 */
-		protected var _resizing:Boolean;
+		protected var _resizing:Bool;
 		/**
 		 * Helper for interaction.
 		 */
-		protected var _resizable:Boolean;
+		protected var _resizable:Bool;
 		
 		/**
 		 * Creates a new window object.  This Flash-based class is mainly (only?) used by <code>FlxDebugger</code>.
@@ -100,7 +100,7 @@ package org.flixel.system
 		 * @param BGColor		What color the window background should be, default is gray and transparent.
 		 * @param TopColor		What color the window header bar should be, default is black and transparent.
 		 */
-		public function FlxWindow(Title:String,Width:Number,Height:Number,Resizable:Boolean=true,Bounds:Rectangle=null,BGColor:uint=0x7f7f7f7f, TopColor:uint=0x7f000000)
+		public function FlxWindow(Title:String,Width:Float,Height:Float,Resizable:Bool=true,Bounds:Rectangle=null,BGColor:UInt=0x7f7f7f7f, TopColor:UInt=0x7f000000)
 		{
 			super();
 			_width = Width;
@@ -147,7 +147,7 @@ package org.flixel.system
 		/**
 		 * Clean up memory.
 		 */
-		public function destroy():void
+		public function destroy():Void
 		{
 			minSize = null;
 			maxSize = null;
@@ -172,7 +172,7 @@ package org.flixel.system
 		 * @param Width		How wide to make the window.
 		 * @param Height	How tall to make the window.
 		 */
-		public function resize(Width:Number,Height:Number):void
+		public function resize(Width:Float,Height:Float):Void
 		{
 			_width = Width;
 			_height = Height;
@@ -185,7 +185,7 @@ package org.flixel.system
 		 * @param X		Desired X position of top left corner of the window.
 		 * @param Y		Desired Y position of top left corner of the window.
 		 */
-		public function reposition(X:Number,Y:Number):void
+		public function reposition(X:Float,Y:Float):Void
 		{
 			x = X;
 			y = Y;
@@ -199,7 +199,7 @@ package org.flixel.system
 		 * 
 		 * @param E		Flash event.
 		 */
-		protected function init(E:Event=null):void
+		protected function init(E:Event=null):Void
 		{
 			if(root == null)
 				return;
@@ -215,7 +215,7 @@ package org.flixel.system
 		 * 
 		 * @param E		Flash mouse event.
 		 */
-		protected function onMouseMove(E:MouseEvent=null):void
+		protected function onMouseMove(E:MouseEvent=null):Void
 		{
 			if(_dragging) //user is moving the window around
 			{
@@ -246,7 +246,7 @@ package org.flixel.system
 		 * 
 		 * @param E		Flash mouse event.
 		 */
-		protected function onMouseDown(E:MouseEvent=null):void
+		protected function onMouseDown(E:MouseEvent=null):Void
 		{
 			if(_overHeader)
 			{
@@ -267,7 +267,7 @@ package org.flixel.system
 		 * 
 		 * @param E		Flash mouse event.
 		 */
-		protected function onMouseUp(E:MouseEvent=null):void
+		protected function onMouseUp(E:MouseEvent=null):Void
 		{
 			_dragging = false;
 			_resizing = false;
@@ -278,7 +278,7 @@ package org.flixel.system
 		/**
 		 * Keep the window within the pre-specified bounding rectangle. 
 		 */
-		protected function bound():void
+		protected function bound():Void
 		{
 			if(_bounds != null)
 			{
@@ -290,7 +290,7 @@ package org.flixel.system
 		/**
 		 * Update the Flash shapes to match the new size, and reposition the header, shadow, and handle accordingly.
 		 */
-		protected function updateSize():void
+		protected function updateSize():Void
 		{
 			_width = FlxU.bound(_width,minSize.x,maxSize.x);
 			_height = FlxU.bound(_height,minSize.y,maxSize.y);
@@ -311,7 +311,7 @@ package org.flixel.system
 		/**
 		 * Figure out if the header or handle are highlighted.
 		 */
-		protected function updateGUI():void
+		protected function updateGUI():Void
 		{
 			if(_overHeader || _overHandle)
 			{

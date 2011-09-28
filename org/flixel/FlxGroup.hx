@@ -12,11 +12,11 @@ package org.flixel
 		/**
 		 * Use with <code>sort()</code> to sort in ascending order.
 		 */
-		static public const ASCENDING:int = -1;
+		static public const ASCENDING:Int = -1;
 		/**
 		 * Use with <code>sort()</code> to sort in descending order.
 		 */
-		static public const DESCENDING:int = 1;
+		static public const DESCENDING:Int = 1;
 		
 		/**
 		 * Array of all the <code>FlxBasic</code>s that exist in this group.
@@ -27,17 +27,17 @@ package org.flixel
 		 * For performance and safety you should check this variable
 		 * instead of members.length unless you really know what you're doing!
 		 */
-		public var length:Number;
+		public var length:Float;
 
 		/**
 		 * Internal tracker for the maximum capacity of the group.
 		 * Default is 0, or no max capacity.
 		 */
-		protected var _maxSize:uint;
+		protected var _maxSize:UInt;
 		/**
 		 * Internal helper variable for recycling objects a la <code>FlxEmitter</code>.
 		 */
-		protected var _marker:uint;
+		protected var _marker:UInt;
 		
 		/**
 		 * Helper for sort.
@@ -46,12 +46,12 @@ package org.flixel
 		/**
 		 * Helper for sort.
 		 */
-		protected var _sortOrder:int;
+		protected var _sortOrder:Int;
 
 		/**
 		 * Constructor
 		 */
-		public function FlxGroup(MaxSize:uint=0)
+		public function FlxGroup(MaxSize:UInt=0)
 		{
 			super();
 			members = new Array();
@@ -65,12 +65,12 @@ package org.flixel
 		 * Override this function to handle any deleting or "shutdown" type operations you might need,
 		 * such as removing traditional Flash children like Sprite objects.
 		 */
-		override public function destroy():void
+		override public function destroy():Void
 		{
 			if(members != null)
 			{
 				var basic:FlxBasic;
-				var i:uint = 0;
+				var i:UInt = 0;
 				while(i < length)
 				{
 					basic = members[i++] as FlxBasic;
@@ -86,17 +86,17 @@ package org.flixel
 		/**
 		 * Just making sure we don't increment the active objects count.
 		 */
-		override public function preUpdate():void
+		override public function preUpdate():Void
 		{
 		}
 		
 		/**
 		 * Automatically goes through and calls update on everything you added.
 		 */
-		override public function update():void
+		override public function update():Void
 		{
 			var basic:FlxBasic;
-			var i:uint = 0;
+			var i:UInt = 0;
 			while(i < length)
 			{
 				basic = members[i++] as FlxBasic;
@@ -112,10 +112,10 @@ package org.flixel
 		/**
 		 * Automatically goes through and calls render on everything you added.
 		 */
-		override public function draw():void
+		override public function draw():Void
 		{
 			var basic:FlxBasic;
-			var i:uint = 0;
+			var i:UInt = 0;
 			while(i < length)
 			{
 				basic = members[i++] as FlxBasic;
@@ -127,7 +127,7 @@ package org.flixel
 		/**
 		 * The maximum capacity of this group.  Default is 0, meaning no max capacity, and the group can just grow.
 		 */
-		public function get maxSize():uint
+		public function get maxSize():UInt
 		{
 			return _maxSize;
 		}
@@ -135,7 +135,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		public function set maxSize(Size:uint):void
+		public function set maxSize(Size:UInt):Void
 		{
 			_maxSize = Size;
 			if(_marker >= _maxSize)
@@ -145,8 +145,8 @@ package org.flixel
 			
 			//If the max size has shrunk, we need to get rid of some objects
 			var basic:FlxBasic;
-			var i:uint = _maxSize;
-			var l:uint = members.length;
+			var i:UInt = _maxSize;
+			var l:UInt = members.length;
 			while(i < l)
 			{
 				basic = members[i++] as FlxBasic;
@@ -176,8 +176,8 @@ package org.flixel
 				return Object;
 			
 			//First, look for a null entry where we can add the object.
-			var i:uint = 0;
-			var l:uint = members.length;
+			var i:UInt = 0;
+			var l:UInt = members.length;
 			while(i < l)
 			{
 				if(members[i] == null)
@@ -271,9 +271,9 @@ package org.flixel
 		 * 
 		 * @return	The removed object.
 		 */
-		public function remove(Object:FlxBasic,Splice:Boolean=false):FlxBasic
+		public function remove(Object:FlxBasic,Splice:Bool=false):FlxBasic
 		{
-			var index:int = members.indexOf(Object);
+			var index:Int = members.indexOf(Object);
 			if((index < 0) || (index >= members.length))
 				return null;
 			if(Splice)
@@ -296,7 +296,7 @@ package org.flixel
 		 */
 		public function replace(OldObject:FlxBasic,NewObject:FlxBasic):FlxBasic
 		{
-			var index:int = members.indexOf(OldObject);
+			var index:Int = members.indexOf(OldObject);
 			if((index < 0) || (index >= members.length))
 				return null;
 			members[index] = NewObject;
@@ -313,7 +313,7 @@ package org.flixel
 		 * @param	Index	The <code>String</code> name of the member variable you want to sort on.  Default value is "y".
 		 * @param	Order	A <code>FlxGroup</code> constant that defines the sort order.  Possible values are <code>ASCENDING</code> and <code>DESCENDING</code>.  Default value is <code>ASCENDING</code>.  
 		 */
-		public function sort(Index:String="y",Order:int=ASCENDING):void
+		public function sort(Index:String="y",Order:Int=ASCENDING):Void
 		{
 			_sortIndex = Index;
 			_sortOrder = Order;
@@ -327,10 +327,10 @@ package org.flixel
 		 * @param	Value			The value you want to assign to that variable.
 		 * @param	Recurse			Default value is true, meaning if <code>setAll()</code> encounters a member that is a group, it will call <code>setAll()</code> on that group rather than modifying its variable.
 		 */
-		public function setAll(VariableName:String,Value:Object,Recurse:Boolean=true):void
+		public function setAll(VariableName:String,Value:Object,Recurse:Bool=true):Void
 		{
 			var basic:FlxBasic;
-			var i:uint = 0;
+			var i:UInt = 0;
 			while(i < length)
 			{
 				basic = members[i++] as FlxBasic;
@@ -351,10 +351,10 @@ package org.flixel
 		 * @param	FunctionName	The string representation of the function you want to call on each object, for example "kill()" or "init()".
 		 * @param	Recurse			Default value is true, meaning if <code>callAll()</code> encounters a member that is a group, it will call <code>callAll()</code> on that group rather than calling the group's function.
 		 */ 
-		public function callAll(FunctionName:String,Recurse:Boolean=true):void
+		public function callAll(FunctionName:String,Recurse:Bool=true):Void
 		{
 			var basic:FlxBasic;
-			var i:uint = 0;
+			var i:UInt = 0;
 			while(i < length)
 			{
 				basic = members[i++] as FlxBasic;
@@ -379,7 +379,7 @@ package org.flixel
 		public function getFirstAvailable(ObjectClass:Class=null):FlxBasic
 		{
 			var basic:FlxBasic;
-			var i:uint = 0;
+			var i:UInt = 0;
 			while(i < length)
 			{
 				basic = members[i++] as FlxBasic;
@@ -395,11 +395,11 @@ package org.flixel
 		 * 
 		 * @return	An <code>int</code> indicating the first null slot in the group.
 		 */
-		public function getFirstNull():int
+		public function getFirstNull():Int
 		{
 			var basic:FlxBasic;
-			var i:uint = 0;
-			var l:uint = members.length;
+			var i:UInt = 0;
+			var l:UInt = members.length;
 			while(i < l)
 			{
 				if(members[i] == null)
@@ -419,7 +419,7 @@ package org.flixel
 		public function getFirstExtant():FlxBasic
 		{
 			var basic:FlxBasic;
-			var i:uint = 0;
+			var i:UInt = 0;
 			while(i < length)
 			{
 				basic = members[i++] as FlxBasic;
@@ -438,7 +438,7 @@ package org.flixel
 		public function getFirstAlive():FlxBasic
 		{
 			var basic:FlxBasic;
-			var i:uint = 0;
+			var i:UInt = 0;
 			while(i < length)
 			{
 				basic = members[i++] as FlxBasic;
@@ -457,7 +457,7 @@ package org.flixel
 		public function getFirstDead():FlxBasic
 		{
 			var basic:FlxBasic;
-			var i:uint = 0;
+			var i:UInt = 0;
 			while(i < length)
 			{
 				basic = members[i++] as FlxBasic;
@@ -472,11 +472,11 @@ package org.flixel
 		 * 
 		 * @return	The number of <code>FlxBasic</code>s flagged as not dead.  Returns -1 if group is empty.
 		 */
-		public function countLiving():int
+		public function countLiving():Int
 		{
-			var count:int = -1;
+			var count:Int = -1;
 			var basic:FlxBasic;
-			var i:uint = 0;
+			var i:UInt = 0;
 			while(i < length)
 			{
 				basic = members[i++] as FlxBasic;
@@ -496,11 +496,11 @@ package org.flixel
 		 * 
 		 * @return	The number of <code>FlxBasic</code>s flagged as dead.  Returns -1 if group is empty.
 		 */
-		public function countDead():int
+		public function countDead():Int
 		{
-			var count:int = -1;
+			var count:Int = -1;
 			var basic:FlxBasic;
-			var i:uint = 0;
+			var i:UInt = 0;
 			while(i < length)
 			{
 				basic = members[i++] as FlxBasic;
@@ -523,7 +523,7 @@ package org.flixel
 		 * 
 		 * @return	A <code>FlxBasic</code> from the members list.
 		 */
-		public function getRandom(StartIndex:uint=0,Length:uint=0):FlxBasic
+		public function getRandom(StartIndex:UInt=0,Length:UInt=0):FlxBasic
 		{
 			if(Length == 0)
 				Length = length;
@@ -534,7 +534,7 @@ package org.flixel
 		 * Remove all instances of <code>FlxBasic</code> subclass (FlxSprite, FlxBlock, etc) from the list.
 		 * WARNING: does not destroy() or kill() any of these objects!
 		 */
-		public function clear():void
+		public function clear():Void
 		{
 			length = members.length = 0;
 		}
@@ -542,10 +542,10 @@ package org.flixel
 		/**
 		 * Calls kill on the group's members and then on the group itself.
 		 */
-		override public function kill():void
+		override public function kill():Void
 		{
 			var basic:FlxBasic;
-			var i:uint = 0;
+			var i:UInt = 0;
 			while(i < length)
 			{
 				basic = members[i++] as FlxBasic;
@@ -563,7 +563,7 @@ package org.flixel
 		 * 
 		 * @return	An integer value: -1 (Obj1 before Obj2), 0 (same), or 1 (Obj1 after Obj2).
 		 */
-		protected function sortHandler(Obj1:FlxBasic,Obj2:FlxBasic):int
+		protected function sortHandler(Obj1:FlxBasic,Obj2:FlxBasic):Int
 		{
 			if(Obj1[_sortIndex] < Obj2[_sortIndex])
 				return _sortOrder;

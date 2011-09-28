@@ -12,7 +12,7 @@ package org.flixel.system.debug
 	 */
 	public class Log extends FlxWindow
 	{
-		static protected const MAX_LOG_LINES:uint = 200;
+		static protected const MAX_LOG_LINES:UInt = 200;
 
 		protected var _text:TextField;
 		protected var _lines:Array;
@@ -28,7 +28,7 @@ package org.flixel.system.debug
 		 * @param BGColor		What color the window background should be, default is gray and transparent.
 		 * @param TopColor		What color the window header bar should be, default is black and transparent.
 		 */	
-		public function Log(Title:String, Width:Number, Height:Number, Resizable:Boolean=true, Bounds:Rectangle=null, BGColor:uint=0x7f7f7f7f, TopColor:uint=0x7f000000)
+		public function Log(Title:String, Width:Float, Height:Float, Resizable:Bool=true, Bounds:Rectangle=null, BGColor:UInt=0x7f7f7f7f, TopColor:UInt=0x7f000000)
 		{
 			super(Title, Width, Height, Resizable, Bounds, BGColor, TopColor);
 			
@@ -47,7 +47,7 @@ package org.flixel.system.debug
 		/**
 		 * Clean up memory.
 		 */
-		override public function destroy():void
+		override public function destroy():Void
 		{
 			removeChild(_text);
 			_text = null;
@@ -60,7 +60,7 @@ package org.flixel.system.debug
 		 * 
 		 * @param Text		The line you want to add to the log window.
 		 */
-		public function add(Text:String):void
+		public function add(Text:String):Void
 		{
 			if(_lines.length <= 0)
 				_text.text = "";
@@ -69,7 +69,7 @@ package org.flixel.system.debug
 			{
 				_lines.shift();
 				var newText:String = "";
-				for(var i:uint = 0; i < _lines.length; i++)
+				for(var i:UInt = 0; i < _lines.length; i++)
 					newText += _lines[i]+"\n";
 				_text.text = newText;
 			}
@@ -81,7 +81,7 @@ package org.flixel.system.debug
 		/**
 		 * Adjusts the width and height of the text field accordingly.
 		 */
-		override protected function updateSize():void
+		override protected function updateSize():Void
 		{
 			super.updateSize();
 			

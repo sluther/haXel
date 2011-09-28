@@ -12,19 +12,19 @@ package org.flixel
 		/**
 		 * @default 0
 		 */
-		public var x:Number;
+		public var x:Float;
 		/**
 		 * @default 0
 		 */
-		public var y:Number;
+		public var y:Float;
 		/**
 		 * @default 0
 		 */
-		public var width:Number;
+		public var width:Float;
 		/**
 		 * @default 0
 		 */
-		public var height:Number;
+		public var height:Float;
 		
 		/**
 		 * Instantiate a new rectangle.
@@ -34,7 +34,7 @@ package org.flixel
 		 * @param	Width	Desired width of the rectangle.
 		 * @param	Height	Desired height of the rectangle.
 		 */
-		public function FlxRect(X:Number=0, Y:Number=0, Width:Number=0, Height:Number=0)
+		public function FlxRect(X:Float=0, Y:Float=0, Width:Float=0, Height:Float=0)
 		{
 			x = X;
 			y = Y;
@@ -45,7 +45,7 @@ package org.flixel
 		/**
 		 * The X coordinate of the left side of the rectangle.  Read-only.
 		 */
-		public function get left():Number
+		public function get left():Float
 		{
 			return x;
 		}
@@ -53,7 +53,7 @@ package org.flixel
 		/**
 		 * The X coordinate of the right side of the rectangle.  Read-only.
 		 */
-		public function get right():Number
+		public function get right():Float
 		{
 			return x + width;
 		}
@@ -61,7 +61,7 @@ package org.flixel
 		/**
 		 * The Y coordinate of the top of the rectangle.  Read-only.
 		 */
-		public function get top():Number
+		public function get top():Float
 		{
 			return y;
 		}
@@ -69,7 +69,7 @@ package org.flixel
 		/**
 		 * The Y coordinate of the bottom of the rectangle.  Read-only.
 		 */
-		public function get bottom():Number
+		public function get bottom():Float
 		{
 			return y + height;
 		}
@@ -84,7 +84,7 @@ package org.flixel
 		 * 
 		 * @return	A reference to itself.
 		 */
-		public function make(X:Number=0, Y:Number=0, Width:Number=0, Height:Number=0):FlxRect
+		public function make(X:Float=0, Y:Float=0, Width:Float=0, Height:Float=0):FlxRect
 		{
 			x = X;
 			y = Y;
@@ -164,7 +164,7 @@ package org.flixel
 		 * 
 		 * @return	Whether or not the two rectangles overlap.
 		 */
-		public function overlaps(Rect:FlxRect):Boolean
+		public function overlaps(Rect:FlxRect):Bool
 		{
 			return (Rect.x + Rect.width > x) && (Rect.x < x+width) && (Rect.y + Rect.height > y) && (Rect.y < y+height);
 		}

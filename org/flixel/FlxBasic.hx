@@ -9,31 +9,31 @@ package org.flixel
 	 */
 	public class FlxBasic
 	{
-		static internal var _ACTIVECOUNT:uint;
-		static internal var _VISIBLECOUNT:uint;
+		static internal var _ACTIVECOUNT:UInt;
+		static internal var _VISIBLECOUNT:UInt;
 
 		/**
 		 * IDs seem like they could be pretty useful, huh?
 		 * They're not actually used for anything yet though.
 		 */
-		public var ID:int;
+		public var ID:Int;
 		/**
 		 * Controls whether <code>update()</code> and <code>draw()</code> are automatically called by FlxState/FlxGroup.
 		 */
-		public var exists:Boolean;
+		public var exists:Bool;
 		/**
 		 * Controls whether <code>update()</code> is automatically called by FlxState/FlxGroup.
 		 */
-		public var active:Boolean;
+		public var active:Bool;
 		/**
 		 * Controls whether <code>draw()</code> is automatically called by FlxState/FlxGroup.
 		 */
-		public var visible:Boolean;
+		public var visible:Bool;
 		/**
 		 * Useful state for many game objects - "dead" (!alive) vs alive.
 		 * <code>kill()</code> and <code>revive()</code> both flip this switch (along with exists, but you can override that).
 		 */
-		public var alive:Boolean;
+		public var alive:Bool;
 		/**
 		 * An array of camera objects that this object will use during <code>draw()</code>.
 		 * This value will initialize itself during the first draw to automatically
@@ -45,7 +45,7 @@ package org.flixel
 		 * Setting this to true will prevent the object from appearing
 		 * when the visual debug mode in the debugger overlay is toggled on.
 		 */
-		public var ignoreDrawDebug:Boolean;
+		public var ignoreDrawDebug:Bool;
 		
 		/**
 		 * Instantiate the basic flixel object.
@@ -65,12 +65,12 @@ package org.flixel
 		 * <code>destroy()</code> on class members if necessary.
 		 * Don't forget to call <code>super.destroy()</code>!
 		 */
-		public function destroy():void {}
+		public function destroy():Void {}
 		
 		/**
 		 * Pre-update is called right before <code>update()</code> on each object in the game loop.
 		 */
-		public function preUpdate():void
+		public function preUpdate():Void
 		{
 			_ACTIVECOUNT++;
 		}
@@ -79,14 +79,14 @@ package org.flixel
 		 * Override this function to update your class's position and appearance.
 		 * This is where most of your game rules and behavioral code will go.
 		 */
-		public function update():void
+		public function update():Void
 		{
 		}
 		
 		/**
 		 * Post-update is called right after <code>update()</code> on each object in the game loop.
 		 */
-		public function postUpdate():void
+		public function postUpdate():Void
 		{
 		}
 		
@@ -94,13 +94,13 @@ package org.flixel
 		 * Override this function to control how the object is drawn.
 		 * Overriding <code>draw()</code> is rarely necessary, but can be very useful.
 		 */
-		public function draw():void
+		public function draw():Void
 		{
 			if(cameras == null)
 				cameras = FlxG.cameras;
 			var camera:FlxCamera;
-			var i:uint = 0;
-			var l:uint = cameras.length;
+			var i:UInt = 0;
+			var l:UInt = cameras.length;
 			while(i < l)
 			{
 				camera = cameras[i++];
@@ -116,7 +116,7 @@ package org.flixel
 		 * 
 		 * @param	Camera	Which camera to draw the debug visuals to.
 		 */
-		public function drawDebug(Camera:FlxCamera=null):void
+		public function drawDebug(Camera:FlxCamera=null):Void
 		{
 		}
 		
@@ -127,7 +127,7 @@ package org.flixel
 		 * like to animate an effect or whatever, you should override this,
 		 * setting only alive to false, and leaving exists true.
 		 */
-		public function kill():void
+		public function kill():Void
 		{
 			alive = false;
 			exists = false;
@@ -137,7 +137,7 @@ package org.flixel
 		 * Handy function for bringing game objects "back to life". Just sets alive and exists back to true.
 		 * In practice, this function is most often called by <code>FlxObject.reset()</code>.
 		 */
-		public function revive():void
+		public function revive():Void
 		{
 			alive = true;
 			exists = true;

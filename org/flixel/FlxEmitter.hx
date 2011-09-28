@@ -18,19 +18,19 @@ package org.flixel
 		/**
 		 * The X position of the top left corner of the emitter in world space.
 		 */
-		public var x:Number;
+		public var x:Float;
 		/**
 		 * The Y position of the top left corner of emitter in world space.
 		 */
-		public var y:Number;
+		public var y:Float;
 		/**
 		 * The width of the emitter.  Particles can be randomly generated from anywhere within this box.
 		 */
-		public var width:Number;
+		public var width:Float;
 		/**
 		 * The height of the emitter.  Particles can be randomly generated from anywhere within this box.
 		 */
-		public var height:Number;
+		public var height:Float;
 		/**
 		 * The minimum possible velocity of a particle.
 		 * The default value is (-100,-100).
@@ -49,34 +49,34 @@ package org.flixel
 		 * The minimum possible angular velocity of a particle.  The default value is -360.
 		 * NOTE: rotating particles are more expensive to draw than non-rotating ones!
 		 */
-		public var minRotation:Number;
+		public var minRotation:Float;
 		/**
 		 * The maximum possible angular velocity of a particle.  The default value is 360.
 		 * NOTE: rotating particles are more expensive to draw than non-rotating ones!
 		 */
-		public var maxRotation:Number;
+		public var maxRotation:Float;
 		/**
 		 * Sets the <code>acceleration.y</code> member of each particle to this value on launch.
 		 */
-		public var gravity:Number;
+		public var gravity:Float;
 		/**
 		 * Determines whether the emitter is currently emitting particles.
 		 * It is totally safe to directly toggle this.
 		 */
-		public var on:Boolean;
+		public var on:Bool;
 		/**
 		 * How often a particle is emitted (if emitter is started with Explode == false).
 		 */
-		public var frequency:Number;
+		public var frequency:Float;
 		/**
 		 * How long each particle lives once it is emitted.
 		 * Set lifespan to 'zero' for particles to live forever.
 		 */
-		public var lifespan:Number;
+		public var lifespan:Float;
 		/**
 		 * How much each particle should bounce.  1 = full bounce, 0 = no bounce.
 		 */
-		public var bounce:Number;
+		public var bounce:Float;
 		/**
 		 * Set your own particle class type here.
 		 * Default is <code>FlxParticle</code>.
@@ -85,19 +85,19 @@ package org.flixel
 		/**
 		 * Internal helper for deciding how many particles to launch.
 		 */
-		protected var _quantity:uint;
+		protected var _quantity:UInt;
 		/**
 		 * Internal helper for the style of particle emission (all at once, or one at a time).
 		 */
-		protected var _explode:Boolean;
+		protected var _explode:Bool;
 		/**
 		 * Internal helper for deciding when to launch particles or kill them.
 		 */
-		protected var _timer:Number;
+		protected var _timer:Float;
 		/**
 		 * Internal counter for figuring out how many particles to launch.
 		 */
-		protected var _counter:uint;
+		protected var _counter:UInt;
 		/**
 		 * Internal point object, handy for reusing for memory mgmt purposes.
 		 */
@@ -111,7 +111,7 @@ package org.flixel
 		 * @param	Y		The Y position of the emitter.
 		 * @param	Size	Optional, specifies a maximum capacity for this emitter.
 		 */
-		public function FlxEmitter(X:Number=0, Y:Number=0, Size:Number=0)
+		public function FlxEmitter(X:Float=0, Y:Float=0, Size:Float=0)
 		{
 			super(Size);
 			x = X;
@@ -138,7 +138,7 @@ package org.flixel
 		/**
 		 * Clean up memory.
 		 */
-		override public function destroy():void
+		override public function destroy():Void
 		{
 			minParticleSpeed = null;
 			maxParticleSpeed = null;
@@ -159,11 +159,11 @@ package org.flixel
 		 * 
 		 * @return	This FlxEmitter instance (nice for chaining stuff together, if you're into that).
 		 */
-		public function makeParticles(Graphics:Class, Quantity:uint=50, BakedRotations:uint=16, Multiple:Boolean=false, Collide:Number=0.8):FlxEmitter
+		public function makeParticles(Graphics:Class, Quantity:UInt=50, BakedRotations:UInt=16, Multiple:Bool=false, Collide:Float=0.8):FlxEmitter
 		{
 			maxSize = Quantity;
 			
-			var totalFrames:uint = 1;
+			var totalFrames:UInt = 1;
 			if(Multiple)
 			{ 
 				var sprite:FlxSprite = new FlxSprite();
@@ -172,9 +172,9 @@ package org.flixel
 				sprite.destroy();
 			}
 
-			var randomFrame:uint;
+			var randomFrame:UInt;
 			var particle:FlxParticle;
-			var i:uint = 0;
+			var i:UInt = 0;
 			while(i < Quantity)
 			{
 				if(particleClass == null)
@@ -217,15 +217,15 @@ package org.flixel
 		/**
 		 * Called automatically by the game loop, decides when to launch particles and when to "die".
 		 */
-		override public function update():void
+		override public function update():Void
 		{
 			if(on)
 			{
 				if(_explode)
 				{
 					on = false;
-					var i:uint = 0;
-					var l:uint = _quantity;
+					var i:UInt = 0;
+					var l:UInt = _quantity;
 					if((l <= 0) || (l > length))
 						l = length;
 					while(i < l)
@@ -256,7 +256,7 @@ package org.flixel
 		/**
 		 * Call this function to turn off all the particles and the emitter.
 		 */
-		override public function kill():void
+		override public function kill():Void
 		{
 			on = false;
 			super.kill();
@@ -270,7 +270,7 @@ package org.flixel
 		 * @param	Frequency	Ignored if Explode is set to true. Frequency is how often to emit a particle. 0 = never emit, 0.1 = 1 particle every 0.1 seconds, 5 = 1 particle every 5 seconds.
 		 * @param	Quantity	How many particles to launch. 0 = "all of the particles".
 		 */
-		public function start(Explode:Boolean=true,Lifespan:Number=0,Frequency:Number=0.1,Quantity:uint=0):void
+		public function start(Explode:Bool=true,Lifespan:Float=0,Frequency:Float=0.1,Quantity:UInt=0):Void
 		{
 			revive();
 			visible = true;
@@ -288,7 +288,7 @@ package org.flixel
 		/**
 		 * This function can be used both internally and externally to emit the next particle.
 		 */
-		public function emitParticle():void
+		public function emitParticle():Void
 		{
 			var particle:FlxParticle = recycle(FlxParticle) as FlxParticle;
 			particle.lifespan = lifespan;
@@ -324,7 +324,7 @@ package org.flixel
 		 * @param	Width	The desired width of the emitter (particles are spawned randomly within these dimensions).
 		 * @param	Height	The desired height of the emitter.
 		 */
-		public function setSize(Width:uint,Height:uint):void
+		public function setSize(Width:UInt,Height:UInt):Void
 		{
 			width = Width;
 			height = Height;
@@ -336,7 +336,7 @@ package org.flixel
 		 * @param	Min		The minimum value for this range.
 		 * @param	Max		The maximum value for this range.
 		 */
-		public function setXSpeed(Min:Number=0,Max:Number=0):void
+		public function setXSpeed(Min:Float=0,Max:Float=0):Void
 		{
 			minParticleSpeed.x = Min;
 			maxParticleSpeed.x = Max;
@@ -348,7 +348,7 @@ package org.flixel
 		 * @param	Min		The minimum value for this range.
 		 * @param	Max		The maximum value for this range.
 		 */
-		public function setYSpeed(Min:Number=0,Max:Number=0):void
+		public function setYSpeed(Min:Float=0,Max:Float=0):Void
 		{
 			minParticleSpeed.y = Min;
 			maxParticleSpeed.y = Max;
@@ -360,7 +360,7 @@ package org.flixel
 		 * @param	Min		The minimum value for this range.
 		 * @param	Max		The maximum value for this range.
 		 */
-		public function setRotation(Min:Number=0,Max:Number=0):void
+		public function setRotation(Min:Float=0,Max:Float=0):Void
 		{
 			minRotation = Min;
 			maxRotation = Max;
@@ -371,7 +371,7 @@ package org.flixel
 		 * 
 		 * @param	Object		The <code>FlxObject</code> that you want to sync up with.
 		 */
-		public function at(Object:FlxObject):void
+		public function at(Object:FlxObject):Void
 		{
 			Object.getMidpoint(_point);
 			x = _point.x - (width>>1);

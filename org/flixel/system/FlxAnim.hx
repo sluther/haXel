@@ -14,7 +14,7 @@ package org.flixel.system
 		/**
 		 * Seconds between frames (basically the framerate)
 		 */
-		public var delay:Number;
+		public var delay:Float;
 		/**
 		 * A list of frames stored as <code>uint</code> objects
 		 */
@@ -22,7 +22,7 @@ package org.flixel.system
 		/**
 		 * Whether or not the animation is looped
 		 */
-		public var looped:Boolean;
+		public var looped:Bool;
 		
 		/**
 		 * Constructor
@@ -32,7 +32,7 @@ package org.flixel.system
 		 * @param	FrameRate	The speed in frames per second that the animation should play at (e.g. 40)
 		 * @param	Looped		Whether or not the animation is looped or just plays once
 		 */
-		public function FlxAnim(Name:String, Frames:Array, FrameRate:Number=0, Looped:Boolean=true)
+		public function FlxAnim(Name:String, Frames:Array, FrameRate:Float=0, Looped:Bool=true)
 		{
 			name = Name;
 			delay = 0;
@@ -45,7 +45,7 @@ package org.flixel.system
 		/**
 		 * Clean up memory.
 		 */
-		public function destroy():void
+		public function destroy():Void
 		{
 			frames = null;
 		}

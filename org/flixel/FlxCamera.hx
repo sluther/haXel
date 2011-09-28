@@ -19,57 +19,57 @@ package org.flixel
 		/**
 		 * Camera "follow" style preset: camera has no deadzone, just tracks the focus object directly.
 		 */
-		static public const STYLE_LOCKON:uint = 0;
+		static public const STYLE_LOCKON:UInt = 0;
 		/**
 		 * Camera "follow" style preset: camera deadzone is narrow but tall.
 		 */
-		static public const STYLE_PLATFORMER:uint = 1;
+		static public const STYLE_PLATFORMER:UInt = 1;
 		/**
 		 * Camera "follow" style preset: camera deadzone is a medium-size square around the focus object.
 		 */
-		static public const STYLE_TOPDOWN:uint = 2;
+		static public const STYLE_TOPDOWN:UInt = 2;
 		/**
 		 * Camera "follow" style preset: camera deadzone is a small square around the focus object.
 		 */
-		static public const STYLE_TOPDOWN_TIGHT:uint = 3;
+		static public const STYLE_TOPDOWN_TIGHT:UInt = 3;
 		
 		/**
 		 * Camera "shake" effect preset: shake camera on both the X and Y axes.
 		 */
-		static public const SHAKE_BOTH_AXES:uint = 0;
+		static public const SHAKE_BOTH_AXES:UInt = 0;
 		/**
 		 * Camera "shake" effect preset: shake camera on the X axis only.
 		 */
-		static public const SHAKE_HORIZONTAL_ONLY:uint = 1;
+		static public const SHAKE_HORIZONTAL_ONLY:UInt = 1;
 		/**
 		 * Camera "shake" effect preset: shake camera on the Y axis only.
 		 */
-		static public const SHAKE_VERTICAL_ONLY:uint = 2;
+		static public const SHAKE_VERTICAL_ONLY:UInt = 2;
 		
 		/**
 		 * While you can alter the zoom of each camera after the fact,
 		 * this variable determines what value the camera will start at when created.
 		 */
-		static public var defaultZoom:Number;
+		static public var defaultZoom:Float;
 		
 		/**
 		 * The X position of this camera's display.  Zoom does NOT affect this number.
 		 * Measured in pixels from the left side of the flash window.
 		 */
-		public var x:Number;
+		public var x:Float;
 		/**
 		 * The Y position of this camera's display.  Zoom does NOT affect this number.
 		 * Measured in pixels from the top of the flash window.
 		 */
-		public var y:Number;
+		public var y:Float;
 		/**
 		 * How wide the camera display is, in game pixels.
 		 */
-		public var width:uint;
+		public var width:UInt;
 		/**
 		 * How tall the camera display is, in game pixels.
 		 */
-		public var height:uint;
+		public var height:UInt;
 		/**
 		 * Tells the camera to follow this <code>FlxObject</code> object around.
 		 */
@@ -100,7 +100,7 @@ package org.flixel
 		 * The natural background color of the camera. Defaults to FlxG.bgColor.
 		 * NOTE: can be transparent for crazy FX!
 		 */
-		public var bgColor:uint;
+		public var bgColor:UInt;
 		/**
 		 * Sometimes it's easier to just work with a <code>FlxSprite</code> than it is to work
 		 * directly with the <code>BitmapData</code> buffer.  This sprite reference will
@@ -111,7 +111,7 @@ package org.flixel
 		/**
 		 * Indicates how far the camera is zoomed in.
 		 */
-		protected var _zoom:Number;
+		protected var _zoom:Float;
 		/**
 		 * Internal, to help avoid costly allocations.
 		 */
@@ -119,7 +119,7 @@ package org.flixel
 		/**
 		 * Internal, help with color transforming the flash bitmap.
 		 */
-		protected var _color:uint;
+		protected var _color:UInt;
 		
 		/**
 		 * Internal, used to render buffer to screen space.
@@ -132,11 +132,11 @@ package org.flixel
 		/**
 		 * Internal, used to render buffer to screen space.
 		 */
-		internal var _flashOffsetX:Number;
+		internal var _flashOffsetX:Float;
 		/**
 		 * Internal, used to render buffer to screen space.
 		 */
-		internal var _flashOffsetY:Number;
+		internal var _flashOffsetY:Float;
 		/**
 		 * Internal, used to render buffer to screen space.
 		 */
@@ -148,11 +148,11 @@ package org.flixel
 		/**
 		 * Internal, used to control the "flash" special effect.
 		 */
-		protected var _fxFlashColor:uint;
+		protected var _fxFlashColor:UInt;
 		/**
 		 * Internal, used to control the "flash" special effect.
 		 */
-		protected var _fxFlashDuration:Number;
+		protected var _fxFlashDuration:Float;
 		/**
 		 * Internal, used to control the "flash" special effect.
 		 */
@@ -160,15 +160,15 @@ package org.flixel
 		/**
 		 * Internal, used to control the "flash" special effect.
 		 */
-		protected var _fxFlashAlpha:Number;
+		protected var _fxFlashAlpha:Float;
 		/**
 		 * Internal, used to control the "fade" special effect.
 		 */
-		protected var _fxFadeColor:uint;
+		protected var _fxFadeColor:UInt;
 		/**
 		 * Internal, used to control the "fade" special effect.
 		 */
-		protected var _fxFadeDuration:Number;
+		protected var _fxFadeDuration:Float;
 		/**
 		 * Internal, used to control the "fade" special effect.
 		 */
@@ -176,15 +176,15 @@ package org.flixel
 		/**
 		 * Internal, used to control the "fade" special effect.
 		 */
-		protected var _fxFadeAlpha:Number;
+		protected var _fxFadeAlpha:Float;
 		/**
 		 * Internal, used to control the "shake" special effect.
 		 */
-		protected var _fxShakeIntensity:Number;
+		protected var _fxShakeIntensity:Float;
 		/**
 		 * Internal, used to control the "shake" special effect.
 		 */
-		protected var _fxShakeDuration:Number;
+		protected var _fxShakeDuration:Float;
 		/**
 		 * Internal, used to control the "shake" special effect.
 		 */
@@ -196,7 +196,7 @@ package org.flixel
 		/**
 		 * Internal, used to control the "shake" special effect.
 		 */
-		protected var _fxShakeDirection:uint;
+		protected var _fxShakeDirection:UInt;
 		/**
 		 * Internal helper variable for doing better wipes/fills between renders.
 		 */
@@ -211,7 +211,7 @@ package org.flixel
 		 * @param Height	The height of the camera display in pixels.
 		 * @param Zoom		The initial zoom level of the camera.  A zoom level of 2 will make all pixels display at 2x resolution.
 		 */
-		public function FlxCamera(X:int,Y:int,Width:int,Height:int,Zoom:Number=0)
+		public function FlxCamera(X:Int,Y:Int,Width:Int,Height:Int,Zoom:Float=0)
 		{
 			x = X;
 			y = Y;
@@ -264,7 +264,7 @@ package org.flixel
 		/**
 		 * Clean up memory.
 		 */
-		override public function destroy():void
+		override public function destroy():Void
 		{
 			screen.destroy();
 			screen = null;
@@ -286,7 +286,7 @@ package org.flixel
 		/**
 		 * Updates the camera scroll as well as special effects like screen-shake or fades.
 		 */
-		override public function update():void
+		override public function update():Void
 		{
 			//Either follow the object closely, 
 			//or doublecheck our deadzone and update accordingly.
@@ -296,9 +296,9 @@ package org.flixel
 					focusOn(target.getMidpoint(_point));
 				else
 				{
-					var edge:Number;
-					var targetX:Number = target.x + ((target.x > 0)?0.0000001:-0.0000001);
-					var targetY:Number = target.y + ((target.y > 0)?0.0000001:-0.0000001);
+					var edge:Float;
+					var targetX:Float = target.x + ((target.x > 0)?0.0000001:-0.0000001);
+					var targetY:Float = target.y + ((target.y > 0)?0.0000001:-0.0000001);
 					
 					edge = targetX - deadzone.x;
 					if(scroll.x > edge)
@@ -375,15 +375,15 @@ package org.flixel
 		 * @param	Target		The object you want the camera to track.  Set to null to not follow anything.
 		 * @param	Style		Leverage one of the existing "deadzone" presets.  If you use a custom deadzone, ignore this parameter and manually specify the deadzone after calling <code>follow()</code>.
 		 */
-		public function follow(Target:FlxObject, Style:uint=STYLE_LOCKON):void
+		public function follow(Target:FlxObject, Style:UInt=STYLE_LOCKON):Void
 		{
 			target = Target;
-			var helper:Number;
+			var helper:Float;
 			switch(Style)
 			{
 				case STYLE_PLATFORMER:
-					var w:Number = width/8;
-					var h:Number = height/3;
+					var w:Float = width/8;
+					var h:Float = height/3;
 					deadzone = new FlxRect((width-w)/2,(height-h)/2 - h*0.25,w,h);
 					break;
 				case STYLE_TOPDOWN:
@@ -406,7 +406,7 @@ package org.flixel
 		 * 
 		 * @param	Point		Where you want the camera to focus.
 		 */
-		public function focusOn(Point:FlxPoint):void
+		public function focusOn(Point:FlxPoint):Void
 		{
 			Point.x += (Point.x > 0)?0.0000001:-0.0000001;
 			Point.y += (Point.y > 0)?0.0000001:-0.0000001;
@@ -422,7 +422,7 @@ package org.flixel
 		 * @param	Height			The largest Y value of your level (usually the level height).
 		 * @param	UpdateWorld		Whether the global quad-tree's dimensions should be updated to match (default: false).
 		 */
-		public function setBounds(X:Number=0, Y:Number=0, Width:Number=0, Height:Number=0, UpdateWorld:Boolean=false):void
+		public function setBounds(X:Float=0, Y:Float=0, Width:Float=0, Height:Float=0, UpdateWorld:Bool=false):Void
 		{
 			if(bounds == null)
 				bounds = new FlxRect();
@@ -440,7 +440,7 @@ package org.flixel
 		 * @param	OnComplete	A function you want to run when the flash finishes.
 		 * @param	Force		Force the effect to reset.
 		 */
-		public function flash(Color:uint=0xffffffff, Duration:Number=1, OnComplete:Function=null, Force:Boolean=false):void
+		public function flash(Color:UInt=0xffffffff, Duration:Float=1, OnComplete:Function=null, Force:Bool=false):Void
 		{
 			if(!Force && (_fxFlashAlpha > 0.0))
 				return;
@@ -460,7 +460,7 @@ package org.flixel
 		 * @param	OnComplete	A function you want to run when the fade finishes.
 		 * @param	Force		Force the effect to reset.
 		 */
-		public function fade(Color:uint=0xff000000, Duration:Number=1, OnComplete:Function=null, Force:Boolean=false):void
+		public function fade(Color:UInt=0xff000000, Duration:Float=1, OnComplete:Function=null, Force:Bool=false):Void
 		{
 			if(!Force && (_fxFadeAlpha > 0.0))
 				return;
@@ -481,7 +481,7 @@ package org.flixel
 		 * @param	Force		Force the effect to reset (default = true, unlike flash() and fade()!).
 		 * @param	Direction	Whether to shake on both axes, just up and down, or just side to side (use class constants SHAKE_BOTH_AXES, SHAKE_VERTICAL_ONLY, or SHAKE_HORIZONTAL_ONLY).
 		 */
-		public function shake(Intensity:Number=0.05, Duration:Number=0.5, OnComplete:Function=null, Force:Boolean=true, Direction:uint=SHAKE_BOTH_AXES):void
+		public function shake(Intensity:Float=0.05, Duration:Float=0.5, OnComplete:Function=null, Force:Bool=true, Direction:UInt=SHAKE_BOTH_AXES):Void
 		{
 			if(!Force && ((_fxShakeOffset.x != 0) || (_fxShakeOffset.y != 0)))
 				return;
@@ -495,7 +495,7 @@ package org.flixel
 		/**
 		 * Just turns off all the camera effects instantly.
 		 */
-		public function stopFX():void
+		public function stopFX():Void
 		{
 			_fxFlashAlpha = 0.0;
 			_fxFadeAlpha = 0.0;
@@ -539,7 +539,7 @@ package org.flixel
 		/**
 		 * The zoom level of this camera. 1 = 1:1, 2 = 2x zoom, etc.
 		 */
-		public function get zoom():Number
+		public function get zoom():Float
 		{
 			return _zoom;
 		}
@@ -547,7 +547,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		public function set zoom(Zoom:Number):void
+		public function set zoom(Zoom:Float):Void
 		{
 			if(Zoom == 0)
 				_zoom = defaultZoom;
@@ -559,7 +559,7 @@ package org.flixel
 		/**
 		 * The alpha value of this camera display (a Number between 0.0 and 1.0).
 		 */
-		public function get alpha():Number
+		public function get alpha():Float
 		{
 			return _flashBitmap.alpha;
 		}
@@ -567,7 +567,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		public function set alpha(Alpha:Number):void
+		public function set alpha(Alpha:Float):Void
 		{
 			_flashBitmap.alpha = Alpha;
 		}
@@ -577,7 +577,7 @@ package org.flixel
 		 * Currently yields weird display results,
 		 * since cameras aren't nested in an extra display object yet.
 		 */
-		public function get angle():Number
+		public function get angle():Float
 		{
 			return _flashSprite.rotation;
 		}
@@ -585,7 +585,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		public function set angle(Angle:Number):void
+		public function set angle(Angle:Float):Void
 		{
 			_flashSprite.rotation = Angle;
 		}
@@ -593,7 +593,7 @@ package org.flixel
 		/**
 		 * The color tint of the camera display.
 		 */
-		public function get color():uint
+		public function get color():UInt
 		{
 			return _color;
 		}
@@ -601,7 +601,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		public function set color(Color:uint):void
+		public function set color(Color:UInt):Void
 		{
 			_color = Color;
 			var colorTransform:ColorTransform = _flashBitmap.transform.colorTransform;
@@ -615,7 +615,7 @@ package org.flixel
 		 * Whether the camera display is smooth and filtered, or chunky and pixelated.
 		 * Default behavior is chunky-style.
 		 */
-		public function get antialiasing():Boolean
+		public function get antialiasing():Bool
 		{
 			return _flashBitmap.smoothing;
 		}
@@ -623,7 +623,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		public function set antialiasing(Antialiasing:Boolean):void
+		public function set antialiasing(Antialiasing:Bool):Void
 		{
 			_flashBitmap.smoothing = Antialiasing;
 		}
@@ -641,7 +641,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		public function setScale(X:Number,Y:Number):void
+		public function setScale(X:Float,Y:Float):Void
 		{
 			_flashSprite.scaleX = X;
 			_flashSprite.scaleY = Y;
@@ -669,7 +669,7 @@ package org.flixel
 		 * @param	Color		The color to fill with in 0xAARRGGBB hex format.
 		 * @param	BlendAlpha	Whether to blend the alpha value or just wipe the previous contents.  Default is true.
 		 */
-		public function fill(Color:uint,BlendAlpha:Boolean=true):void
+		public function fill(Color:UInt,BlendAlpha:Bool=true):Void
 		{
 			_fill.fillRect(_flashRect,Color);
 			buffer.copyPixels(_fill,_flashRect,_flashPoint,null,null,BlendAlpha);
@@ -678,9 +678,9 @@ package org.flixel
 		/**
 		 * Internal helper function, handles the actual drawing of all the special effects.
 		 */
-		internal function drawFX():void
+		internal function drawFX():Void
 		{
-			var alphaComponent:Number;
+			var alphaComponent:Float;
 			
 			//Draw the "flash" special effect onto the buffer
 			if(_fxFlashAlpha > 0.0)

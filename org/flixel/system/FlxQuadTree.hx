@@ -17,21 +17,21 @@ package org.flixel.system
 		/**
 		 * Flag for specifying that you want to add an object to the A list.
 		 */
-		static public const A_LIST:uint = 0;
+		static public const A_LIST:UInt = 0;
 		/**
 		 * Flag for specifying that you want to add an object to the B list.
 		 */
-		static public const B_LIST:uint = 1;
+		static public const B_LIST:UInt = 1;
 		
 		/**
 		 * Controls the granularity of the quad tree.  Default is 6 (decent performance on large and small worlds).
 		 */
-		static public var divisions:uint;
+		static public var divisions:UInt;
 		
 		/**
 		 * Whether this branch of the tree can be subdivided or not.
 		 */
-		protected var _canSubdivide:Boolean;
+		protected var _canSubdivide:Bool;
 		
 		/**
 		 * Refers to the internal A and B linked lists,
@@ -57,7 +57,7 @@ package org.flixel.system
 		/**
 		 * Internal, governs and assists with the formation of the tree.
 		 */
-		static protected var _min:uint;
+		static protected var _min:UInt;
 		/**
 		 * Internal, governs and assists with the formation of the tree.
 		 */
@@ -77,35 +77,35 @@ package org.flixel.system
 		/**
 		 * Internal, governs and assists with the formation of the tree.
 		 */
-		protected var _leftEdge:Number;
+		protected var _leftEdge:Float;
 		/**
 		 * Internal, governs and assists with the formation of the tree.
 		 */
-		protected var _rightEdge:Number;
+		protected var _rightEdge:Float;
 		/**
 		 * Internal, governs and assists with the formation of the tree.
 		 */
-		protected var _topEdge:Number;
+		protected var _topEdge:Float;
 		/**
 		 * Internal, governs and assists with the formation of the tree.
 		 */
-		protected var _bottomEdge:Number;
+		protected var _bottomEdge:Float;
 		/**
 		 * Internal, governs and assists with the formation of the tree.
 		 */
-		protected var _halfWidth:Number;
+		protected var _halfWidth:Float;
 		/**
 		 * Internal, governs and assists with the formation of the tree.
 		 */
-		protected var _halfHeight:Number;
+		protected var _halfHeight:Float;
 		/**
 		 * Internal, governs and assists with the formation of the tree.
 		 */
-		protected var _midpointX:Number;
+		protected var _midpointX:Float;
 		/**
 		 * Internal, governs and assists with the formation of the tree.
 		 */
-		protected var _midpointY:Number;
+		protected var _midpointY:Float;
 		
 		/**
 		 * Internal, used to reduce recursive method parameters during object placement and tree formation.
@@ -114,28 +114,28 @@ package org.flixel.system
 		/**
 		 * Internal, used to reduce recursive method parameters during object placement and tree formation.
 		 */
-		static protected var _objectLeftEdge:Number;
+		static protected var _objectLeftEdge:Float;
 		/**
 		 * Internal, used to reduce recursive method parameters during object placement and tree formation.
 		 */
-		static protected var _objectTopEdge:Number;
+		static protected var _objectTopEdge:Float;
 		/**
 		 * Internal, used to reduce recursive method parameters during object placement and tree formation.
 		 */
-		static protected var _objectRightEdge:Number;
+		static protected var _objectRightEdge:Float;
 		/**
 		 * Internal, used to reduce recursive method parameters during object placement and tree formation.
 		 */
-		static protected var _objectBottomEdge:Number;
+		static protected var _objectBottomEdge:Float;
 		
 		/**
 		 * Internal, used during tree processing and overlap checks.
 		 */
-		static protected var _list:uint;
+		static protected var _list:UInt;
 		/**
 		 * Internal, used during tree processing and overlap checks.
 		 */
-		static protected var _useBothLists:Boolean;
+		static protected var _useBothLists:Bool;
 		/**
 		 * Internal, used during tree processing and overlap checks.
 		 */
@@ -152,36 +152,36 @@ package org.flixel.system
 		/**
 		 * Internal, helpers for comparing actual object-to-object overlap - see <code>overlapNode()</code>.
 		 */
-		static protected var _objectHullX:Number;
+		static protected var _objectHullX:Float;
 		/**
 		 * Internal, helpers for comparing actual object-to-object overlap - see <code>overlapNode()</code>.
 		 */
-		static protected var _objectHullY:Number;
+		static protected var _objectHullY:Float;
 		/**
 		 * Internal, helpers for comparing actual object-to-object overlap - see <code>overlapNode()</code>.
 		 */
-		static protected var _objectHullWidth:Number;
+		static protected var _objectHullWidth:Float;
 		/**
 		 * Internal, helpers for comparing actual object-to-object overlap - see <code>overlapNode()</code>.
 		 */
-		static protected var _objectHullHeight:Number;
+		static protected var _objectHullHeight:Float;
 		
 		/**
 		 * Internal, helpers for comparing actual object-to-object overlap - see <code>overlapNode()</code>.
 		 */
-		static protected var _checkObjectHullX:Number;
+		static protected var _checkObjectHullX:Float;
 		/**
 		 * Internal, helpers for comparing actual object-to-object overlap - see <code>overlapNode()</code>.
 		 */
-		static protected var _checkObjectHullY:Number;
+		static protected var _checkObjectHullY:Float;
 		/**
 		 * Internal, helpers for comparing actual object-to-object overlap - see <code>overlapNode()</code>.
 		 */
-		static protected var _checkObjectHullWidth:Number;
+		static protected var _checkObjectHullWidth:Float;
 		/**
 		 * Internal, helpers for comparing actual object-to-object overlap - see <code>overlapNode()</code>.
 		 */
-		static protected var _checkObjectHullHeight:Number;
+		static protected var _checkObjectHullHeight:Float;
 		
 		/**
 		 * Instantiate a new Quad Tree node.
@@ -192,7 +192,7 @@ package org.flixel.system
 		 * @param	Height		Desired height of this node.
 		 * @param	Parent		The parent branch or node.  Pass null to create a root.
 		 */
-		public function FlxQuadTree(X:Number, Y:Number, Width:Number, Height:Number, Parent:FlxQuadTree=null)
+		public function FlxQuadTree(X:Float, Y:Float, Width:Float, Height:Float, Parent:FlxQuadTree=null)
 		{
 			super(X,Y,Width,Height);
 			_headA = _tailA = new FlxList();
@@ -256,7 +256,7 @@ package org.flixel.system
 		/**
 		 * Clean up memory.
 		 */
-		public function destroy():void
+		public function destroy():Void
 		{
 			_headA.destroy();
 			_headA = null;
@@ -290,10 +290,10 @@ package org.flixel.system
 		 * 
 		 * @param ObjectOrGroup1	Any object that is or extends FlxObject or FlxGroup.
 		 * @param ObjectOrGroup2	Any object that is or extends FlxObject or FlxGroup.  If null, the first parameter will be checked against itself.
-		 * @param NotifyCallback	A function with the form <code>myFunction(Object1:FlxObject,Object2:FlxObject):void</code> that is called whenever two objects are found to overlap in world space, and either no ProcessCallback is specified, or the ProcessCallback returns true. 
-		 * @param ProcessCallback	A function with the form <code>myFunction(Object1:FlxObject,Object2:FlxObject):Boolean</code> that is called whenever two objects are found to overlap in world space.  The NotifyCallback is only called if this function returns true.  See FlxObject.separate(). 
+		 * @param NotifyCallback	A function with the form <code>myFunction(Object1:FlxObject,Object2:FlxObject):Void</code> that is called whenever two objects are found to overlap in world space, and either no ProcessCallback is specified, or the ProcessCallback returns true. 
+		 * @param ProcessCallback	A function with the form <code>myFunction(Object1:FlxObject,Object2:FlxObject):Bool</code> that is called whenever two objects are found to overlap in world space.  The NotifyCallback is only called if this function returns true.  See FlxObject.separate(). 
 		 */
-		public function load(ObjectOrGroup1:FlxBasic, ObjectOrGroup2:FlxBasic=null, NotifyCallback:Function=null, ProcessCallback:Function=null):void
+		public function load(ObjectOrGroup1:FlxBasic, ObjectOrGroup2:FlxBasic=null, NotifyCallback:Function=null, ProcessCallback:Function=null):Void
 		{
 			add(ObjectOrGroup1, A_LIST);
 			if(ObjectOrGroup2 != null)
@@ -315,15 +315,15 @@ package org.flixel.system
 		 * @param	ObjectOrGroup	FlxObjects are just added, FlxGroups are recursed and their applicable members added accordingly.
 		 * @param	List			A <code>uint</code> flag indicating the list to which you want to add the objects.  Options are <code>A_LIST</code> and <code>B_LIST</code>.
 		 */
-		public function add(ObjectOrGroup:FlxBasic, List:uint):void
+		public function add(ObjectOrGroup:FlxBasic, List:UInt):Void
 		{
 			_list = List;
 			if(ObjectOrGroup is FlxGroup)
 			{
-				var i:uint = 0;
+				var i:UInt = 0;
 				var basic:FlxBasic;
 				var members:Array = (ObjectOrGroup as FlxGroup).members;
-				var l:uint = (ObjectOrGroup as FlxGroup).length;
+				var l:UInt = (ObjectOrGroup as FlxGroup).length;
 				while(i < l)
 				{
 					basic = members[i++] as FlxBasic;
@@ -364,7 +364,7 @@ package org.flixel.system
 		 * Internal function for recursively navigating and creating the tree
 		 * while adding objects to the appropriate nodes.
 		 */
-		protected function addObject():void
+		protected function addObject():Void
 		{
 			//If this quad (not its children) lies entirely inside this object, add it here
 			if(!_canSubdivide || ((_leftEdge >= _objectLeftEdge) && (_rightEdge <= _objectRightEdge) && (_topEdge >= _objectTopEdge) && (_bottomEdge <= _objectBottomEdge)))
@@ -439,7 +439,7 @@ package org.flixel.system
 		/**
 		 * Internal function for recursively adding objects to leaf lists.
 		 */
-		protected function addToList():void
+		protected function addToList():Void
 		{
 			var ot:FlxList;
 			if(_list == A_LIST)
@@ -480,9 +480,9 @@ package org.flixel.system
 		 *
 		 * @return	Whether or not any overlaps were found.
 		 */
-		public function execute():Boolean
+		public function execute():Bool
 		{
-			var overlapProcessed:Boolean = false;
+			var overlapProcessed:Bool = false;
 			var iterator:FlxList;
 			
 			if(_headA.object != null)
@@ -523,10 +523,10 @@ package org.flixel.system
 		 * 
 		 * @return	Whether or not any overlaps were found.
 		 */
-		protected function overlapNode():Boolean
+		protected function overlapNode():Bool
 		{
 			//Walk the list and check for overlaps
-			var overlapProcessed:Boolean = false;
+			var overlapProcessed:Bool = false;
 			var checkObject:FlxObject;
 			while(_iterator != null)
 			{

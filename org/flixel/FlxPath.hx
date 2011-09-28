@@ -22,7 +22,7 @@ package org.flixel
 		/**
 		 * Specify a debug display color for the path.  Default is white.
 		 */
-		public var debugColor:uint;
+		public var debugColor:UInt;
 		/**
 		 * Specify a debug display scroll factor for the path.  Default is (1,1).
 		 * NOTE: does not affect world movement!  Object scroll factors take care of that.
@@ -33,7 +33,7 @@ package org.flixel
 		 * when the visual debug mode in the debugger overlay is toggled on.
 		 * @default false
 		 */
-		public var ignoreDrawDebug:Boolean;
+		public var ignoreDrawDebug:Bool;
 
 		/**
 		 * Internal helper for keeping new variable instantiations under control.
@@ -64,7 +64,7 @@ package org.flixel
 		/**
 		 * Clean up memory.
 		 */
-		public function destroy():void
+		public function destroy():Void
 		{
 			var debugPathDisplay:DebugPathDisplay = manager;
 			if(debugPathDisplay != null)
@@ -81,7 +81,7 @@ package org.flixel
 		 * @param	X	X position of the new path point in world coordinates.
 		 * @param	Y	Y position of the new path point in world coordinates.
 		 */
-		public function add(X:Number,Y:Number):void
+		public function add(X:Float,Y:Float):Void
 		{
 			nodes.push(new FlxPoint(X,Y));
 		}
@@ -93,7 +93,7 @@ package org.flixel
 		 * @param	Y		Y position of the new path point in world coordinates.
 		 * @param	Index	Where within the list of path nodes to insert this new point.
 		 */
-		public function addAt(X:Number, Y:Number, Index:uint):void
+		public function addAt(X:Float, Y:Float, Index:UInt):Void
 		{
 			if(Index > nodes.length)
 				Index = nodes.length;
@@ -108,7 +108,7 @@ package org.flixel
 		 * @param	Node			The point in world coordinates you want to add to the path.
 		 * @param	AsReference		Whether to add the point as a reference, or to create a new point with the specified values.
 		 */
-		public function addPoint(Node:FlxPoint,AsReference:Boolean=false):void
+		public function addPoint(Node:FlxPoint,AsReference:Bool=false):Void
 		{
 			if(AsReference)
 				nodes.push(Node);
@@ -125,7 +125,7 @@ package org.flixel
 		 * @param	Index			Where within the list of path nodes to insert this new point.
 		 * @param	AsReference		Whether to add the point as a reference, or to create a new point with the specified values.
 		 */
-		public function addPointAt(Node:FlxPoint,Index:uint,AsReference:Boolean=false):void
+		public function addPointAt(Node:FlxPoint,Index:UInt,AsReference:Bool=false):Void
 		{
 			if(Index > nodes.length)
 				Index = nodes.length;
@@ -145,7 +145,7 @@ package org.flixel
 		 */
 		public function remove(Node:FlxPoint):FlxPoint
 		{
-			var index:int = nodes.indexOf(Node);
+			var index:Int = nodes.indexOf(Node);
 			if(index >= 0)
 				return nodes.splice(index,1)[0];
 			else
@@ -159,7 +159,7 @@ package org.flixel
 		 * 
 		 * @return	The node that was excised.  Returns null if there were no nodes in the path.
 		 */
-		public function removeAt(Index:uint):FlxPoint
+		public function removeAt(Index:UInt):FlxPoint
 		{
 			if(nodes.length <= 0)
 				return null;
@@ -200,7 +200,7 @@ package org.flixel
 		 * 
 		 * @param	Camera		The camera object the path will draw to.
 		 */
-		public function drawDebug(Camera:FlxCamera=null):void
+		public function drawDebug(Camera:FlxCamera=null):Void
 		{
 			if(nodes.length <= 0)
 				return;
@@ -214,8 +214,8 @@ package org.flixel
 			//Then fill up the object with node and path graphics
 			var node:FlxPoint;
 			var nextNode:FlxPoint;
-			var i:uint = 0;
-			var l:uint = nodes.length;
+			var i:UInt = 0;
+			var l:UInt = nodes.length;
 			while(i < l)
 			{
 				//get a reference to the current node
@@ -228,10 +228,10 @@ package org.flixel
 				_point.y = int(_point.y + ((_point.y > 0)?0.0000001:-0.0000001));
 				
 				//decide what color this node should be
-				var nodeSize:uint = 2;
+				var nodeSize:UInt = 2;
 				if((i == 0) || (i == l-1))
 					nodeSize *= 2;
-				var nodeColor:uint = debugColor;
+				var nodeColor:UInt = debugColor;
 				if(l > 1)
 				{
 					if(i == 0)
@@ -247,7 +247,7 @@ package org.flixel
 				gfx.endFill();
 
 				//then find the next node in the path
-				var linealpha:Number = 0.3;
+				var linealpha:Float = 0.3;
 				if(i < l-1)
 					nextNode = nodes[i+1];
 				else

@@ -12,7 +12,9 @@ package org.flixel
 	import org.flixel.plugin.TimerManager;
 	import org.flixel.system.FlxDebugger;
 	import org.flixel.system.FlxQuadTree;
-	import org.flixel.system.input.*;
+	import org.flixel.system.input.Input;
+	import org.flixel.system.input.Keyboard;
+	import org.flixel.system.input.Mouse;
 	
 	/**
 	 * This is a global helper class full of useful functions for audio,
@@ -33,64 +35,64 @@ package org.flixel
 		 * Assign a major version to your library.
 		 * Appears before the decimal in the console.
 		 */
-		static public var LIBRARY_MAJOR_VERSION:uint = 2;
+		static public var LIBRARY_MAJOR_VERSION:UInt = 2;
 		/**
 		 * Assign a minor version to your library.
 		 * Appears after the decimal in the console.
 		 */
-		static public var LIBRARY_MINOR_VERSION:uint = 55;
+		static public var LIBRARY_MINOR_VERSION:UInt = 55;
 		
 		/**
 		 * Debugger overlay layout preset: Wide but low windows at the bottom of the screen.
 		 */
-		static public const DEBUGGER_STANDARD:uint = 0;
+		static public const DEBUGGER_STANDARD:UInt = 0;
 		/**
 		 * Debugger overlay layout preset: Tiny windows in the screen corners.
 		 */
-		static public const DEBUGGER_MICRO:uint = 1;
+		static public const DEBUGGER_MICRO:UInt = 1;
 		/**
 		 * Debugger overlay layout preset: Large windows taking up bottom half of screen.
 		 */
-		static public const DEBUGGER_BIG:uint = 2;
+		static public const DEBUGGER_BIG:UInt = 2;
 		/**
 		 * Debugger overlay layout preset: Wide but low windows at the top of the screen.
 		 */
-		static public const DEBUGGER_TOP:uint = 3;
+		static public const DEBUGGER_TOP:UInt = 3;
 		/**
 		 * Debugger overlay layout preset: Large windows taking up left third of screen.
 		 */
-		static public const DEBUGGER_LEFT:uint = 4;
+		static public const DEBUGGER_LEFT:UInt = 4;
 		/**
 		 * Debugger overlay layout preset: Large windows taking up right third of screen.
 		 */
-		static public const DEBUGGER_RIGHT:uint = 5;
+		static public const DEBUGGER_RIGHT:UInt = 5;
 		
 		/**
 		 * Some handy color presets.  Less glaring than pure RGB full values.
 		 * Primarily used in the visual debugger mode for bounding box displays.
 		 * Red is used to indicate an active, movable, solid object.
 		 */
-		static public const RED:uint = 0xffff0012;
+		static public const RED:UInt = 0xffff0012;
 		/**
 		 * Green is used to indicate solid but immovable objects.
 		 */
-		static public const GREEN:uint = 0xff00f225;
+		static public const GREEN:UInt = 0xff00f225;
 		/**
 		 * Blue is used to indicate non-solid objects.
 		 */
-		static public const BLUE:uint = 0xff0090e9;
+		static public const BLUE:UInt = 0xff0090e9;
 		/**
 		 * Pink is used to indicate objects that are only partially solid, like one-way platforms.
 		 */
-		static public const PINK:uint = 0xfff01eff;
+		static public const PINK:UInt = 0xfff01eff;
 		/**
 		 * White... for white stuff.
 		 */
-		static public const WHITE:uint = 0xffffffff;
+		static public const WHITE:UInt = 0xffffffff;
 		/**
 		 * And black too.
 		 */
-		static public const BLACK:uint = 0xff000000;
+		static public const BLACK:UInt = 0xff000000;
 
 		/**
 		 * Internal tracker for game object.
@@ -99,29 +101,29 @@ package org.flixel
 		/**
 		 * Handy shared variable for implementing your own pause behavior.
 		 */
-		static public var paused:Boolean;
+		static public var paused:Bool;
 		/**
 		 * Whether you are running in Debug or Release mode.
 		 * Set automatically by <code>FlxPreloader</code> during startup.
 		 */
-		static public var debug:Boolean;
+		static public var debug:Bool;
 		
 		/**
 		 * Represents the amount of time in seconds that passed since last frame.
 		 */
-		static public var elapsed:Number;
+		static public var elapsed:Float;
 		/**
 		 * How fast or slow time should pass in the game; default is 1.0.
 		 */
-		static public var timeScale:Number;
+		static public var timeScale:Float;
 		/**
 		 * The width of the screen in game pixels.
 		 */
-		static public var width:uint;
+		static public var width:UInt;
 		/**
 		 * The height of the screen in game pixels.
 		 */
-		static public var height:uint;
+		static public var height:UInt;
 		/**
 		 * The dimensions of the game world, used by the quad tree for collisions and overlap checks.
 		 */
@@ -132,34 +134,34 @@ package org.flixel
 		 * while denser collision activity usually profits from more.
 		 * Default value is 6.
 		 */
-		static public var worldDivisions:uint;
+		static public var worldDivisions:UInt;
 		/**
 		 * Whether to show visual debug displays or not.
 		 * Default = false.
 		 */
-		static public var visualDebug:Boolean;
+		static public var visualDebug:Bool;
 		/**
 		 * Setting this to true will disable/skip stuff that isn't necessary for mobile platforms like Android. [BETA]
 		 */
-		static public var mobile:Boolean; 
+		static public var mobile:Bool; 
 		/**
 		 * The global random number generator seed (for deterministic behavior in recordings and saves).
 		 */
-		static public var globalSeed:Number;
+		static public var globalSeed:Float;
 		/**
 		 * <code>FlxG.levels</code> and <code>FlxG.scores</code> are generic
 		 * global variables that can be used for various cross-state stuff.
 		 */
 		static public var levels:Array;
-		static public var level:int;
+		static public var level:Int;
 		static public var scores:Array;
-		static public var score:int;
+		static public var score:Int;
 		/**
 		 * <code>FlxG.saves</code> is a generic bucket for storing
 		 * FlxSaves so you can access them whenever you want.
 		 */
 		static public var saves:Array; 
-		static public var save:int;
+		static public var save:Int;
 
 		/**
 		 * A reference to a <code>FlxMouse</code> object.  Important for input!
@@ -181,11 +183,11 @@ package org.flixel
 		/**
 		 * Whether or not the game sounds are muted.
 		 */
-		static public var mute:Boolean;
+		static public var mute:Bool;
 		/**
 		 * Internal volume level, used for global sound control.
 		 */
-		static protected var _volume:Number;
+		static protected var _volume:Float;
 
 		/**
 		 * An array of <code>FlxCamera</code> objects that are used to draw stuff.
@@ -202,7 +204,7 @@ package org.flixel
 		 * you are not doing any pre-processing in your game state's <code>draw()</code> call.
 		 * @default false
 		 */
-		static public var useBufferLocking:Boolean;
+		static public var useBufferLocking:Bool;
 		/**
 		 * Internal helper variable for clearing the cameras each frame.
 		 */
@@ -217,7 +219,7 @@ package org.flixel
 		 
 		/**
 		 * Set this hook to get a callback whenever the volume changes.
-		 * Function should take the form <code>myVolumeHandler(Volume:Number)</code>.
+		 * Function should take the form <code>myVolumeHandler(Volume:Float)</code>.
 		 */
 		static public var volumeHandler:Function;
 		
@@ -243,7 +245,7 @@ package org.flixel
 		 * 
 		 * @param	Data		Anything you want to log to the console.
 		 */
-		static public function log(Data:Object):void
+		static public function log(Data:Object):Void
 		{
 			if((_game != null) && (_game._debugger != null))
 				_game._debugger.log.add((Data == null)?"ERROR: null object":((Data is Array)?FlxU.formatArray(Data as Array):Data.toString()));
@@ -257,7 +259,7 @@ package org.flixel
 		 * @param	VariableName	The name of the variable you want to watch, in quotes, as a string: e.g. "speed" or "health".
 		 * @param	DisplayName		Optional, display your own string instead of the class name + variable name: e.g. "enemy count".
 		 */
-		static public function watch(AnyObject:Object,VariableName:String,DisplayName:String=null):void
+		static public function watch(AnyObject:Object,VariableName:String,DisplayName:String=null):Void
 		{
 			if((_game != null) && (_game._debugger != null))
 				_game._debugger.watch.add(AnyObject,VariableName,DisplayName);
@@ -270,7 +272,7 @@ package org.flixel
 		 * @param	AnyObject		A reference to any object in your game, e.g. Player or Robot or this.
 		 * @param	VariableName	The name of the variable you want to watch, in quotes, as a string: e.g. "speed" or "health".
 		 */
-		static public function unwatch(AnyObject:Object,VariableName:String=null):void
+		static public function unwatch(AnyObject:Object,VariableName:String=null):Void
 		{
 			if((_game != null) && (_game._debugger != null))
 				_game._debugger.watch.remove(AnyObject,VariableName);
@@ -281,7 +283,7 @@ package org.flixel
 		 * More updates usually means better collisions and smoother motion.
 		 * NOTE: This is NOT the same thing as the Flash Player framerate!
 		 */
-		static public function get framerate():Number
+		static public function get framerate():Float
 		{
 			return 1000/_game._step;
 		}
@@ -289,7 +291,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		static public function set framerate(Framerate:Number):void
+		static public function set framerate(Framerate:Float):Void
 		{
 			_game._step = 1000/Framerate;
 			if(_game._maxAccumulation < _game._step)
@@ -301,7 +303,7 @@ package org.flixel
 		 * More updates usually means better collisions and smoother motion.
 		 * NOTE: This is NOT the same thing as the Flash Player framerate!
 		 */
-		static public function get flashFramerate():Number
+		static public function get flashFramerate():Float
 		{
 			if(_game.root != null)
 				return _game.stage.frameRate;
@@ -312,7 +314,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		static public function set flashFramerate(Framerate:Number):void
+		static public function set flashFramerate(Framerate:Float):Void
 		{
 			_game._flashFramerate = Framerate;
 			if(_game.root != null)
@@ -328,7 +330,7 @@ package org.flixel
 		 * 
 		 * @return	A <code>Number</code> between 0 and 1.
 		 */
-		static public function random():Number
+		static public function random():Float
 		{
 			return globalSeed = FlxU.srand(globalSeed);
 		}
@@ -343,11 +345,11 @@ package org.flixel
 		 * 
 		 * @return	The same Flash <code>Array</code> object that you passed in in the first place.
 		 */
-		static public function shuffle(Objects:Array,HowManyTimes:uint):Array
+		static public function shuffle(Objects:Array,HowManyTimes:UInt):Array
 		{
-			var i:uint = 0;
-			var index1:uint;
-			var index2:uint;
+			var i:UInt = 0;
+			var index1:UInt;
+			var index2:UInt;
 			var object:Object;
 			while(i < HowManyTimes)
 			{
@@ -373,11 +375,11 @@ package org.flixel
 		 * 
 		 * @return	The random object that was selected.
 		 */
-		static public function getRandom(Objects:Array,StartIndex:uint=0,Length:uint=0):Object
+		static public function getRandom(Objects:Array,StartIndex:UInt=0,Length:UInt=0):Object
 		{
 			if(Objects != null)
 			{
-				var l:uint = Length;
+				var l:UInt = Length;
 				if((l == 0) || (l > Objects.length - StartIndex))
 					l = Objects.length - StartIndex;
 				if(l > 0)
@@ -395,7 +397,7 @@ package org.flixel
 		 * @param	Timeout		Optional parameter: set a time limit for the replay.  CancelKeys will override this if pressed.
 		 * @param	Callback	Optional parameter: if set, called when the replay finishes.  Running to the end, CancelKeys, and Timeout will all trigger Callback(), but only once, and CancelKeys and Timeout will NOT call FlxG.stopReplay() if Callback is set!
 		 */
-		static public function loadReplay(Data:String,State:FlxState=null,CancelKeys:Array=null,Timeout:Number=0,Callback:Function=null):void
+		static public function loadReplay(Data:String,State:FlxState=null,CancelKeys:Array=null,Timeout:Float=0,Callback:Function=null):Void
 		{
 			_game._replay.load(Data);
 			if(State == null)
@@ -413,7 +415,7 @@ package org.flixel
 		 * 
 		 * @param	StandardMode	If true, reload entire game, else just reload current game state.
 		 */
-		static public function reloadReplay(StandardMode:Boolean=true):void
+		static public function reloadReplay(StandardMode:Bool=true):Void
 		{
 			if(StandardMode)
 				FlxG.resetGame();
@@ -426,7 +428,7 @@ package org.flixel
 		/**
 		 * Stops the current replay.
 		 */
-		static public function stopReplay():void
+		static public function stopReplay():Void
 		{
 			_game._replaying = false;
 			if(_game._debugger != null)
@@ -439,7 +441,7 @@ package org.flixel
 		 * 
 		 * @param	StandardMode	If true, reset the entire game, else just reset the current state.
 		 */
-		static public function recordReplay(StandardMode:Boolean=true):void
+		static public function recordReplay(StandardMode:Bool=true):Void
 		{
 			if(StandardMode)
 				FlxG.resetGame();
@@ -464,7 +466,7 @@ package org.flixel
 		/**
 		 * Request a reset of the current game state.
 		 */
-		static public function resetState():void
+		static public function resetState():Void
 		{
 			_game._requestedState = new (FlxU.getClass(FlxU.getClassName(_game._state,false)))();
 		}
@@ -472,7 +474,7 @@ package org.flixel
 		/**
 		 * Like hitting the reset button on a game console, this will re-launch the game as if it just started.
 		 */
-		static public function resetGame():void
+		static public function resetGame():Void
 		{
 			_game._requestedReset = true;
 		}
@@ -480,7 +482,7 @@ package org.flixel
 		/**
 		 * Reset the input helper objects (useful when changing screens or states)
 		 */
-		static public function resetInput():void
+		static public function resetInput():Void
 		{
 			keys.reset();
 			mouse.reset();
@@ -492,7 +494,7 @@ package org.flixel
 		 * @param	Music		The sound file you want to loop in the background.
 		 * @param	Volume		How loud the sound should be, from 0 to 1.
 		 */
-		static public function playMusic(Music:Class,Volume:Number=1.0):void
+		static public function playMusic(Music:Class,Volume:Float=1.0):Void
 		{
 			if(music == null)
 				music = new FlxSound();
@@ -516,7 +518,7 @@ package org.flixel
 		 * 
 		 * @return	A <code>FlxSound</code> object.
 		 */
-		static public function loadSound(EmbeddedSound:Class=null,Volume:Number=1.0,Looped:Boolean=false,AutoDestroy:Boolean=false,AutoPlay:Boolean=false,URL:String=null):FlxSound
+		static public function loadSound(EmbeddedSound:Class=null,Volume:Float=1.0,Looped:Bool=false,AutoDestroy:Bool=false,AutoPlay:Bool=false,URL:String=null):FlxSound
 		{
 			if((EmbeddedSound == null) && (URL == null))
 			{
@@ -545,7 +547,7 @@ package org.flixel
 		 * 
 		 * @return	A <code>FlxSound</code> object.
 		 */
-		static public function play(EmbeddedSound:Class,Volume:Number=1.0,Looped:Boolean=false,AutoDestroy:Boolean=true):FlxSound
+		static public function play(EmbeddedSound:Class,Volume:Float=1.0,Looped:Bool=false,AutoDestroy:Bool=true):FlxSound
 		{
 			return FlxG.loadSound(EmbeddedSound,Volume,Looped,AutoDestroy,true);
 		}
@@ -561,7 +563,7 @@ package org.flixel
 		 * 
 		 * @return	A FlxSound object.
 		 */
-		static public function stream(URL:String,Volume:Number=1.0,Looped:Boolean=false,AutoDestroy:Boolean=true):FlxSound
+		static public function stream(URL:String,Volume:Float=1.0,Looped:Bool=false,AutoDestroy:Bool=true):FlxSound
 		{
 			return FlxG.loadSound(null,Volume,Looped,AutoDestroy,true,URL);
 		}
@@ -571,7 +573,7 @@ package org.flixel
 		 * 
 		 * @default 0.5
 		 */
-		 static public function get volume():Number
+		 static public function get volume():Float
 		 {
 			 return _volume;
 		 }
@@ -579,7 +581,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		static public function set volume(Volume:Number):void
+		static public function set volume(Volume:Float):Void
 		{
 			_volume = Volume;
 			if(_volume < 0)
@@ -595,16 +597,16 @@ package org.flixel
 		 * 
 		 * @param	ForceDestroy		Kill sounds even if they're flagged <code>survive</code>.
 		 */
-		static internal function destroySounds(ForceDestroy:Boolean=false):void
+		static internal function destroySounds(ForceDestroy:Bool=false):Void
 		{
 			if((music != null) && (ForceDestroy || !music.survive))
 			{
 				music.destroy();
 				music = null;
 			}
-			var i:uint = 0;
+			var i:UInt = 0;
 			var sound:FlxSound;
-			var l:uint = sounds.members.length;
+			var l:UInt = sounds.members.length;
 			while(i < l)
 			{
 				sound = sounds.members[i++] as FlxSound;
@@ -616,7 +618,7 @@ package org.flixel
 		/**
 		 * Called by the game loop to make sure the sounds get updated each frame.
 		 */
-		static internal function updateSounds():void
+		static internal function updateSounds():Void
 		{
 			if((music != null) && music.active)
 				music.update();
@@ -627,13 +629,13 @@ package org.flixel
 		/**
 		 * Pause all sounds currently playing.
 		 */
-		static public function pauseSounds():void
+		static public function pauseSounds():Void
 		{
 			if((music != null) && music.exists && music.active)
 				music.pause();
-			var i:uint = 0;
+			var i:UInt = 0;
 			var sound:FlxSound;
-			var l:uint = sounds.length;
+			var l:UInt = sounds.length;
 			while(i < l)
 			{
 				sound = sounds.members[i++] as FlxSound;
@@ -645,13 +647,13 @@ package org.flixel
 		/**
 		 * Resume playing existing sounds.
 		 */
-		static public function resumeSounds():void
+		static public function resumeSounds():Void
 		{
 			if((music != null) && music.exists)
 				music.play();
-			var i:uint = 0;
+			var i:UInt = 0;
 			var sound:FlxSound;
-			var l:uint = sounds.length;
+			var l:UInt = sounds.length;
 			while(i < l)
 			{
 				sound = sounds.members[i++] as FlxSound;
@@ -667,7 +669,7 @@ package org.flixel
 		 * 
 		 * @return	Whether or not this file can be found in the cache.
 		 */
-		static public function checkBitmapCache(Key:String):Boolean
+		static public function checkBitmapCache(Key:String):Bool
 		{
 			return (_cache[Key] != undefined) && (_cache[Key] != null);
 		}
@@ -683,14 +685,14 @@ package org.flixel
 		 * 
 		 * @return	The <code>BitmapData</code> we just created.
 		 */
-		static public function createBitmap(Width:uint, Height:uint, Color:uint, Unique:Boolean=false, Key:String=null):BitmapData
+		static public function createBitmap(Width:UInt, Height:UInt, Color:UInt, Unique:Bool=false, Key:String=null):BitmapData
 		{
 			if(Key == null)
 			{
 				Key = Width+"x"+Height+":"+Color;
 				if(Unique && checkBitmapCache(Key))
 				{
-					var inc:uint = 0;
+					var inc:UInt = 0;
 					var ukey:String;
 					do
 					{
@@ -714,15 +716,15 @@ package org.flixel
 		 * 
 		 * @return	The <code>BitmapData</code> we just created.
 		 */
-		static public function addBitmap(Graphic:Class, Reverse:Boolean=false, Unique:Boolean=false, Key:String=null):BitmapData
+		static public function addBitmap(Graphic:Class, Reverse:Bool=false, Unique:Bool=false, Key:String=null):BitmapData
 		{
-			var needReverse:Boolean = false;
+			var needReverse:Bool = false;
 			if(Key == null)
 			{
 				Key = String(Graphic)+(Reverse?"_REVERSE_":"");
 				if(Unique && checkBitmapCache(Key))
 				{
-					var inc:uint = 0;
+					var inc:UInt = 0;
 					var ukey:String;
 					do
 					{
@@ -759,7 +761,7 @@ package org.flixel
 		/**
 		 * Dumps the cache's image references.
 		 */
-		static public function clearBitmapCache():void
+		static public function clearBitmapCache():Void
 		{
 			_cache = new Object();
 		}
@@ -786,7 +788,7 @@ package org.flixel
 		/**
 		 * Switch from the current game state to the one specified here.
 		 */
-		static public function switchState(State:FlxState):void
+		static public function switchState(State:FlxState):Void
 		{
 			_game._requestedState = State;
 		}
@@ -796,7 +798,7 @@ package org.flixel
 		 * 
 		 * @param	Layout		See the presets above (e.g. <code>DEBUGGER_MICRO</code>, etc).
 		 */
-		static public function setDebuggerLayout(Layout:uint):void
+		static public function setDebuggerLayout(Layout:UInt):Void
 		{
 			if(_game._debugger != null)
 				_game._debugger.setLayout(Layout);
@@ -805,7 +807,7 @@ package org.flixel
 		/**
 		 * Just resets the debugger windows to whatever the last selected layout was (<code>DEBUGGER_STANDARD</code> by default).
 		 */
-		static public function resetDebuggerLayout():void
+		static public function resetDebuggerLayout():Void
 		{
 			if(_game._debugger != null)
 				_game._debugger.resetLayout();
@@ -832,7 +834,7 @@ package org.flixel
 		 * @param	Camera	The camera you want to remove.
 		 * @param	Destroy	Whether to call destroy() on the camera, default value is true.
 		 */
-		static public function removeCamera(Camera:FlxCamera,Destroy:Boolean=true):void
+		static public function removeCamera(Camera:FlxCamera,Destroy:Bool=true):Void
 		{
 			try
 			{
@@ -852,11 +854,11 @@ package org.flixel
 		 * 
 		 * @param	NewCamera	Optional; specify a specific camera object to be the new main camera.
 		 */
-		static public function resetCameras(NewCamera:FlxCamera=null):void
+		static public function resetCameras(NewCamera:FlxCamera=null):Void
 		{
 			var cam:FlxCamera;
-			var i:uint = 0;
-			var l:uint = cameras.length;
+			var i:UInt = 0;
+			var l:UInt = cameras.length;
 			while(i < l)
 			{
 				cam = FlxG.cameras[i++] as FlxCamera;
@@ -878,10 +880,10 @@ package org.flixel
 		 * @param	OnComplete	A function you want to run when the flash finishes.
 		 * @param	Force		Force the effect to reset.
 		 */
-		static public function flash(Color:uint=0xffffffff, Duration:Number=1, OnComplete:Function=null, Force:Boolean=false):void
+		static public function flash(Color:UInt=0xffffffff, Duration:Float=1, OnComplete:Function=null, Force:Bool=false):Void
 		{
-			var i:uint = 0;
-			var l:uint = FlxG.cameras.length;
+			var i:UInt = 0;
+			var l:UInt = FlxG.cameras.length;
 			while(i < l)
 				(FlxG.cameras[i++] as FlxCamera).flash(Color,Duration,OnComplete,Force);
 		}
@@ -894,10 +896,10 @@ package org.flixel
 		 * @param	OnComplete	A function you want to run when the fade finishes.
 		 * @param	Force		Force the effect to reset.
 		 */
-		static public function fade(Color:uint=0xff000000, Duration:Number=1, OnComplete:Function=null, Force:Boolean=false):void
+		static public function fade(Color:UInt=0xff000000, Duration:Float=1, OnComplete:Function=null, Force:Bool=false):Void
 		{
-			var i:uint = 0;
-			var l:uint = FlxG.cameras.length;
+			var i:UInt = 0;
+			var l:UInt = FlxG.cameras.length;
 			while(i < l)
 				(FlxG.cameras[i++] as FlxCamera).fade(Color,Duration,OnComplete,Force);
 		}
@@ -911,10 +913,10 @@ package org.flixel
 		 * @param	Force		Force the effect to reset (default = true, unlike flash() and fade()!).
 		 * @param	Direction	Whether to shake on both axes, just up and down, or just side to side (use class constants SHAKE_BOTH_AXES, SHAKE_VERTICAL_ONLY, or SHAKE_HORIZONTAL_ONLY).  Default value is SHAKE_BOTH_AXES (0).
 		 */
-		static public function shake(Intensity:Number=0.05, Duration:Number=0.5, OnComplete:Function=null, Force:Boolean=true, Direction:uint=0):void
+		static public function shake(Intensity:Float=0.05, Duration:Float=0.5, OnComplete:Function=null, Force:Bool=true, Direction:UInt=0):Void
 		{
-			var i:uint = 0;
-			var l:uint = FlxG.cameras.length;
+			var i:UInt = 0;
+			var l:UInt = FlxG.cameras.length;
 			while(i < l)
 				(FlxG.cameras[i++] as FlxCamera).shake(Intensity,Duration,OnComplete,Force,Direction);
 		}
@@ -924,7 +926,7 @@ package org.flixel
 		 * Get functionality is equivalent to FlxG.camera.bgColor.
 		 * Set functionality sets the background color of all the current cameras.
 		 */
-		static public function get bgColor():uint
+		static public function get bgColor():UInt
 		{
 			if(FlxG.camera == null)
 				return 0xff000000;
@@ -932,10 +934,10 @@ package org.flixel
 				return FlxG.camera.bgColor;
 		}
 		
-		static public function set bgColor(Color:uint):void
+		static public function set bgColor(Color:UInt):Void
 		{
-			var i:uint = 0;
-			var l:uint = FlxG.cameras.length;
+			var i:UInt = 0;
+			var l:UInt = FlxG.cameras.length;
 			while(i < l)
 				(FlxG.cameras[i++] as FlxCamera).bgColor = Color;
 		}
@@ -955,7 +957,7 @@ package org.flixel
 		 * 
 		 * @return	Whether any oevrlaps were detected.
 		 */
-		static public function overlap(ObjectOrGroup1:FlxBasic=null,ObjectOrGroup2:FlxBasic=null,NotifyCallback:Function=null,ProcessCallback:Function=null):Boolean
+		static public function overlap(ObjectOrGroup1:FlxBasic=null,ObjectOrGroup2:FlxBasic=null,NotifyCallback:Function=null,ProcessCallback:Function=null):Bool
 		{
 			if(ObjectOrGroup1 == null)
 				ObjectOrGroup1 = FlxG.state;
@@ -964,7 +966,7 @@ package org.flixel
 			FlxQuadTree.divisions = FlxG.worldDivisions;
 			var quadTree:FlxQuadTree = new FlxQuadTree(FlxG.worldBounds.x,FlxG.worldBounds.y,FlxG.worldBounds.width,FlxG.worldBounds.height);
 			quadTree.load(ObjectOrGroup1,ObjectOrGroup2,NotifyCallback,ProcessCallback);
-			var result:Boolean = quadTree.execute();
+			var result:Bool = quadTree.execute();
 			quadTree.destroy();
 			return result;
 		}
@@ -986,7 +988,7 @@ package org.flixel
 		 * 
 		 * @return	Whether any objects were successfully collided/separated.
 		 */
-		static public function collide(ObjectOrGroup1:FlxBasic=null, ObjectOrGroup2:FlxBasic=null, NotifyCallback:Function=null):Boolean
+		static public function collide(ObjectOrGroup1:FlxBasic=null, ObjectOrGroup2:FlxBasic=null, NotifyCallback:Function=null):Bool
 		{
 			return overlap(ObjectOrGroup1,ObjectOrGroup2,NotifyCallback,FlxObject.separate);
 		}
@@ -1002,8 +1004,8 @@ package org.flixel
 		{
 			//Don't add repeats
 			var pluginList:Array = FlxG.plugins;
-			var i:uint = 0;
-			var l:uint = pluginList.length;
+			var i:UInt = 0;
+			var l:UInt = pluginList.length;
 			while(i < l)
 			{
 				if(pluginList[i++].toString() == Plugin.toString())
@@ -1025,8 +1027,8 @@ package org.flixel
 		static public function getPlugin(ClassType:Class):FlxBasic
 		{
 			var pluginList:Array = FlxG.plugins;
-			var i:uint = 0;
-			var l:uint = pluginList.length;
+			var i:UInt = 0;
+			var l:UInt = pluginList.length;
 			while(i < l)
 			{
 				if(pluginList[i] is ClassType)
@@ -1047,7 +1049,7 @@ package org.flixel
 		{
 			//Don't add repeats
 			var pluginList:Array = FlxG.plugins;
-			var i:int = pluginList.length-1;
+			var i:Int = pluginList.length-1;
 			while(i >= 0)
 			{
 				if(pluginList[i] == Plugin)
@@ -1064,12 +1066,12 @@ package org.flixel
 		 * 
 		 * @return	Whether or not at least one instance of this plugin type was removed.
 		 */
-		static public function removePluginType(ClassType:Class):Boolean
+		static public function removePluginType(ClassType:Class):Bool
 		{
 			//Don't add repeats
-			var results:Boolean = false;
+			var results:Bool = false;
 			var pluginList:Array = FlxG.plugins;
-			var i:int = pluginList.length-1;
+			var i:Int = pluginList.length-1;
 			while(i >= 0)
 			{
 				if(pluginList[i] is ClassType)
@@ -1085,7 +1087,7 @@ package org.flixel
 		/**
 		 * Called by <code>FlxGame</code> to set up <code>FlxG</code> during <code>FlxGame</code>'s constructor.
 		 */
-		static internal function init(Game:FlxGame,Width:uint,Height:uint,Zoom:Number):void
+		static internal function init(Game:FlxGame,Width:UInt,Height:UInt,Zoom:Float):Void
 		{
 			FlxG._game = Game;
 			FlxG.width = Width;
@@ -1125,7 +1127,7 @@ package org.flixel
 		/**
 		 * Called whenever the game is reset, doesn't have to do quite as much work as the basic initialization stuff.
 		 */
-		static internal function reset():void
+		static internal function reset():Void
 		{
 			FlxG.clearBitmapCache();
 			FlxG.resetInput();
@@ -1148,7 +1150,7 @@ package org.flixel
 		/**
 		 * Called by the game object to update the keyboard and mouse input tracking objects.
 		 */
-		static internal function updateInput():void
+		static internal function updateInput():Void
 		{
 			FlxG.keys.update();
 			if(!_game._debuggerUp || !_game._debugger.hasMouse)
@@ -1158,12 +1160,12 @@ package org.flixel
 		/**
 		 * Called by the game object to lock all the camera buffers and clear them for the next draw pass.
 		 */
-		static internal function lockCameras():void
+		static internal function lockCameras():Void
 		{
 			var cam:FlxCamera;
 			var cams:Array = FlxG.cameras;
-			var i:uint = 0;
-			var l:uint = cams.length;
+			var i:UInt = 0;
+			var l:UInt = cams.length;
 			while(i < l)
 			{
 				cam = cams[i++] as FlxCamera;
@@ -1179,12 +1181,12 @@ package org.flixel
 		/**
 		 * Called by the game object to draw the special FX and unlock all the camera buffers.
 		 */
-		static internal function unlockCameras():void
+		static internal function unlockCameras():Void
 		{
 			var cam:FlxCamera;
 			var cams:Array = FlxG.cameras;
-			var i:uint = 0;
-			var l:uint = cams.length;
+			var i:UInt = 0;
+			var l:UInt = cams.length;
 			while(i < l)
 			{
 				cam = cams[i++] as FlxCamera;
@@ -1199,12 +1201,12 @@ package org.flixel
 		/**
 		 * Called by the game object to update the cameras and their tracking/special effects logic.
 		 */
-		static internal function updateCameras():void
+		static internal function updateCameras():Void
 		{
 			var cam:FlxCamera;
 			var cams:Array = FlxG.cameras;
-			var i:uint = 0;
-			var l:uint = cams.length;
+			var i:UInt = 0;
+			var l:UInt = cams.length;
 			while(i < l)
 			{
 				cam = cams[i++] as FlxCamera;
@@ -1222,12 +1224,12 @@ package org.flixel
 		/**
 		 * Used by the game object to call <code>update()</code> on all the plugins.
 		 */
-		static internal function updatePlugins():void
+		static internal function updatePlugins():Void
 		{
 			var plugin:FlxBasic;
 			var pluginList:Array = FlxG.plugins;
-			var i:uint = 0;
-			var l:uint = pluginList.length;
+			var i:UInt = 0;
+			var l:UInt = pluginList.length;
 			while(i < l)
 			{
 				plugin = pluginList[i++] as FlxBasic;
@@ -1239,12 +1241,12 @@ package org.flixel
 		/**
 		 * Used by the game object to call <code>draw()</code> on all the plugins.
 		 */
-		static internal function drawPlugins():void
+		static internal function drawPlugins():Void
 		{
 			var plugin:FlxBasic;
 			var pluginList:Array = FlxG.plugins;
-			var i:uint = 0;
-			var l:uint = pluginList.length;
+			var i:UInt = 0;
+			var l:UInt = pluginList.length;
 			while(i < l)
 			{
 				plugin = pluginList[i++] as FlxBasic;

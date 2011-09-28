@@ -15,19 +15,19 @@ package org.flixel
 		/**
 		 * How much time the timer was set for.
 		 */
-		public var time:Number;
+		public var time:Float;
 		/**
 		 * How many loops the timer was set for.
 		 */
-		public var loops:uint;
+		public var loops:UInt;
 		/**
 		 * Pauses or checks the pause state of the timer.
 		 */
-		public var paused:Boolean;
+		public var paused:Bool;
 		/**
 		 * Check to see if the timer is finished.
 		 */
-		public var finished:Boolean;
+		public var finished:Bool;
 		
 		/**
 		 * Internal tracker for the time's-up callback function.
@@ -37,11 +37,11 @@ package org.flixel
 		/**
 		 * Internal tracker for the actual timer counting up.
 		 */
-		protected var _timeCounter:Number;
+		protected var _timeCounter:Float;
 		/**
 		 * Internal tracker for the loops counting up.
 		 */
-		protected var _loopsCounter:uint;
+		protected var _loopsCounter:UInt;
 		
 		/**
 		 * Instantiate the timer.  Does not set or start the timer.
@@ -61,7 +61,7 @@ package org.flixel
 		/**
 		 * Clean up memory.
 		 */
-		public function destroy():void
+		public function destroy():Void
 		{
 			stop();
 			_callback = null;
@@ -73,7 +73,7 @@ package org.flixel
 		 * If the timer runs out of loops, then the timer calls <code>stop()</code>.
 		 * However, callbacks are called AFTER <code>stop()</code> is called.
 		 */
-		public function update():void
+		public function update():Void
 		{
 			_timeCounter += FlxG.elapsed;
 			while((_timeCounter >= time) && !paused && !finished)
@@ -100,7 +100,7 @@ package org.flixel
 		 * 
 		 * @return	A reference to itself (handy for chaining or whatever).
 		 */
-		public function start(Time:Number=1,Loops:uint=1,Callback:Function=null):FlxTimer
+		public function start(Time:Float=1,Loops:UInt=1,Callback:Function=null):FlxTimer
 		{
 			var timerManager:TimerManager = manager;
 			if(timerManager != null)
@@ -125,7 +125,7 @@ package org.flixel
 		/**
 		 * Stops the timer and removes it from the timer manager.
 		 */
-		public function stop():void
+		public function stop():Void
 		{
 			finished = true;
 			var timerManager:TimerManager = manager;
@@ -136,7 +136,7 @@ package org.flixel
 		/**
 		 * Read-only: check how much time is left on the timer.
 		 */
-		public function get timeLeft():Number
+		public function get timeLeft():Float
 		{
 			return time-_timeCounter;
 		}
@@ -144,7 +144,7 @@ package org.flixel
 		/**
 		 * Read-only: check how many loops are left on the timer.
 		 */
-		public function get loopsLeft():int
+		public function get loopsLeft():Int
 		{
 			return loops-_loopsCounter;
 		}
@@ -152,7 +152,7 @@ package org.flixel
 		/**
 		 * Read-only: how far along the timer is, on a scale of 0.0 to 1.0.
 		 */
-		public function get progress():Number
+		public function get progress():Float
 		{
 			if(time > 0)
 				return _timeCounter/time;

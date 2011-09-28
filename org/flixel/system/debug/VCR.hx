@@ -41,11 +41,11 @@ package org.flixel.system.debug
 		/**
 		 * Whether the debugger has been paused. 
 		 */
-		public var paused:Boolean;
+		public var paused:Bool;
 		/**
 		 * Whether a "1 frame step forward" was requested.
 		 */
-		public var stepRequested:Boolean;
+		public var stepRequested:Bool;
 		
 		protected var _open:Bitmap;
 		protected var _recordOff:Bitmap;
@@ -57,22 +57,22 @@ package org.flixel.system.debug
 		protected var _play:Bitmap;
 		protected var _step:Bitmap;
 		
-		protected var _overOpen:Boolean;
-		protected var _overRecord:Boolean;
-		protected var _overRestart:Boolean;
-		protected var _overPause:Boolean;
-		protected var _overStep:Boolean;
+		protected var _overOpen:Bool;
+		protected var _overRecord:Bool;
+		protected var _overRestart:Bool;
+		protected var _overPause:Bool;
+		protected var _overStep:Bool;
 		
-		protected var _pressingOpen:Boolean;
-		protected var _pressingRecord:Boolean;
-		protected var _pressingRestart:Boolean;
-		protected var _pressingPause:Boolean;
-		protected var _pressingStep:Boolean;
+		protected var _pressingOpen:Bool;
+		protected var _pressingRecord:Bool;
+		protected var _pressingRestart:Bool;
+		protected var _pressingPause:Bool;
+		protected var _pressingStep:Bool;
 		
 		protected var _file:FileReference;
 		
 		protected var _runtimeDisplay:TextField;
-		protected var _runtime:uint;
+		protected var _runtime:UInt;
 		
 		/**
 		 * Creates the "VCR" control panel for debugger pausing, stepping, and recording.
@@ -81,7 +81,7 @@ package org.flixel.system.debug
 		{
 			super();
 			
-			var spacing:uint = 7;
+			var spacing:UInt = 7;
 			
 			_open = new ImgOpen();
 			addChild(_open);
@@ -146,7 +146,7 @@ package org.flixel.system.debug
 		/**
 		 * Clean up memory.
 		 */
-		public function destroy():void
+		public function destroy():Void
 		{
 			_file = null;
 			
@@ -178,7 +178,7 @@ package org.flixel.system.debug
 		 * Usually called by FlxGame when a requested recording has begun.
 		 * Just updates the VCR GUI so the buttons are in the right state.
 		 */
-		public function recording():void
+		public function recording():Void
 		{
 			_stop.visible = false;
 			_recordOff.visible = false;
@@ -189,7 +189,7 @@ package org.flixel.system.debug
 		 * Usually called by FlxGame when a replay has been stopped.
 		 * Just updates the VCR GUI so the buttons are in the right state.
 		 */
-		public function stopped():void
+		public function stopped():Void
 		{
 			_stop.visible = false;
 			_recordOn.visible = false;
@@ -200,7 +200,7 @@ package org.flixel.system.debug
 		 * Usually called by FlxGame when a requested replay has begun.
 		 * Just updates the VCR GUI so the buttons are in the right state.
 		 */
-		public function playing():void
+		public function playing():Void
 		{
 			_recordOff.visible = false;
 			_recordOn.visible = false;
@@ -210,7 +210,7 @@ package org.flixel.system.debug
 		/**
 		 * Just updates the VCR GUI so the runtime displays roughly the right thing.
 		 */
-		public function updateRuntime(Time:uint):void
+		public function updateRuntime(Time:UInt):Void
 		{
 			_runtime += Time;
 			_runtimeDisplay.text = FlxU.formatTime(_runtime/1000,true);
@@ -224,7 +224,7 @@ package org.flixel.system.debug
 		 * Called when the "open file" button is pressed.
 		 * Opens the file dialog and registers event handlers for the file dialog.
 		 */
-		public function onOpen():void
+		public function onOpen():Void
 		{
 			_file = new FileReference();
 			_file.addEventListener(Event.SELECT, onOpenSelect);
@@ -238,7 +238,7 @@ package org.flixel.system.debug
 		 * 
 		 * @param	E	Flash event.
 		 */
-		protected function onOpenSelect(E:Event=null):void
+		protected function onOpenSelect(E:Event=null):Void
 		{
 			_file.removeEventListener(Event.SELECT, onOpenSelect);
 			_file.removeEventListener(Event.CANCEL, onOpenCancel);
@@ -254,7 +254,7 @@ package org.flixel.system.debug
 		 *
 		 * @param	E	Flash Event.
 		 */
-		protected function onOpenComplete(E:Event=null):void
+		protected function onOpenComplete(E:Event=null):Void
 		{
 			_file.removeEventListener(Event.COMPLETE, onOpenComplete);
 			_file.removeEventListener(IOErrorEvent.IO_ERROR, onOpenError);
@@ -279,7 +279,7 @@ package org.flixel.system.debug
 		 * 
 		 * @param	E	Flash Event.
 		 */
-		protected function onOpenCancel(E:Event=null):void
+		protected function onOpenCancel(E:Event=null):Void
 		{
 			_file.removeEventListener(Event.SELECT, onOpenSelect);
 			_file.removeEventListener(Event.CANCEL, onOpenCancel);
@@ -291,7 +291,7 @@ package org.flixel.system.debug
 		 * 
 		 * @param	E	Flash Event.
 		 */
-		protected function onOpenError(E:Event=null):void
+		protected function onOpenError(E:Event=null):Void
 		{
 			_file.removeEventListener(Event.COMPLETE, onOpenComplete);
 			_file.removeEventListener(IOErrorEvent.IO_ERROR, onOpenError);
@@ -306,7 +306,7 @@ package org.flixel.system.debug
 		 * 
 		 * @param	StandardMode	Whether to reset the whole game, or just this <code>FlxState</code>.  StandardMode == false is useful for recording demos or attract modes.
 		 */
-		public function onRecord(StandardMode:Boolean=false):void
+		public function onRecord(StandardMode:Bool=false):Void
 		{
 			if(_play.visible)
 				onPlay();
@@ -317,7 +317,7 @@ package org.flixel.system.debug
 		 * Called when the user presses the red record button.
 		 * Stops the current recording, opens the save file dialog, and registers event handlers.
 		 */
-		public function stopRecording():void
+		public function stopRecording():Void
 		{
 			var data:String = FlxG.stopRecording();
 			if((data != null) && (data.length > 0))
@@ -335,7 +335,7 @@ package org.flixel.system.debug
 		 * 
 		 * @param	E	Flash Event.
 		 */
-		protected function onSaveComplete(E:Event=null):void
+		protected function onSaveComplete(E:Event=null):Void
 		{
 			_file.removeEventListener(Event.COMPLETE, onSaveComplete);
 			_file.removeEventListener(Event.CANCEL,onSaveCancel);
@@ -349,7 +349,7 @@ package org.flixel.system.debug
 		 * 
 		 * @param	E	Flash Event.
 		 */
-		protected function onSaveCancel(E:Event=null):void
+		protected function onSaveCancel(E:Event=null):Void
 		{
 			_file.removeEventListener(Event.COMPLETE, onSaveComplete);
 			_file.removeEventListener(Event.CANCEL,onSaveCancel);
@@ -362,7 +362,7 @@ package org.flixel.system.debug
 		 * 
 		 * @param	E	Flash Event.
 		 */
-		protected function onSaveError(E:Event=null):void
+		protected function onSaveError(E:Event=null):Void
 		{
 			_file.removeEventListener(Event.COMPLETE, onSaveComplete);
 			_file.removeEventListener(Event.CANCEL,onSaveCancel);
@@ -375,7 +375,7 @@ package org.flixel.system.debug
 		 * Called when the user presses the stop button.
 		 * Stops the current replay.
 		 */
-		public function onStop():void
+		public function onStop():Void
 		{
 			FlxG.stopReplay();
 		}
@@ -388,7 +388,7 @@ package org.flixel.system.debug
 		 * 
 		 * @param	StandardMode	Whether to reset the current game (== true), or just the current state.  Just resetting the current state can be very handy for debugging.
 		 */
-		public function onRestart(StandardMode:Boolean=false):void
+		public function onRestart(StandardMode:Bool=false):Void
 		{
 			if(FlxG.reloadReplay(StandardMode))
 			{
@@ -403,7 +403,7 @@ package org.flixel.system.debug
 		 * This is different from user-defined pause behavior, or focus lost behavior.
 		 * Does NOT pause music playback!!
 		 */
-		public function onPause():void
+		public function onPause():Void
 		{
 			paused = true;
 			_pause.visible = false;
@@ -414,7 +414,7 @@ package org.flixel.system.debug
 		 * Called when the user presses the Play button.
 		 * This is different from user-defined unpause behavior, or focus gained behavior.
 		 */
-		public function onPlay():void
+		public function onPlay():Void
 		{
 			paused = false;
 			_play.visible = false;
@@ -425,7 +425,7 @@ package org.flixel.system.debug
 		 * Called when the user presses the fast-forward-looking button.
 		 * Requests a 1-frame step forward in the game loop.
 		 */
-		public function onStep():void
+		public function onStep():Void
 		{
 			if(!paused)
 				onPause();
@@ -439,7 +439,7 @@ package org.flixel.system.debug
 		 * 
 		 * @param	E	Flash event.
 		 */
-		protected function init(E:Event=null):void
+		protected function init(E:Event=null):Void
 		{
 			if(root == null)
 				return;
@@ -455,7 +455,7 @@ package org.flixel.system.debug
 		 * 
 		 * @param	E	Flash mouse event.
 		 */
-		protected function onMouseMove(E:MouseEvent=null):void
+		protected function onMouseMove(E:MouseEvent=null):Void
 		{
 			if(!checkOver())
 				unpress();
@@ -467,7 +467,7 @@ package org.flixel.system.debug
 		 * 
 		 * @param	E	Flash mouse event.
 		 */
-		protected function onMouseDown(E:MouseEvent=null):void
+		protected function onMouseDown(E:MouseEvent=null):Void
 		{
 			unpress();
 			if(_overOpen)
@@ -488,7 +488,7 @@ package org.flixel.system.debug
 		 * 
 		 * @param	E	Flash mouse event.
 		 */
-		protected function onMouseUp(E:MouseEvent=null):void
+		protected function onMouseUp(E:MouseEvent=null):Void
 		{
 			if(_overOpen && _pressingOpen)
 				onOpen();
@@ -526,7 +526,7 @@ package org.flixel.system.debug
 		 * 
 		 * @return	Whether the mouse was over any buttons or not.
 		 */
-		protected function checkOver():Boolean
+		protected function checkOver():Bool
 		{
 			_overOpen = _overRecord = _overRestart = _overPause = _overStep = false;
 			if((mouseX < 0) || (mouseX > width) || (mouseY < 0) || (mouseY > 15))
@@ -550,7 +550,7 @@ package org.flixel.system.debug
 		/**
 		 * Sets all the pressed state variables for the buttons to false.
 		 */
-		protected function unpress():void
+		protected function unpress():Void
 		{
 			_pressingOpen = false;
 			_pressingRecord = false;
@@ -562,7 +562,7 @@ package org.flixel.system.debug
 		/**
 		 * Figures out what buttons to highlight based on the _overWhatever and _pressingWhatever variables.
 		 */
-		protected function updateGUI():void
+		protected function updateGUI():Void
 		{
 			if(_recordOn.visible)
 			{

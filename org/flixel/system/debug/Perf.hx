@@ -18,19 +18,19 @@ package org.flixel.system.debug
 	{
 		protected var _text:TextField;
 		
-		protected var _lastTime:int;
-		protected var _updateTimer:int;
+		protected var _lastTime:Int;
+		protected var _updateTimer:Int;
 		
 		protected var _flixelUpdate:Array;
-		protected var _flixelUpdateMarker:uint;
+		protected var _flixelUpdateMarker:UInt;
 		protected var _flixelDraw:Array;
-		protected var _flixelDrawMarker:uint;
+		protected var _flixelDrawMarker:UInt;
 		protected var _flash:Array;
-		protected var _flashMarker:uint;
+		protected var _flashMarker:UInt;
 		protected var _activeObject:Array;
-		protected var _objectMarker:uint;
+		protected var _objectMarker:UInt;
 		protected var _visibleObject:Array;
-		protected var _visibleObjectMarker:uint;
+		protected var _visibleObjectMarker:UInt;
 		
 		/**
 		 * Creates flashPlayerFramerate new window object.  This Flash-based class is mainly (only?) used by <code>FlxDebugger</code>.
@@ -43,7 +43,7 @@ package org.flixel.system.debug
 		 * @param BGColor		What color the window background should be, default is gray and transparent.
 		 * @param TopColor		What color the window header bar should be, default is black and transparent.
 		 */
-		public function Perf(Title:String, Width:Number, Height:Number, Resizable:Boolean=true, Bounds:Rectangle=null, BGColor:uint=0x7f7f7f7f, TopColor:uint=0x7f000000)
+		public function Perf(Title:String, Width:Float, Height:Float, Resizable:Bool=true, Bounds:Rectangle=null, BGColor:UInt=0x7f7f7f7f, TopColor:UInt=0x7f000000)
 		{
 			super(Title, Width, Height, Resizable, Bounds, BGColor, TopColor);
 			resize(90,66);
@@ -76,7 +76,7 @@ package org.flixel.system.debug
 		/**
 		 * Clean up memory.
 		 */
-		override public function destroy():void
+		override public function destroy():Void
 		{
 			removeChild(_text);
 			_text = null;
@@ -92,11 +92,11 @@ package org.flixel.system.debug
 		 * Called each frame, but really only updates once every second or so, to save on performance.
 		 * Takes all the data in the accumulators and parses it into useful performance data.
 		 */
-		public function update():void
+		public function update():Void
 		{
-			var time:int = getTimer();
-			var elapsed:int = time - _lastTime;
-			var updateEvery:uint = 500;
+			var time:Int = getTimer();
+			var elapsed:Int = time - _lastTime;
+			var updateEvery:UInt = 500;
 			if(elapsed > updateEvery)
 				elapsed = updateEvery;
 			_lastTime = time;
@@ -104,10 +104,10 @@ package org.flixel.system.debug
 			_updateTimer += elapsed;
 			if(_updateTimer > updateEvery)
 			{
-				var i:uint;
+				var i:UInt;
 				var output:String = "";
 
-				var flashPlayerFramerate:Number = 0;
+				var flashPlayerFramerate:Float = 0;
 				i = 0;
 				while (i < _flashMarker)
 					flashPlayerFramerate += _flash[i++];
@@ -116,13 +116,13 @@ package org.flixel.system.debug
 				
 				output += Number( ( System.totalMemory * 0.000000954 ).toFixed(2) ) + "MB\n";
 
-				var updateTime:uint = 0;
+				var updateTime:UInt = 0;
 				i = 0;
 				while(i < _flixelUpdateMarker)
 					updateTime += _flixelUpdate[i++];
 				
-				var activeCount:uint = 0;
-				var te:uint = 0;
+				var activeCount:UInt = 0;
+				var te:UInt = 0;
 				i = 0;
 				while(i < _objectMarker)
 				{
@@ -133,12 +133,12 @@ package org.flixel.system.debug
 				
 				output += "U:" + activeCount + " " + uint(updateTime/_flixelDrawMarker) + "ms\n";
 				
-				var drawTime:uint = 0;
+				var drawTime:UInt = 0;
 				i = 0;
 				while(i < _flixelDrawMarker)
 					drawTime += _flixelDraw[i++];
 				
-				var visibleCount:uint = 0;
+				var visibleCount:UInt = 0;
 				i = 0;
 				while(i < _visibleObjectMarker)
 					visibleCount += _visibleObject[i++];
@@ -162,7 +162,7 @@ package org.flixel.system.debug
 		 * 
 		 * @param Time	How long this update took.
 		 */
-		public function flixelUpdate(Time:int):void
+		public function flixelUpdate(Time:Int):Void
 		{
 			_flixelUpdate[_flixelUpdateMarker++] = Time;
 		}
@@ -172,7 +172,7 @@ package org.flixel.system.debug
 		 * 
 		 * @param	Time	How long this render took.
 		 */
-		public function flixelDraw(Time:int):void
+		public function flixelDraw(Time:Int):Void
 		{
 			_flixelDraw[_flixelDrawMarker++] = Time;
 		}
@@ -182,7 +182,7 @@ package org.flixel.system.debug
 		 * 
 		 * @param Time	How long Flash/browser took.
 		 */
-		public function flash(Time:int):void
+		public function flash(Time:Int):Void
 		{
 			_flash[_flashMarker++] = Time;
 		}
@@ -192,7 +192,7 @@ package org.flixel.system.debug
 		 * 
 		 * @param Count	How many objects were updated.
 		 */
-		public function activeObjects(Count:int):void
+		public function activeObjects(Count:Int):Void
 		{
 			_activeObject[_objectMarker++] = Count;
 		}
@@ -202,7 +202,7 @@ package org.flixel.system.debug
 		 *  
 		 * @param Count	How many objects were updated.
 		 */
-		public function visibleObjects(Count:int):void
+		public function visibleObjects(Count:Int):Void
 		{
 			_visibleObject[_visibleObjectMarker++] = Count;
 		}

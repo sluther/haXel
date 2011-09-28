@@ -10,19 +10,19 @@ package org.flixel.system.replay
 		/**
 		 * The main X value of the mouse in screen space.
 		 */
-		public var x:int;
+		public var x:Int;
 		/**
 		 * The main Y value of the mouse in screen space.
 		 */
-		public var y:int;
+		public var y:Int;
 		/**
 		 * The state of the left mouse button.
 		 */
-		public var button:int;
+		public var button:Int;
 		/**
 		 * The state of the mouse wheel.
 		 */
-		public var wheel:int;
+		public var wheel:Int;
 		
 		/**
 		 * Instantiate a new mouse input record.
@@ -32,7 +32,7 @@ package org.flixel.system.replay
 		 * @param Button	The state of the left mouse button.
 		 * @param Wheel		The state of the mouse wheel.
 		 */
-		public function MouseRecord(X:int,Y:int,Button:int,Wheel:int)
+		public function MouseRecord(X:Int,Y:Int,Button:Int,Wheel:Int)
 		{
 			x = X;
 			y = Y;

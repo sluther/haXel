@@ -49,25 +49,25 @@ package org.flixel
 		 * Controls whether the object is smoothed when rotated, affects performance.
 		 * @default false
 		 */
-		public var antialiasing:Boolean;
+		public var antialiasing:Bool;
 		/**
 		 * Whether the current animation has finished its first (or only) loop.
 		 */
-		public var finished:Boolean;
+		public var finished:Bool;
 		/**
 		 * The width of the actual graphic or image being displayed (not necessarily the game object/bounding box).
 		 * NOTE: Edit at your own risk!!  This is intended to be read-only.
 		 */
-		public var frameWidth:uint;
+		public var frameWidth:UInt;
 		/**
 		 * The height of the actual graphic or image being displayed (not necessarily the game object/bounding box).
 		 * NOTE: Edit at your own risk!!  This is intended to be read-only.
 		 */
-		public var frameHeight:uint;
+		public var frameHeight:UInt;
 		/**
 		 * The total number of frames in this image.  WARNING: assumes each row in the sprite sheet is full!
 		 */
-		public var frames:uint;
+		public var frames:UInt;
 		/**
 		 * The actual Flash <code>BitmapData</code> object representing the current display state of the sprite.
 		 */
@@ -76,7 +76,7 @@ package org.flixel
 		 * Set this flag to true to force the sprite to update during the draw() call.
 		 * NOTE: Rarely if ever necessary, most sprite operations will flip this flag automatically.
 		 */
-		public var dirty:Boolean;
+		public var dirty:Bool;
 		
 		/**
 		 * Internal, stores all the animations that were added to this sprite.
@@ -85,7 +85,7 @@ package org.flixel
 		/**
 		 * Internal, keeps track of whether the sprite was loaded with support for automatic reverse/mirroring.
 		 */
-		protected var _flipped:uint;
+		protected var _flipped:UInt;
 		/**
 		 * Internal, keeps track of the current animation being played.
 		 */
@@ -94,15 +94,15 @@ package org.flixel
 		 * Internal, keeps track of the current frame of animation.
 		 * This is NOT an index into the tile sheet, but the frame number in the animation object.
 		 */
-		protected var _curFrame:uint;
+		protected var _curFrame:UInt;
 		/**
 		 * Internal, keeps track of the current index into the tile sheet based on animation or rotation.
 		 */
-		protected var _curIndex:uint;
+		protected var _curIndex:UInt;
 		/**
 		 * Internal, used to time each frame of animation.
 		 */
-		protected var _frameTimer:Number;
+		protected var _frameTimer:Float;
 		/**
 		 * Internal tracker for the animation callback.  Default is null.
 		 * If assigned, will be called each time the current frame changes.
@@ -112,19 +112,19 @@ package org.flixel
 		/**
 		 * Internal tracker for what direction the sprite is currently facing, used with Flash getter/setter.
 		 */
-		protected var _facing:uint;
+		protected var _facing:UInt;
 		/**
 		 * Internal tracker for opacity, used with Flash getter/setter.
 		 */
-		protected var _alpha:Number;
+		protected var _alpha:Float;
 		/**
 		 * Internal tracker for color tint, used with Flash getter/setter.
 		 */
-		protected var _color:uint;
+		protected var _color:UInt;
 		/**
 		 * Internal tracker for how many frames of "baked" rotation there are (if any).
 		 */
-		protected var _bakedRotation:Number;
+		protected var _bakedRotation:Float;
 		/**
 		 * Internal, stores the entire source graphic (not the current displayed animation frame), used with Flash getter/setter.
 		 */
@@ -163,7 +163,7 @@ package org.flixel
 		 * @param	Y				The initial Y position of the sprite.
 		 * @param	SimpleGraphic	The graphic you want to display (OPTIONAL - for simple stuff only, do NOT use for animated images!).
 		 */
-		public function FlxSprite(X:Number=0,Y:Number=0,SimpleGraphic:Class=null)
+		public function FlxSprite(X:Float=0,Y:Float=0,SimpleGraphic:Class=null)
 		{
 			super(X,Y);
 			
@@ -203,13 +203,13 @@ package org.flixel
 		/**
 		 * Clean up memory.
 		 */
-		override public function destroy():void
+		override public function destroy():Void
 		{
 			if(_animations != null)
 			{
 				var a:FlxAnim;
-				var i:uint = 0;
-				var l:uint = _animations.length;
+				var i:UInt = 0;
+				var l:UInt = _animations.length;
 				while(i < l)
 				{
 					a = _animations[i++];
@@ -244,7 +244,7 @@ package org.flixel
 		 * 
 		 * @return	This FlxSprite instance (nice for chaining stuff together, if you're into that).
 		 */
-		public function loadGraphic(Graphic:Class,Animated:Boolean=false,Reverse:Boolean=false,Width:uint=0,Height:uint=0,Unique:Boolean=false):FlxSprite
+		public function loadGraphic(Graphic:Class,Animated:Bool=false,Reverse:Bool=false,Width:UInt=0,Height:UInt=0,Unique:Bool=false):FlxSprite
 		{
 			_bakedRotation = 0;
 			_pixels = FlxG.addBitmap(Graphic,Reverse,Unique);
@@ -286,19 +286,19 @@ package org.flixel
 		 * 
 		 * @return	This FlxSprite instance (nice for chaining stuff together, if you're into that).
 		 */
-		public function loadRotatedGraphic(Graphic:Class, Rotations:uint=16, Frame:int=-1, AntiAliasing:Boolean=false, AutoBuffer:Boolean=false):FlxSprite
+		public function loadRotatedGraphic(Graphic:Class, Rotations:UInt=16, Frame:Int=-1, AntiAliasing:Bool=false, AutoBuffer:Bool=false):FlxSprite
 		{
 			//Create the brush and canvas
-			var rows:uint = Math.sqrt(Rotations);
+			var rows:UInt = Math.sqrt(Rotations);
 			var brush:BitmapData = FlxG.addBitmap(Graphic);
 			if(Frame >= 0)
 			{
 				//Using just a segment of the graphic - find the right bit here
 				var full:BitmapData = brush;
 				brush = new BitmapData(full.height,full.height);
-				var rx:uint = Frame*brush.width;
-				var ry:uint = 0;
-				var fw:uint = full.width;
+				var rx:UInt = Frame*brush.width;
+				var ry:UInt = 0;
+				var fw:UInt = full.width;
 				if(rx >= fw)
 				{
 					ry = uint(rx/fw)*brush.height;
@@ -311,16 +311,16 @@ package org.flixel
 				brush.copyPixels(full,_flashRect,_flashPointZero);
 			}
 			
-			var max:uint = brush.width;
+			var max:UInt = brush.width;
 			if(brush.height > max)
 				max = brush.height;
 			if(AutoBuffer)
 				max *= 1.5;
-			var columns:uint = FlxU.ceil(Rotations/rows);
+			var columns:UInt = FlxU.ceil(Rotations/rows);
 			width = max*columns;
 			height = max*rows;
 			var key:String = String(Graphic) + ":" + Frame + ":" + width + "x" + height;
-			var skipGen:Boolean = FlxG.checkBitmapCache(key);
+			var skipGen:Bool = FlxG.checkBitmapCache(key);
 			_pixels = FlxG.createBitmap(width, height, 0, true, key);
 			width = frameWidth = _pixels.width;
 			height = frameHeight = _pixels.height;
@@ -329,13 +329,13 @@ package org.flixel
 			//Generate a new sheet if necessary, then fix up the width and height
 			if(!skipGen)
 			{
-				var row:uint = 0;
-				var column:uint;
-				var bakedAngle:Number = 0;
-				var halfBrushWidth:uint = brush.width*0.5;
-				var halfBrushHeight:uint = brush.height*0.5;
-				var midpointX:uint = max*0.5;
-				var midpointY:uint = max*0.5;
+				var row:UInt = 0;
+				var column:UInt;
+				var bakedAngle:Float = 0;
+				var halfBrushWidth:UInt = brush.width*0.5;
+				var halfBrushHeight:UInt = brush.height*0.5;
+				var midpointX:UInt = max*0.5;
+				var midpointY:UInt = max*0.5;
 				while(row < rows)
 				{
 					column = 0;
@@ -375,7 +375,7 @@ package org.flixel
 		 * 
 		 * @return	This FlxSprite instance (nice for chaining stuff together, if you're into that).
 		 */
-		public function makeGraphic(Width:uint,Height:uint,Color:uint=0xffffffff,Unique:Boolean=false,Key:String=null):FlxSprite
+		public function makeGraphic(Width:UInt,Height:UInt,Color:UInt=0xffffffff,Unique:Bool=false,Key:String=null):FlxSprite
 		{
 			_bakedRotation = 0;
 			_pixels = FlxG.createBitmap(Width,Height,Color,Unique,Key);
@@ -388,7 +388,7 @@ package org.flixel
 		/**
 		 * Resets some important variables for sprite optimization and rendering.
 		 */
-		protected function resetHelpers():void
+		protected function resetHelpers():Void
 		{
 			_flashRect.x = 0;
 			_flashRect.y = 0;
@@ -411,7 +411,7 @@ package org.flixel
 		 * Automatically called after update() by the game loop,
 		 * this function just calls updateAnimation().
 		 */
-		override public function postUpdate():void
+		override public function postUpdate():Void
 		{
 			super.postUpdate();
 			updateAnimation();
@@ -420,7 +420,7 @@ package org.flixel
 		/**
 		 * Called by game loop, updates then blits or renders current frame of animation to the screen
 		 */
-		override public function draw():void
+		override public function draw():Void
 		{
 			if(_flickerTimer != 0)
 			{
@@ -435,8 +435,8 @@ package org.flixel
 			if(cameras == null)
 				cameras = FlxG.cameras;
 			var camera:FlxCamera;
-			var i:uint = 0;
-			var l:uint = cameras.length;
+			var i:UInt = 0;
+			var l:UInt = cameras.length;
 			while(i < l)
 			{
 				camera = cameras[i++];
@@ -476,7 +476,7 @@ package org.flixel
 		 * @param	X			The X coordinate of the brush's top left corner on this sprite.
 		 * @param	Y			They Y coordinate of the brush's top left corner on this sprite.
 		 */
-		public function stamp(Brush:FlxSprite,X:int=0,Y:int=0):void
+		public function stamp(Brush:FlxSprite,X:Int=0,Y:Int=0):Void
 		{
 			Brush.drawFrame();
 			var bitmapData:BitmapData = Brush.framePixels;
@@ -517,13 +517,13 @@ package org.flixel
 		 * @param	Color		The line's color.
 		 * @param	Thickness	How thick the line is in pixels (default value is 1).
 		 */
-		public function drawLine(StartX:Number,StartY:Number,EndX:Number,EndY:Number,Color:uint,Thickness:uint=1):void
+		public function drawLine(StartX:Float,StartY:Float,EndX:Float,EndY:Float,Color:UInt,Thickness:UInt=1):Void
 		{
 			//Draw line
 			var gfx:Graphics = FlxG.flashGfx;
 			gfx.clear();
 			gfx.moveTo(StartX,StartY);
-			var alphaComponent:Number = Number((Color >> 24) & 0xFF) / 255;
+			var alphaComponent:Float = Number((Color >> 24) & 0xFF) / 255;
 			if(alphaComponent <= 0)
 				alphaComponent = 1;
 			gfx.lineStyle(Thickness,Color,alphaComponent);
@@ -539,7 +539,7 @@ package org.flixel
 		 * 
 		 * @param	Color		The color with which to fill the graphic, format 0xAARRGGBB.
 		 */
-		public function fill(Color:uint):void
+		public function fill(Color:UInt):Void
 		{
 			_pixels.fillRect(_flashRect2,Color);
 			if(_pixels != framePixels)
@@ -551,12 +551,12 @@ package org.flixel
 		 * Useful for cases when you need to update this but are buried down in too many supers.
 		 * This function is called automatically by <code>FlxSprite.postUpdate()</code>.
 		 */
-		protected function updateAnimation():void
+		protected function updateAnimation():Void
 		{
 			if(_bakedRotation > 0)
 			{
-				var oldIndex:uint = _curIndex;
-				var angleHelper:int = angle%360;
+				var oldIndex:UInt = _curIndex;
+				var angleHelper:Int = angle%360;
 				if(angleHelper < 0)
 					angleHelper += 360;
 				_curIndex = angleHelper/_bakedRotation + 0.5;
@@ -592,7 +592,7 @@ package org.flixel
 		 * 
 		 * @param	Force	Force the frame to redraw, even if its not flagged as necessary.
 		 */
-		public function drawFrame(Force:Boolean=false):void
+		public function drawFrame(Force:Bool=false):Void
 		{
 			if(Force || dirty)
 				calcFrame();
@@ -606,7 +606,7 @@ package org.flixel
 		 * @param	FrameRate	The speed in frames per second that the animation should play at (e.g. 40 fps).
 		 * @param	Looped		Whether or not the animation is looped or just plays once.
 		 */
-		public function addAnimation(Name:String, Frames:Array, FrameRate:Number=0, Looped:Boolean=true):void
+		public function addAnimation(Name:String, Frames:Array, FrameRate:Float=0, Looped:Bool=true):Void
 		{
 			_animations.push(new FlxAnim(Name,Frames,FrameRate,Looped));
 		}
@@ -616,7 +616,7 @@ package org.flixel
 		 * 
 		 * @param	AnimationCallback		A function that has 3 parameters: a string name, a uint frame number, and a uint frame index.
 		 */
-		public function addAnimationCallback(AnimationCallback:Function):void
+		public function addAnimationCallback(AnimationCallback:Function):Void
 		{
 			_callback = AnimationCallback;
 		}
@@ -628,14 +628,14 @@ package org.flixel
 		 * @param	AnimName	The string name of the animation you want to play.
 		 * @param	Force		Whether to force the animation to restart.
 		 */
-		public function play(AnimName:String,Force:Boolean=false):void
+		public function play(AnimName:String,Force:Bool=false):Void
 		{
 			if(!Force && (_curAnim != null) && (AnimName == _curAnim.name) && (_curAnim.looped || !finished)) return;
 			_curFrame = 0;
 			_curIndex = 0;
 			_frameTimer = 0;
-			var i:uint = 0;
-			var l:uint = _animations.length;
+			var i:UInt = 0;
+			var l:UInt = _animations.length;
 			while(i < l)
 			{
 				if(_animations[i].name == AnimName)
@@ -658,7 +658,7 @@ package org.flixel
 		 * Tell the sprite to change to a random frame of animation
 		 * Useful for instantiating particles or other weird things.
 		 */
-		public function randomFrame():void
+		public function randomFrame():Void
 		{
 			_curAnim = null;
 			_curIndex = int(FlxG.random()*(_pixels.width/frameWidth));
@@ -668,7 +668,7 @@ package org.flixel
 		/**
 		 * Helper function that just sets origin to (0,0)
 		 */
-		public function setOriginToCorner():void
+		public function setOriginToCorner():Void
 		{
 			origin.x = origin.y = 0;
 		}
@@ -678,7 +678,7 @@ package org.flixel
 		 * 
 		 * @param	AdjustPosition		Adjusts the actual X and Y position just once to match the offset change. Default is false.
 		 */
-		public function centerOffsets(AdjustPosition:Boolean=false):void
+		public function centerOffsets(AdjustPosition:Bool=false):Void
 		{
 			offset.x = (frameWidth-width)*0.5;
 			offset.y = (frameHeight-height)*0.5;
@@ -689,16 +689,16 @@ package org.flixel
 			}
 		}
 		
-		public function replaceColor(Color:uint,NewColor:uint,FetchPositions:Boolean=false):Array
+		public function replaceColor(Color:UInt,NewColor:UInt,FetchPositions:Bool=false):Array
 		{
 			var positions:Array = null;
 			if(FetchPositions)
 				positions = new Array();
 			
-			var row:uint = 0;
-			var column:uint;
-			var rows:uint = _pixels.height;
-			var columns:uint = _pixels.width;
+			var row:UInt = 0;
+			var column:UInt;
+			var rows:UInt = _pixels.height;
+			var columns:UInt = _pixels.width;
 			while(row < rows)
 			{
 				column = 0;
@@ -731,7 +731,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		public function set pixels(Pixels:BitmapData):void
+		public function set pixels(Pixels:BitmapData):Void
 		{
 			_pixels = Pixels;
 			width = frameWidth = _pixels.width;
@@ -744,7 +744,7 @@ package org.flixel
 		 * <code>UP</code>, and <code>DOWN</code> to take advantage of
 		 * flipped sprites and/or just track player orientation more easily.
 		 */
-		public function get facing():uint
+		public function get facing():UInt
 		{
 			return _facing;
 		}
@@ -752,7 +752,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		public function set facing(Direction:uint):void
+		public function set facing(Direction:UInt):Void
 		{
 			if(_facing != Direction)
 				dirty = true;
@@ -762,7 +762,7 @@ package org.flixel
 		/**
 		 * Set <code>alpha</code> to a number between 0 and 1 to change the opacity of the sprite.
 		 */
-		public function get alpha():Number
+		public function get alpha():Float
 		{
 			return _alpha;
 		}
@@ -770,7 +770,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		public function set alpha(Alpha:Number):void
+		public function set alpha(Alpha:Float):Void
 		{
 			if(Alpha > 1)
 				Alpha = 1;
@@ -791,7 +791,7 @@ package org.flixel
 		 * <code>color</code> IGNORES ALPHA.  To change the opacity use <code>alpha</code>.
 		 * Tints the whole sprite to be this color (similar to OpenGL vertex colors).
 		 */
-		public function get color():uint
+		public function get color():UInt
 		{
 			return _color;
 		}
@@ -799,7 +799,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		public function set color(Color:uint):void
+		public function set color(Color:UInt):Void
 		{
 			Color &= 0x00ffffff;
 			if(_color == Color)
@@ -817,7 +817,7 @@ package org.flixel
 		 * 
 		 * @param	Frame	The frame you want to display.
 		 */
-		public function get frame():uint
+		public function get frame():UInt
 		{
 			return _curIndex;
 		}
@@ -825,7 +825,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		public function set frame(Frame:uint):void
+		public function set frame(Frame:UInt):Void
 		{
 			_curAnim = null;
 			_curIndex = Frame;
@@ -842,7 +842,7 @@ package org.flixel
 		 * 
 		 * @return	Whether the object is on screen or not.
 		 */
-		override public function onScreen(Camera:FlxCamera=null):Boolean
+		override public function onScreen(Camera:FlxCamera=null):Bool
 		{
 			if(Camera == null)
 				Camera = FlxG.camera;
@@ -853,11 +853,11 @@ package org.flixel
 			if(((angle == 0) || (_bakedRotation > 0)) && (scale.x == 1) && (scale.y == 1))
 				return ((_point.x + frameWidth > 0) && (_point.x < Camera.width) && (_point.y + frameHeight > 0) && (_point.y < Camera.height));
 			
-			var halfWidth:Number = frameWidth/2;
-			var halfHeight:Number = frameHeight/2;
-			var absScaleX:Number = (scale.x>0)?scale.x:-scale.x;
-			var absScaleY:Number = (scale.y>0)?scale.y:-scale.y;
-			var radius:Number = Math.sqrt(halfWidth*halfWidth+halfHeight*halfHeight)*((absScaleX >= absScaleY)?absScaleX:absScaleY);
+			var halfWidth:Float = frameWidth/2;
+			var halfHeight:Float = frameHeight/2;
+			var absScaleX:Float = (scale.x>0)?scale.x:-scale.x;
+			var absScaleY:Float = (scale.y>0)?scale.y:-scale.y;
+			var radius:Float = Math.sqrt(halfWidth*halfWidth+halfHeight*halfHeight)*((absScaleX >= absScaleY)?absScaleX:absScaleY);
 			_point.x += halfWidth;
 			_point.y += halfHeight;
 			return ((_point.x + radius > 0) && (_point.x - radius < Camera.width) && (_point.y + radius > 0) && (_point.y - radius < Camera.height));
@@ -873,7 +873,7 @@ package org.flixel
 		 * 
 		 * @return	Whether or not the point overlaps this object.
 		 */
-		public function pixelsOverlapPoint(Point:FlxPoint,Mask:uint=0xFF,Camera:FlxCamera=null):Boolean
+		public function pixelsOverlapPoint(Point:FlxPoint,Mask:UInt=0xFF,Camera:FlxCamera=null):Bool
 		{
 			if(Camera == null)
 				Camera = FlxG.camera;
@@ -888,13 +888,13 @@ package org.flixel
 		/**
 		 * Internal function to update the current animation frame.
 		 */
-		protected function calcFrame():void
+		protected function calcFrame():Void
 		{
-			var indexX:uint = _curIndex*frameWidth;
-			var indexY:uint = 0;
+			var indexX:UInt = _curIndex*frameWidth;
+			var indexY:UInt = 0;
 
 			//Handle sprite sheets
-			var widthHelper:uint = _flipped?_flipped:_pixels.width;
+			var widthHelper:UInt = _flipped?_flipped:_pixels.width;
 			if(indexX >= widthHelper)
 			{
 				indexY = uint(indexX/widthHelper)*frameHeight;

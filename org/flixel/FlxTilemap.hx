@@ -27,33 +27,33 @@ package org.flixel
 		/**
 		 * No auto-tiling.
 		 */
-		static public const OFF:uint = 0;
+		static public const OFF:UInt = 0;
 		/**
 		 * Good for levels with thin walls that don'tile need interior corner art.
 		 */
-		static public const AUTO:uint = 1;
+		static public const AUTO:UInt = 1;
 		/**
 		 * Better for levels with thick walls that look better with interior corner art.
 		 */
-		static public const ALT:uint = 2;
+		static public const ALT:UInt = 2;
 
 		/**
 		 * Set this flag to use one of the 16-tile binary auto-tile algorithms (OFF, AUTO, or ALT).
 		 */
-		public var auto:uint;
+		public var auto:UInt;
 		
 		/**
 		 * Read-only variable, do NOT recommend changing after the map is loaded!
 		 */
-		public var widthInTiles:uint;
+		public var widthInTiles:UInt;
 		/**
 		 * Read-only variable, do NOT recommend changing after the map is loaded!
 		 */
-		public var heightInTiles:uint;
+		public var heightInTiles:UInt;
 		/**
 		 * Read-only variable, do NOT recommend changing after the map is loaded!
 		 */
-		public var totalTiles:uint;
+		public var totalTiles:UInt;
 		
 		/**
 		 * Rendering helper, minimize new object instantiation on repetitive methods.
@@ -83,11 +83,11 @@ package org.flixel
 		/**
 		 * Internal, the width of a single tile.
 		 */
-		protected var _tileWidth:uint;
+		protected var _tileWidth:UInt;
 		/**
 		 * Internal, the height of a single tile.
 		 */
-		protected var _tileHeight:uint;
+		protected var _tileHeight:UInt;
 		/**
 		 * Internal collection of tile objects, one for each type of tile in the map (NOTE one for every single tile in the whole map).
 		 */
@@ -113,11 +113,11 @@ package org.flixel
 		 * Internal flag for checking to see if we need to refresh
 		 * the tilemap display to show or hide the bounding boxes.
 		 */
-		protected var _lastVisualDebug:Boolean;
+		protected var _lastVisualDebug:Bool;
 		/**
 		 * Internal, used to sort of insert blank tiles in front of the tiles in the provided graphic.
 		 */
-		protected var _startingIndex:uint;
+		protected var _startingIndex:UInt;
 		
 		/**
 		 * The tilemap constructor just initializes some basic variables.
@@ -151,13 +151,13 @@ package org.flixel
 		/**
 		 * Clean up memory.
 		 */
-		override public function destroy():void
+		override public function destroy():Void
 		{
 			_flashPoint = null;
 			_flashRect = null;
 			_tiles = null;
-			var i:uint = 0;
-			var l:uint = _tileObjects.length;
+			var i:UInt = 0;
+			var l:UInt = _tileObjects.length;
 			while(i < l)
 				(_tileObjects[i++] as FlxTile).destroy();
 			_tileObjects = null;
@@ -190,7 +190,7 @@ package org.flixel
 		 * 
 		 * @return	A pointer this instance of FlxTilemap, for chaining as usual :)
 		 */
-		public function loadMap(MapData:String, TileGraphic:Class, TileWidth:uint=0, TileHeight:uint=0, AutoTile:uint=OFF, StartingIndex:uint=0, DrawIndex:uint=1, CollideIndex:uint=1):FlxTilemap
+		public function loadMap(MapData:String, TileGraphic:Class, TileWidth:UInt=0, TileHeight:UInt=0, AutoTile:UInt=OFF, StartingIndex:UInt=0, DrawIndex:UInt=1, CollideIndex:UInt=1):FlxTilemap
 		{
 			auto = AutoTile;
 			_startingIndex = StartingIndex;
@@ -200,8 +200,8 @@ package org.flixel
 			var rows:Array = MapData.split("\n");
 			heightInTiles = rows.length;
 			_data = new Array();
-			var row:uint = 0;
-			var column:uint;
+			var row:UInt = 0;
+			var column:UInt;
 			while(row < heightInTiles)
 			{
 				columns = rows[row++].split(",");
@@ -218,7 +218,7 @@ package org.flixel
 			}
 			
 			//Pre-process the map data if it's auto-tiled
-			var i:uint;
+			var i:UInt;
 			totalTiles = widthInTiles*heightInTiles;
 			if(auto > OFF)
 			{
@@ -241,11 +241,11 @@ package org.flixel
 			
 			//create some tile objects that we'll use for overlap checks (one for each tile)
 			i = 0;
-			var l:uint = (_tiles.width/_tileWidth) * (_tiles.height/_tileHeight);
+			var l:UInt = (_tiles.width/_tileWidth) * (_tiles.height/_tileHeight);
 			if(auto > OFF)
 				l++;
 			_tileObjects = new Array(l);
-			var ac:uint;
+			var ac:UInt;
 			while(i < l)
 			{
 				_tileObjects[i] = new FlxTile(this,i,_tileWidth,_tileHeight,(i >= DrawIndex),(i >= CollideIndex)?allowCollisions:NONE);
@@ -273,7 +273,7 @@ package org.flixel
 		 * Internal function to clean up the map loading code.
 		 * Just generates a wireframe box the size of a tile with the specified color.
 		 */
-		protected function makeDebugTile(Color:uint):BitmapData
+		protected function makeDebugTile(Color:UInt):BitmapData
 		{
 			var debugTile:BitmapData
 			debugTile = new BitmapData(_tileWidth,_tileHeight,true,0);
@@ -297,7 +297,7 @@ package org.flixel
 		 * If it did, the tilemap is flagged as dirty so it
 		 * will be redrawn with debug info on the next draw call.
 		 */
-		override public function update():void
+		override public function update():Void
 		{
 			if(_lastVisualDebug != FlxG.visualDebug)
 			{
@@ -312,17 +312,17 @@ package org.flixel
 		 * @param	Buffer		The <code>FlxTilemapBuffer</code> you are rendering to.
 		 * @param	Camera		The related <code>FlxCamera</code>, mainly for scroll values.
 		 */
-		protected function drawTilemap(Buffer:FlxTilemapBuffer,Camera:FlxCamera):void
+		protected function drawTilemap(Buffer:FlxTilemapBuffer,Camera:FlxCamera):Void
 		{
 			Buffer.fill();
 			
 			//Copy tile images into the tile buffer
 			_point.x = int(Camera.scroll.x*scrollFactor.x) - x; //modified from getScreenXY()
 			_point.y = int(Camera.scroll.y*scrollFactor.y) - y;
-			var screenXInTiles:int = (_point.x + ((_point.x > 0)?0.0000001:-0.0000001))/_tileWidth;
-			var screenYInTiles:int = (_point.y + ((_point.y > 0)?0.0000001:-0.0000001))/_tileHeight;
-			var screenRows:uint = Buffer.rows;
-			var screenColumns:uint = Buffer.columns;
+			var screenXInTiles:Int = (_point.x + ((_point.x > 0)?0.0000001:-0.0000001))/_tileWidth;
+			var screenYInTiles:Int = (_point.y + ((_point.y > 0)?0.0000001:-0.0000001))/_tileHeight;
+			var screenRows:UInt = Buffer.rows;
+			var screenColumns:UInt = Buffer.columns;
 			
 			//Bound the upper left corner
 			if(screenXInTiles < 0)
@@ -334,11 +334,11 @@ package org.flixel
 			if(screenYInTiles > heightInTiles-screenRows)
 				screenYInTiles = heightInTiles-screenRows;
 			
-			var rowIndex:int = screenYInTiles*widthInTiles+screenXInTiles;
+			var rowIndex:Int = screenYInTiles*widthInTiles+screenXInTiles;
 			_flashPoint.y = 0;
-			var row:uint = 0;
-			var column:uint;
-			var columnIndex:uint;
+			var row:UInt = 0;
+			var column:UInt;
+			var columnIndex:UInt;
 			var tile:FlxTile;
 			var debugTile:BitmapData;
 			while(row < screenRows)
@@ -382,7 +382,7 @@ package org.flixel
 		/**
 		 * Draws the tilemap buffers to the cameras and handles flickering.
 		 */
-		override public function draw():void
+		override public function draw():Void
 		{
 			if(_flickerTimer != 0)
 			{
@@ -395,8 +395,8 @@ package org.flixel
 				cameras = FlxG.cameras;
 			var camera:FlxCamera;
 			var buffer:FlxTilemapBuffer;
-			var i:uint = 0;
-			var l:uint = cameras.length;
+			var i:UInt = 0;
+			var l:UInt = cameras.length;
 			while(i < l)
 			{
 				camera = cameras[i];
@@ -430,13 +430,13 @@ package org.flixel
 		 * 
 		 * @return	An array the size of the tilemap full of integers indicating tile placement.
 		 */
-		public function getData(Simple:Boolean=false):Array
+		public function getData(Simple:Bool=false):Array
 		{
 			if(!Simple)
 				return _data;
 			
-			var i:uint = 0;
-			var l:uint = _data.length;
+			var i:UInt = 0;
+			var l:UInt = _data.length;
 			var data:Array = new Array(l);
 			while(i < l)
 			{
@@ -452,10 +452,10 @@ package org.flixel
 		 * 
 		 * @param	Dirty		Whether to flag the tilemap buffers as dirty or not.
 		 */
-		public function setDirty(Dirty:Boolean=true):void
+		public function setDirty(Dirty:Bool=true):Void
 		{
-			var i:uint = 0;
-			var l:uint = _buffers.length;
+			var i:UInt = 0;
+			var l:UInt = _buffers.length;
 			while(i < l)
 				(_buffers[i++] as FlxTilemapBuffer).dirty = Dirty;
 		}
@@ -471,11 +471,11 @@ package org.flixel
 		 * 
 		 * @return	A <code>FlxPath</code> from the start to the end.  If no path could be found, then a null reference is returned.
 		 */
-		public function findPath(Start:FlxPoint,End:FlxPoint,Simplify:Boolean=true,RaySimplify:Boolean=false):FlxPath
+		public function findPath(Start:FlxPoint,End:FlxPoint,Simplify:Bool=true,RaySimplify:Bool=false):FlxPath
 		{
 			//figure out what tile we are starting and ending on.
-			var startIndex:uint = int((Start.y-y)/_tileHeight) * widthInTiles + int((Start.x-x)/_tileWidth);
-			var endIndex:uint = int((End.y-y)/_tileHeight) * widthInTiles + int((End.x-x)/_tileWidth);
+			var startIndex:UInt = int((Start.y-y)/_tileHeight) * widthInTiles + int((Start.x-x)/_tileWidth);
+			var endIndex:UInt = int((End.y-y)/_tileHeight) * widthInTiles + int((End.x-x)/_tileWidth);
 
 			//check that the start and end are clear.
 			if( ((_tileObjects[_data[startIndex]] as FlxTile).allowCollisions > 0) ||
@@ -508,7 +508,7 @@ package org.flixel
 			
 			//finally load the remaining points into a new path object and return it
 			var path:FlxPath = new FlxPath();
-			var i:int = points.length - 1;
+			var i:Int = points.length - 1;
 			while(i >= 0)
 			{
 				node = points[i--] as FlxPoint;
@@ -523,14 +523,14 @@ package org.flixel
 		 *
 		 * @param	Points		An array of <code>FlxPoint</code> nodes.
 		 */
-		protected function simplifyPath(Points:Array):void
+		protected function simplifyPath(Points:Array):Void
 		{
-			var deltaPrevious:Number;
-			var deltaNext:Number;
+			var deltaPrevious:Float;
+			var deltaNext:Float;
 			var last:FlxPoint = Points[0];
 			var node:FlxPoint;
-			var i:uint = 1;
-			var l:uint = Points.length-1;
+			var i:UInt = 1;
+			var l:UInt = Points.length-1;
 			while(i < l)
 			{
 				node = Points[i];
@@ -549,13 +549,13 @@ package org.flixel
 		 * 
 		 * @param	Points		An array of <code>FlxPoint</code> nodes.
 		 */
-		protected function raySimplifyPath(Points:Array):void
+		protected function raySimplifyPath(Points:Array):Void
 		{
 			var source:FlxPoint = Points[0];
-			var lastIndex:int = -1;
+			var lastIndex:Int = -1;
 			var node:FlxPoint;
-			var i:uint = 1;
-			var l:uint = Points.length;
+			var i:UInt = 1;
+			var l:UInt = Points.length;
 			while(i < l)
 			{
 				node = Points[i++];
@@ -581,13 +581,13 @@ package org.flixel
 		 * 
 		 * @return	A Flash <code>Array</code> of <code>FlxPoint</code> nodes.  If the end tile could not be found, then a null <code>Array</code> is returned instead.
 		 */
-		protected function computePathDistance(StartIndex:uint, EndIndex:uint):Array
+		protected function computePathDistance(StartIndex:UInt, EndIndex:UInt):Array
 		{
 			//Create a distance-based representation of the tilemap.
 			//All walls are flagged as -2, all open areas as -1.
-			var mapSize:uint = widthInTiles*heightInTiles;
+			var mapSize:UInt = widthInTiles*heightInTiles;
 			var distances:Array = new Array(mapSize);
-			var i:int = 0;
+			var i:Int = 0;
 			while(i < mapSize)
 			{
 				if((_tileObjects[_data[i]] as FlxTile).allowCollisions)
@@ -597,16 +597,16 @@ package org.flixel
 				i++;
 			}
 			distances[StartIndex] = 0;
-			var distance:uint = 1;
+			var distance:UInt = 1;
 			var neighbors:Array = [StartIndex];
 			var current:Array;
-			var currentIndex:uint;
-			var left:Boolean;
-			var right:Boolean;
-			var up:Boolean;
-			var down:Boolean;
-			var currentLength:uint;
-			var foundEnd:Boolean = false;
+			var currentIndex:UInt;
+			var left:Bool;
+			var right:Bool;
+			var up:Bool;
+			var down:Bool;
+			var currentLength:UInt;
+			var foundEnd:Bool = false;
 			while(neighbors.length > 0)
 			{
 				current = neighbors;
@@ -630,7 +630,7 @@ package org.flixel
 					up = currentIndex/widthInTiles > 0;
 					down = currentIndex/widthInTiles < heightInTiles-1;
 					
-					var index:uint;
+					var index:UInt;
 					if(up)
 					{
 						index = currentIndex - widthInTiles;
@@ -718,20 +718,20 @@ package org.flixel
 		 * @param	Start	The tile we're on in our walk backward.
 		 * @param	Points	A Flash <code>Array</code> of <code>FlxPoint</code> nodes composing the path from the start to the end, compiled in reverse order.
 		 */
-		protected function walkPath(Data:Array,Start:uint,Points:Array):void
+		protected function walkPath(Data:Array,Start:UInt,Points:Array):Void
 		{
 			Points.push(new FlxPoint(x + uint(Start%widthInTiles)*_tileWidth + _tileWidth*0.5, y + uint(Start/widthInTiles)*_tileHeight + _tileHeight*0.5));
 			if(Data[Start] == 0)
 				return;
 			
 			//basic map bounds
-			var left:Boolean = Start%widthInTiles > 0;
-			var right:Boolean = Start%widthInTiles < widthInTiles-1;
-			var up:Boolean = Start/widthInTiles > 0;
-			var down:Boolean = Start/widthInTiles < heightInTiles-1;
+			var left:Bool = Start%widthInTiles > 0;
+			var right:Bool = Start%widthInTiles < widthInTiles-1;
+			var up:Bool = Start/widthInTiles > 0;
+			var down:Bool = Start/widthInTiles < heightInTiles-1;
 			
-			var current:uint = Data[Start];
-			var i:uint;
+			var current:UInt = Data[Start];
+			var i:UInt;
 			if(up)
 			{
 				i = Start - widthInTiles;
@@ -817,13 +817,13 @@ package org.flixel
 		 * 
 		 * @return	Whether or not the two objects overlap.
 		 */
-		override public function overlaps(ObjectOrGroup:FlxBasic,InScreenSpace:Boolean=false,Camera:FlxCamera=null):Boolean
+		override public function overlaps(ObjectOrGroup:FlxBasic,InScreenSpace:Bool=false,Camera:FlxCamera=null):Bool
 		{
 			if(ObjectOrGroup is FlxGroup)
 			{
-				var results:Boolean = false;
+				var results:Bool = false;
 				var basic:FlxBasic;
-				var i:uint = 0;
+				var i:UInt = 0;
 				var members:Array = (ObjectOrGroup as FlxGroup).members;
 				while(i < length)
 				{
@@ -859,13 +859,13 @@ package org.flixel
 		 * 
 		 * @return	Whether or not the two objects overlap.
 		 */
-		override public function overlapsAt(X:Number,Y:Number,ObjectOrGroup:FlxBasic,InScreenSpace:Boolean=false,Camera:FlxCamera=null):Boolean
+		override public function overlapsAt(X:Float,Y:Float,ObjectOrGroup:FlxBasic,InScreenSpace:Bool=false,Camera:FlxCamera=null):Bool
 		{
 			if(ObjectOrGroup is FlxGroup)
 			{
-				var results:Boolean = false;
+				var results:Bool = false;
 				var basic:FlxBasic;
-				var i:uint = 0;
+				var i:UInt = 0;
 				var members:Array = (ObjectOrGroup as FlxGroup).members;
 				while(i < length)
 				{
@@ -906,12 +906,12 @@ package org.flixel
 		 * 
 		 * @return	Whether there were overlaps, or if a callback was specified, whatever the return value of the callback was.
 		 */
-		public function overlapsWithCallback(Object:FlxObject,Callback:Function=null,FlipCallbackParams:Boolean=false,Position:FlxPoint=null):Boolean
+		public function overlapsWithCallback(Object:FlxObject,Callback:Function=null,FlipCallbackParams:Bool=false,Position:FlxPoint=null):Bool
 		{
-			var results:Boolean = false;
+			var results:Bool = false;
 			
-			var X:Number = x;
-			var Y:Number = y;
+			var X:Float = x;
+			var Y:Float = y;
 			if(Position != null)
 			{
 				X = Position.x;
@@ -919,10 +919,10 @@ package org.flixel
 			}
 			
 			//Figure out what tiles we need to check against
-			var selectionX:int = FlxU.floor((Object.x - X)/_tileWidth);
-			var selectionY:int = FlxU.floor((Object.y - Y)/_tileHeight);
-			var selectionWidth:uint = selectionX + (FlxU.ceil(Object.width/_tileWidth)) + 1;
-			var selectionHeight:uint = selectionY + FlxU.ceil(Object.height/_tileHeight) + 1;
+			var selectionX:Int = FlxU.floor((Object.x - X)/_tileWidth);
+			var selectionY:Int = FlxU.floor((Object.y - Y)/_tileHeight);
+			var selectionWidth:UInt = selectionX + (FlxU.ceil(Object.width/_tileWidth)) + 1;
+			var selectionHeight:UInt = selectionY + FlxU.ceil(Object.height/_tileHeight) + 1;
 			
 			//Then bound these coordinates by the map edges
 			if(selectionX < 0)
@@ -935,13 +935,13 @@ package org.flixel
 				selectionHeight = heightInTiles;
 			
 			//Then loop through this selection of tiles and call FlxObject.separate() accordingly
-			var rowStart:uint = selectionY*widthInTiles;
-			var row:uint = selectionY;
-			var column:uint;
+			var rowStart:UInt = selectionY*widthInTiles;
+			var row:UInt = selectionY;
+			var column:UInt;
 			var tile:FlxTile;
-			var overlapFound:Boolean;
-			var deltaX:Number = X - last.x;
-			var deltaY:Number = Y - last.y;
+			var overlapFound:Bool;
+			var deltaX:Float = X - last.x;
+			var deltaY:Float = Y - last.y;
 			while(row < selectionHeight)
 			{
 				column = selectionX;
@@ -996,7 +996,7 @@ package org.flixel
 		 * 
 		 * @return	Whether or not the point overlaps this object.
 		 */
-		override public function overlapsPoint(Point:FlxPoint,InScreenSpace:Boolean=false,Camera:FlxCamera=null):Boolean
+		override public function overlapsPoint(Point:FlxPoint,InScreenSpace:Bool=false,Camera:FlxCamera=null):Bool
 		{
 			if(!InScreenSpace)
 				return (_tileObjects[_data[uint(uint((Point.y-y)/_tileHeight)*widthInTiles + (Point.x-x)/_tileWidth)]] as FlxTile).allowCollisions > 0;
@@ -1017,7 +1017,7 @@ package org.flixel
 		 * 
 		 * @return	A uint containing the value of the tile at this spot in the array.
 		 */
-		public function getTile(X:uint,Y:uint):uint
+		public function getTile(X:UInt,Y:UInt):UInt
 		{
 			return _data[Y * widthInTiles + X] as uint;
 		}
@@ -1029,7 +1029,7 @@ package org.flixel
 		 * 
 		 * @return	A uint containing the value of the tile at this spot in the array.
 		 */
-		public function getTileByIndex(Index:uint):uint
+		public function getTileByIndex(Index:UInt):UInt
 		{
 			return _data[Index] as uint;
 		}
@@ -1041,11 +1041,11 @@ package org.flixel
 		 * 
 		 * @return	An <code>Array</code> with a list of all map indices of that tile type.
 		 */
-		public function getTileInstances(Index:uint):Array
+		public function getTileInstances(Index:UInt):Array
 		{
 			var array:Array = null;
-			var i:uint = 0;
-			var l:uint = widthInTiles * heightInTiles;
+			var i:UInt = 0;
+			var l:UInt = widthInTiles * heightInTiles;
 			while(i < l)
 			{
 				if(_data[i] == Index)
@@ -1068,13 +1068,13 @@ package org.flixel
 		 * 
 		 * @return	An <code>Array</code> with a list of all the coordinates of that tile type.
 		 */
-		public function getTileCoords(Index:uint,Midpoint:Boolean=true):Array
+		public function getTileCoords(Index:UInt,Midpoint:Bool=true):Array
 		{
 			var array:Array = null;
 			
 			var point:FlxPoint;
-			var i:uint = 0;
-			var l:uint = widthInTiles * heightInTiles;
+			var i:UInt = 0;
+			var l:UInt = widthInTiles * heightInTiles;
 			while(i < l)
 			{
 				if(_data[i] == Index)
@@ -1105,7 +1105,7 @@ package org.flixel
 		 * 
 		 * @return	Whether or not the tile was actually changed.
 		 */ 
-		public function setTile(X:uint,Y:uint,Tile:uint,UpdateGraphics:Boolean=true):Boolean
+		public function setTile(X:UInt,Y:UInt,Tile:UInt,UpdateGraphics:Bool=true):Bool
 		{
 			if((X >= widthInTiles) || (Y >= heightInTiles))
 				return false;
@@ -1121,12 +1121,12 @@ package org.flixel
 		 * 
 		 * @return	Whether or not the tile was actually changed.
 		 */
-		public function setTileByIndex(Index:uint,Tile:uint,UpdateGraphics:Boolean=true):Boolean
+		public function setTileByIndex(Index:UInt,Tile:UInt,UpdateGraphics:Bool=true):Bool
 		{
 			if(Index >= _data.length)
 				return false;
 			
-			var ok:Boolean = true;
+			var ok:Bool = true;
 			_data[Index] = Tile;
 			
 			if(!UpdateGraphics)
@@ -1141,11 +1141,11 @@ package org.flixel
 			}
 			
 			//If this map is autotiled and it changes, locally update the arrangement
-			var i:uint;
-			var row:int = int(Index/widthInTiles) - 1;
-			var rowLength:int = row + 3;
-			var column:int = Index%widthInTiles - 1;
-			var columnHeight:int = column + 3;
+			var i:UInt;
+			var row:Int = int(Index/widthInTiles) - 1;
+			var rowLength:Int = row + 3;
+			var column:Int = Index%widthInTiles - 1;
+			var columnHeight:Int = column + 3;
 			while(row < rowLength)
 			{
 				column = columnHeight - 3;
@@ -1175,13 +1175,13 @@ package org.flixel
 		 * @param	CallbackFilter	If you only want the callback to go off for certain classes or objects based on a certain class, set that class here.
 		 * @param	Range			If you want this callback to work for a bunch of different tiles, input the range here.  Default value is 1.
 		 */
-		public function setTileProperties(Tile:uint,AllowCollisions:uint=0x1111,Callback:Function=null,CallbackFilter:Class=null,Range:uint=1):void
+		public function setTileProperties(Tile:UInt,AllowCollisions:UInt=0x1111,Callback:Function=null,CallbackFilter:Class=null,Range:UInt=1):Void
 		{
 			if(Range <= 0)
 				Range = 1;
 			var tile:FlxTile;
-			var i:uint = Tile;
-			var l:uint = Tile+Range;
+			var i:UInt = Tile;
+			var l:UInt = Tile+Range;
 			while(i < l)
 			{
 				tile = _tileObjects[i++] as FlxTile;
@@ -1198,7 +1198,7 @@ package org.flixel
 		 * @param	Border			Adjusts the camera follow boundary by whatever number of tiles you specify here.  Handy for blocking off deadends that are offscreen, etc.  Use a negative number to add padding instead of hiding the edges.
 		 * @param	UpdateWorld		Whether to update the collision system's world size, default value is true.
 		 */
-		public function follow(Camera:FlxCamera=null,Border:int=0,UpdateWorld:Boolean=true):void
+		public function follow(Camera:FlxCamera=null,Border:Int=0,UpdateWorld:Bool=true):Void
 		{
 			if(Camera == null)
 				Camera = FlxG.camera;
@@ -1229,23 +1229,23 @@ package org.flixel
 		 * @param	Resolution	Defaults to 1, meaning check every tile or so.  Higher means more checks!
 		 * @return	Returns true if the ray made it from Start to End without hitting anything.  Returns false and fills Result if a tile was hit.
 		 */
-		public function ray(Start:FlxPoint, End:FlxPoint, Result:FlxPoint=null, Resolution:Number=1):Boolean
+		public function ray(Start:FlxPoint, End:FlxPoint, Result:FlxPoint=null, Resolution:Float=1):Bool
 		{
-			var step:Number = _tileWidth;
+			var step:Float = _tileWidth;
 			if(_tileHeight < _tileWidth)
 				step = _tileHeight;
 			step /= Resolution;
-			var deltaX:Number = End.x - Start.x;
-			var deltaY:Number = End.y - Start.y;
-			var distance:Number = Math.sqrt(deltaX*deltaX + deltaY*deltaY);
-			var steps:uint = Math.ceil(distance/step);
-			var stepX:Number = deltaX/steps;
-			var stepY:Number = deltaY/steps;
-			var curX:Number = Start.x - stepX - x;
-			var curY:Number = Start.y - stepY - y;
-			var tileX:uint;
-			var tileY:uint;
-			var i:uint = 0;
+			var deltaX:Float = End.x - Start.x;
+			var deltaY:Float = End.y - Start.y;
+			var distance:Float = Math.sqrt(deltaX*deltaX + deltaY*deltaY);
+			var steps:UInt = Math.ceil(distance/step);
+			var stepX:Float = deltaX/steps;
+			var stepY:Float = deltaY/steps;
+			var curX:Float = Start.x - stepX - x;
+			var curY:Float = Start.y - stepY - y;
+			var tileX:UInt;
+			var tileY:UInt;
+			var i:UInt = 0;
 			while(i < steps)
 			{
 				curX += stepX;
@@ -1264,11 +1264,11 @@ package org.flixel
 					//Some basic helper stuff
 					tileX *= _tileWidth;
 					tileY *= _tileHeight;
-					var rx:Number = 0;
-					var ry:Number = 0;
-					var q:Number;
-					var lx:Number = curX-stepX;
-					var ly:Number = curY-stepY;
+					var rx:Float = 0;
+					var ry:Float = 0;
+					var q:Float;
+					var lx:Float = curX-stepX;
+					var ly:Float = curY-stepY;
 					
 					//Figure out if it crosses the X boundary
 					q = tileX;
@@ -1315,13 +1315,13 @@ package org.flixel
 		 * 
 		 * @return	A comma-separated string containing the level data in a <code>FlxTilemap</code>-friendly format.
 		 */
-		static public function arrayToCSV(Data:Array,Width:int,Invert:Boolean=false):String
+		static public function arrayToCSV(Data:Array,Width:Int,Invert:Bool=false):String
 		{
-			var row:uint = 0;
-			var column:uint;
+			var row:UInt = 0;
+			var column:UInt;
 			var csv:String;
-			var Height:int = Data.length / Width;
-			var index:int;
+			var Height:Int = Data.length / Width;
+			var index:Int;
 			while(row < Height)
 			{
 				column = 0;
@@ -1365,7 +1365,7 @@ package org.flixel
 		 * 
 		 * @return	A comma-separated string containing the level data in a <code>FlxTilemap</code>-friendly format.
 		 */
-		static public function bitmapToCSV(bitmapData:BitmapData,Invert:Boolean=false,Scale:uint=1,ColorMap:Array=null):String
+		static public function bitmapToCSV(bitmapData:BitmapData,Invert:Bool=false,Scale:UInt=1,ColorMap:Array=null):String
 		{
 			//Import and scale image if necessary
 			if(Scale > 1)
@@ -1378,12 +1378,12 @@ package org.flixel
 			}
 			
 			//Walk image and export pixel values
-			var row:uint = 0;
-			var column:uint;
-			var pixel:uint;
+			var row:UInt = 0;
+			var column:UInt;
+			var pixel:UInt;
 			var csv:String = "";
-			var bitmapWidth:uint = bitmapData.width;
-			var bitmapHeight:uint = bitmapData.height;
+			var bitmapWidth:UInt = bitmapData.width;
+			var bitmapHeight:UInt = bitmapData.height;
 			while(row < bitmapHeight)
 			{
 				column = 0;
@@ -1427,7 +1427,7 @@ package org.flixel
 		 * 
 		 * @return	A comma-separated string containing the level data in a <code>FlxTilemap</code>-friendly format.
 		 */
-		static public function imageToCSV(ImageFile:Class,Invert:Boolean=false,Scale:uint=1):String
+		static public function imageToCSV(ImageFile:Class,Invert:Bool=false,Scale:UInt=1):String
 		{
 			return bitmapToCSV((new ImageFile).bitmapData,Invert,Scale);
 		}
@@ -1437,7 +1437,7 @@ package org.flixel
 		 * 
 		 * @param	Index		The index of the tile you want to analyze.
 		 */
-		protected function autoTile(Index:uint):void
+		protected function autoTile(Index:UInt):Void
 		{
 			if(_data[Index] == 0)
 				return;
@@ -1470,7 +1470,7 @@ package org.flixel
 		 * 
 		 * @param	Index		The index of the tile you want to update.
 		 */
-		protected function updateTile(Index:uint):void
+		protected function updateTile(Index:UInt):Void
 		{
 			var tile:FlxTile = _tileObjects[_data[Index]] as FlxTile;
 			if((tile == null) || !tile.visible)
@@ -1478,8 +1478,8 @@ package org.flixel
 				_rects[Index] = null;
 				return;
 			}
-			var rx:uint = (_data[Index]-_startingIndex)*_tileWidth;
-			var ry:uint = 0;
+			var rx:UInt = (_data[Index]-_startingIndex)*_tileWidth;
+			var ry:UInt = 0;
 			if(rx >= _tiles.width)
 			{
 				ry = uint(rx/_tiles.width)*_tileHeight;

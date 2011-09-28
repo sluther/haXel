@@ -24,24 +24,24 @@ package org.flixel.system.input
 		/**
 		 * Current "delta" value of mouse wheel.  If the wheel was just scrolled up, it will have a positive value.  If it was just scrolled down, it will have a negative value.  If it wasn't just scroll this frame, it will be 0.
 		 */
-		public var wheel:int;
+		public var wheel:Int;
 		/**
 		 * Current X position of the mouse pointer on the screen.
 		 */
-		public var screenX:int;
+		public var screenX:Int;
 		/**
 		 * Current Y position of the mouse pointer on the screen.
 		 */
-		public var screenY:int;
+		public var screenY:Int;
 		
 		/**
 		 * Helper variable for tracking whether the mouse was just pressed or just released.
 		 */
-		protected var _current:int;
+		protected var _current:Int;
 		/**
 		 * Helper variable for tracking whether the mouse was just pressed or just released.
 		 */
-		protected var _last:int;
+		protected var _last:Int;
 		/**
 		 * A display container for the mouse cursor.
 		 * This container is a child of FlxGame and sits at the right "height".
@@ -54,9 +54,9 @@ package org.flixel.system.input
 		/**
 		 * Helper variables for recording purposes.
 		 */
-		protected var _lastX:int;
-		protected var _lastY:int;
-		protected var _lastWheel:int;
+		protected var _lastX:Int;
+		protected var _lastY:Int;
+		protected var _lastWheel:Int;
 		protected var _point:FlxPoint;
 		protected var _globalScreenPosition:FlxPoint;
 		
@@ -80,7 +80,7 @@ package org.flixel.system.input
 		/**
 		 * Clean up memory.
 		 */
-		public function destroy():void
+		public function destroy():Void
 		{
 			_cursorContainer = null;
 			_cursor = null;
@@ -96,7 +96,7 @@ package org.flixel.system.input
 		 * @param	XOffset		The number of pixels between the mouse's screen position and the graphic's top left corner.
 		 * @param	YOffset		The number of pixels between the mouse's screen position and the graphic's top left corner. 
 		 */
-		public function show(Graphic:Class=null,Scale:Number=1,XOffset:int=0,YOffset:int=0):void
+		public function show(Graphic:Class=null,Scale:Float=1,XOffset:Int=0,YOffset:Int=0):Void
 		{
 			_cursorContainer.visible = true;
 			if(Graphic != null)
@@ -108,7 +108,7 @@ package org.flixel.system.input
 		/**
 		 * Hides the mouse cursor
 		 */
-		public function hide():void
+		public function hide():Void
 		{
 			_cursorContainer.visible = false;
 		}
@@ -116,7 +116,7 @@ package org.flixel.system.input
 		/**
 		 * Read only, check visibility of mouse cursor.
 		 */
-		public function get visible():Boolean
+		public function get visible():Bool
 		{
 			return _cursorContainer.visible;
 		}
@@ -129,7 +129,7 @@ package org.flixel.system.input
 		 * @param	XOffset		The number of pixels between the mouse's screen position and the graphic's top left corner.
 		 * @param	YOffset		The number of pixels between the mouse's screen position and the graphic's top left corner. 
 		 */
-		public function load(Graphic:Class=null,Scale:Number=1,XOffset:int=0,YOffset:int=0):void
+		public function load(Graphic:Class=null,Scale:Float=1,XOffset:Int=0,YOffset:Int=0):Void
 		{
 			if(_cursor != null)
 				_cursorContainer.removeChild(_cursor);
@@ -149,7 +149,7 @@ package org.flixel.system.input
 		 * Unload the current cursor graphic.  If the current cursor is visible,
 		 * then the default system cursor is loaded up to replace the old one.
 		 */
-		public function unload():void
+		public function unload():Void
 		{
 			if(_cursor != null)
 			{
@@ -172,7 +172,7 @@ package org.flixel.system.input
 		 * @param	XScroll		The amount the game world has scrolled horizontally.
 		 * @param	YScroll		The amount the game world has scrolled vertically.
 		 */
-		public function update(X:int,Y:int):void
+		public function update(X:Int,Y:Int):Void
 		{
 			_globalScreenPosition.x = X;
 			_globalScreenPosition.y = Y;
@@ -187,7 +187,7 @@ package org.flixel.system.input
 		/**
 		 * Internal function for helping to update the mouse cursor and world coordinates.
 		 */
-		protected function updateCursor():void
+		protected function updateCursor():Void
 		{
 			//actually position the flixel mouse cursor graphic
 			_cursorContainer.x = _globalScreenPosition.x;
@@ -246,7 +246,7 @@ package org.flixel.system.input
 		/**
 		 * Resets the just pressed/just released flags and sets mouse to not pressed.
 		 */
-		public function reset():void
+		public function reset():Void
 		{
 			_current = 0;
 			_last = 0;
@@ -257,28 +257,28 @@ package org.flixel.system.input
 		 * 
 		 * @return	Whether the mouse is pressed.
 		 */
-		public function pressed():Boolean { return _current > 0; }
+		public function pressed():Bool { return _current > 0; }
 		
 		/**
 		 * Check to see if the mouse was just pressed.
 		 * 
 		 * @return Whether the mouse was just pressed.
 		 */
-		public function justPressed():Boolean { return _current == 2; }
+		public function justPressed():Bool { return _current == 2; }
 		
 		/**
 		 * Check to see if the mouse was just released.
 		 * 
 		 * @return	Whether the mouse was just released.
 		 */
-		public function justReleased():Boolean { return _current == -1; }
+		public function justReleased():Bool { return _current == -1; }
 		
 		/**
 		 * Event handler so FlxGame can update the mouse.
 		 * 
 		 * @param	FlashEvent	A <code>MouseEvent</code> object.
 		 */
-		public function handleMouseDown(FlashEvent:MouseEvent):void
+		public function handleMouseDown(FlashEvent:MouseEvent):Void
 		{
 			if(_current > 0) _current = 1;
 			else _current = 2;
@@ -289,7 +289,7 @@ package org.flixel.system.input
 		 * 
 		 * @param	FlashEvent	A <code>MouseEvent</code> object.
 		 */
-		public function handleMouseUp(FlashEvent:MouseEvent):void
+		public function handleMouseUp(FlashEvent:MouseEvent):Void
 		{
 			if(_current > 0) _current = -1;
 			else _current = 0;
@@ -300,7 +300,7 @@ package org.flixel.system.input
 		 * 
 		 * @param	FlashEvent	A <code>MouseEvent</code> object.
 		 */
-		public function handleMouseWheel(FlashEvent:MouseEvent):void
+		public function handleMouseWheel(FlashEvent:MouseEvent):Void
 		{
 			wheel = FlashEvent.delta;
 		}
@@ -326,7 +326,7 @@ package org.flixel.system.input
 		 * 
 		 * @param	KeyStates	Array of data about key states.
 		 */
-		public function playback(Record:MouseRecord):void
+		public function playback(Record:MouseRecord):Void
 		{
 			_current = Record.button;
 			wheel = Record.wheel;

@@ -13,9 +13,9 @@ package org.flixel
 	 */
 	public class FlxSave extends Object
 	{
-		static protected var SUCCESS:uint = 0;
-		static protected var PENDING:uint = 1;
-		static protected var ERROR:uint = 2;
+		static protected var SUCCESS:UInt = 0;
+		static protected var PENDING:UInt = 1;
+		static protected var ERROR:UInt = 2;
 		/**
 		 * Allows you to directly access the data container in the local shared object.
 		 * @default null
@@ -39,7 +39,7 @@ package org.flixel
 		/**
 		 * Internal tracker for save object close request.
 		 */
-		protected var _closeRequested:Boolean;
+		protected var _closeRequested:Bool;
 		
 		/**
 		 * Blanks out the containers.
@@ -52,7 +52,7 @@ package org.flixel
 		/**
 		 * Clean up memory.
 		 */
-		public function destroy():void
+		public function destroy():Void
 		{
 			_sharedObject = null;
 			name = null;
@@ -68,7 +68,7 @@ package org.flixel
 		 * 
 		 * @return	Whether or not you successfully connected to the save data.
 		 */
-		public function bind(Name:String):Boolean
+		public function bind(Name:String):Bool
 		{
 			destroy();
 			name = Name;
@@ -96,7 +96,7 @@ package org.flixel
 		 *
 		 * @return	The result of result of the <code>flush()</code> call (see below for more details).
 		 */
-		public function close(MinFileSize:uint=0,OnComplete:Function=null):Boolean
+		public function close(MinFileSize:UInt=0,OnComplete:Function=null):Bool
 		{
 			_closeRequested = true;
 			return flush(MinFileSize,OnComplete);
@@ -110,7 +110,7 @@ package org.flixel
 		 *
 		 * @return	Whether or not the data was written immediately.  False could be an error OR a storage request popup.
 		 */
-		public function flush(MinFileSize:uint=0,OnComplete:Function=null):Boolean
+		public function flush(MinFileSize:UInt=0,OnComplete:Function=null):Bool
 		{
 			if(!checkBinding())
 				return false;
@@ -130,7 +130,7 @@ package org.flixel
 		 * 
 		 * @return	Returns false if the save object is not bound yet.
 		 */
-		public function erase():Boolean
+		public function erase():Bool
 		{
 			if(!checkBinding())
 				return false;
@@ -143,7 +143,7 @@ package org.flixel
 		 * 
 		 * @param	E	Flash net status event.
 		 */
-		protected function onFlushStatus(E:NetStatusEvent):void
+		protected function onFlushStatus(E:NetStatusEvent):Void
 		{
 			_sharedObject.removeEventListener(NetStatusEvent.NET_STATUS,onFlushStatus);
 			onDone((E.info.code == "SharedObject.Flush.Success")?SUCCESS:ERROR);
@@ -157,7 +157,7 @@ package org.flixel
 		 * 
 		 * @return	Whether the operation was a success or not.
 		 */
-		protected function onDone(Result:uint):Boolean
+		protected function onDone(Result:UInt):Bool
 		{
 			switch(Result)
 			{
@@ -182,7 +182,7 @@ package org.flixel
 		 * 
 		 * @return	Whether the shared object was bound yet.
 		 */
-		protected function checkBinding():Boolean
+		protected function checkBinding():Bool
 		{
 			if(_sharedObject == null)
 			{

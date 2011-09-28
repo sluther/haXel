@@ -23,11 +23,11 @@ package org.flixel
 		 * Whether the actual text field needs to be regenerated and stamped again.
 		 * This is NOT the same thing as <code>FlxSprite.dirty</code>.
 		 */
-		protected var _regen:Boolean;
+		protected var _regen:Bool;
 		/**
 		 * Internal tracker for the text shadow color, default is clear/transparent.
 		 */
-		protected var _shadow:uint;
+		protected var _shadow:UInt;
 		
 		/**
 		 * Creates a new <code>FlxText</code> object at the specified position.
@@ -38,7 +38,7 @@ package org.flixel
 		 * @param	Text			The actual text you would like to display initially.
 		 * @param	EmbeddedFont	Whether this text field uses embedded fonts or nto
 		 */
-		public function FlxText(X:Number, Y:Number, Width:uint, Text:String=null, EmbeddedFont:Boolean=true)
+		public function FlxText(X:Float, Y:Float, Width:UInt, Text:String=null, EmbeddedFont:Bool=true)
 		{
 			super(X,Y);
 			makeGraphic(Width,1,0);
@@ -70,7 +70,7 @@ package org.flixel
 		/**
 		 * Clean up memory.
 		 */
-		override public function destroy():void
+		override public function destroy():Void
 		{
 			_textField = null;
 			super.destroy();
@@ -88,7 +88,7 @@ package org.flixel
 		 * 
 		 * @return	This FlxText instance (nice for chaining stuff together, if you're into that).
 		 */
-		public function setFormat(Font:String=null,Size:Number=8,Color:uint=0xffffff,Alignment:String=null,ShadowColor:uint=0):FlxText
+		public function setFormat(Font:String=null,Size:Float=8,Color:UInt=0xffffff,Alignment:String=null,ShadowColor:UInt=0):FlxText
 		{
 			if(Font == null)
 				Font = "";
@@ -116,7 +116,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		public function set text(Text:String):void
+		public function set text(Text:String):Void
 		{
 			var ot:String = _textField.text;
 			_textField.text = Text;
@@ -130,7 +130,7 @@ package org.flixel
 		/**
 		 * The size of the text being displayed.
 		 */
-		 public function get size():Number
+		 public function get size():Float
 		{
 			return _textField.defaultTextFormat.size as Number;
 		}
@@ -138,7 +138,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		public function set size(Size:Number):void
+		public function set size(Size:Float):Void
 		{
 			var format:TextFormat = dtfCopy();
 			format.size = Size;
@@ -151,7 +151,7 @@ package org.flixel
 		/**
 		 * The color of the text being displayed.
 		 */
-		override public function get color():uint
+		override public function get color():UInt
 		{
 			return _textField.defaultTextFormat.color as uint;
 		}
@@ -159,7 +159,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		override public function set color(Color:uint):void
+		override public function set color(Color:UInt):Void
 		{
 			var format:TextFormat = dtfCopy();
 			format.color = Color;
@@ -180,7 +180,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		public function set font(Font:String):void
+		public function set font(Font:String):Void
 		{
 			var format:TextFormat = dtfCopy();
 			format.font = Font;
@@ -201,7 +201,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		public function set alignment(Alignment:String):void
+		public function set alignment(Alignment:String):Void
 		{
 			var format:TextFormat = dtfCopy();
 			format.align = Alignment;
@@ -213,7 +213,7 @@ package org.flixel
 		/**
 		 * The color of the text shadow in 0xAARRGGBB hex format.
 		 */
-		public function get shadow():uint
+		public function get shadow():UInt
 		{
 			return _shadow;
 		}
@@ -221,7 +221,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		public function set shadow(Color:uint):void
+		public function set shadow(Color:UInt):Void
 		{
 			_shadow = Color;
 			calcFrame();
@@ -230,13 +230,13 @@ package org.flixel
 		/**
 		 * Internal function to update the current animation frame.
 		 */
-		override protected function calcFrame():void
+		override protected function calcFrame():Void
 		{
 			if(_regen)
 			{
 				//Need to generate a new buffer to store the text graphic
-				var i:uint = 0;
-				var nl:uint = _textField.numLines;
+				var i:UInt = 0;
+				var nl:UInt = _textField.numLines;
 				height = 0;
 				while(i < nl)
 					height += _textField.getLineMetrics(i++).height;

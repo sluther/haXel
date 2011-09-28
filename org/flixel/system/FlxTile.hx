@@ -14,7 +14,7 @@ package org.flixel.system
 	{
 		/**
 		 * This function is called whenever an object hits a tile of this type.
-		 * This function should take the form <code>myFunction(Tile:FlxTile,Object:FlxObject):void</code>.
+		 * This function should take the form <code>myFunction(Tile:FlxTile,Object:FlxObject):Void</code>.
 		 * Defaults to null, set through <code>FlxTilemap.setTileProperties()</code>.
 		 */
 		public var callback:Function;
@@ -34,13 +34,13 @@ package org.flixel.system
 		 * For example, if your map only has 16 kinds of tiles in it,
 		 * this number is usually between 0 and 15.
 		 */
-		public var index:uint;
+		public var index:UInt;
 		/**
 		 * The current map index of this tile object at this moment.
 		 * You can think of tile objects as moving around the tilemap helping with collisions.
 		 * This value is only reliable and useful if used from the callback function.
 		 */
-		public var mapIndex:uint;
+		public var mapIndex:UInt;
 		
 		/**
 		 * Instantiate this new tile object.  This is usually called from <code>FlxTilemap.loadMap()</code>.
@@ -52,7 +52,7 @@ package org.flixel.system
 		 * @param Visible			Whether the tile is visible or not.
 		 * @param AllowCollisions	The collision flags for the object.  By default this value is ANY or NONE depending on the parameters sent to loadMap().
 		 */
-		public function FlxTile(Tilemap:FlxTilemap, Index:uint, Width:Number, Height:Number, Visible:Boolean, AllowCollisions:uint)
+		public function FlxTile(Tilemap:FlxTilemap, Index:UInt, Width:Float, Height:Float, Visible:Bool, AllowCollisions:UInt)
 		{
 			super(0, 0, Width, Height);
 			immovable = true;
@@ -71,7 +71,7 @@ package org.flixel.system
 		/**
 		 * Clean up memory.
 		 */
-		override public function destroy():void
+		override public function destroy():Void
 		{
 			super.destroy();
 			callback = null;

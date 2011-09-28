@@ -18,96 +18,96 @@ package org.flixel
 		/**
 		 * Generic value for "left" Used by <code>facing</code>, <code>allowCollisions</code>, and <code>touching</code>.
 		 */
-		static public const LEFT:uint	= 0x0001;
+		static public const LEFT:UInt	= 0x0001;
 		/**
 		 * Generic value for "right" Used by <code>facing</code>, <code>allowCollisions</code>, and <code>touching</code>.
 		 */
-		static public const RIGHT:uint	= 0x0010;
+		static public const RIGHT:UInt	= 0x0010;
 		/**
 		 * Generic value for "up" Used by <code>facing</code>, <code>allowCollisions</code>, and <code>touching</code>.
 		 */
-		static public const UP:uint		= 0x0100;
+		static public const UP:UInt		= 0x0100;
 		/**
 		 * Generic value for "down" Used by <code>facing</code>, <code>allowCollisions</code>, and <code>touching</code>.
 		 */
-		static public const DOWN:uint	= 0x1000;
+		static public const DOWN:UInt	= 0x1000;
 		
 		/**
 		 * Special-case constant meaning no collisions, used mainly by <code>allowCollisions</code> and <code>touching</code>.
 		 */
-		static public const NONE:uint	= 0;
+		static public const NONE:UInt	= 0;
 		/**
 		 * Special-case constant meaning up, used mainly by <code>allowCollisions</code> and <code>touching</code>.
 		 */
-		static public const CEILING:uint= UP;
+		static public const CEILING:UInt= UP;
 		/**
 		 * Special-case constant meaning down, used mainly by <code>allowCollisions</code> and <code>touching</code>.
 		 */
-		static public const FLOOR:uint	= DOWN;
+		static public const FLOOR:UInt	= DOWN;
 		/**
 		 * Special-case constant meaning only the left and right sides, used mainly by <code>allowCollisions</code> and <code>touching</code>.
 		 */
-		static public const WALL:uint	= LEFT | RIGHT;
+		static public const WALL:UInt	= LEFT | RIGHT;
 		/**
 		 * Special-case constant meaning any direction, used mainly by <code>allowCollisions</code> and <code>touching</code>.
 		 */
-		static public const ANY:uint	= LEFT | RIGHT | UP | DOWN;
+		static public const ANY:UInt	= LEFT | RIGHT | UP | DOWN;
 		
 		/**
 		 * Handy constant used during collision resolution (see <code>separateX()</code> and <code>separateY()</code>).
 		 */
-		static public const OVERLAP_BIAS:Number = 4;
+		static public const OVERLAP_BIAS:Float = 4;
 		
 		/**
 		 * Path behavior controls: move from the start of the path to the end then stop.
 		 */
-		static public const PATH_FORWARD:uint			= 0x000000;
+		static public const PATH_FORWARD:UInt			= 0x000000;
 		/**
 		 * Path behavior controls: move from the end of the path to the start then stop.
 		 */
-		static public const PATH_BACKWARD:uint			= 0x000001;
+		static public const PATH_BACKWARD:UInt			= 0x000001;
 		/**
 		 * Path behavior controls: move from the start of the path to the end then directly back to the start, and start over.
 		 */
-		static public const PATH_LOOP_FORWARD:uint		= 0x000010;
+		static public const PATH_LOOP_FORWARD:UInt		= 0x000010;
 		/**
 		 * Path behavior controls: move from the end of the path to the start then directly back to the end, and start over.
 		 */
-		static public const PATH_LOOP_BACKWARD:uint		= 0x000100;
+		static public const PATH_LOOP_BACKWARD:UInt		= 0x000100;
 		/**
 		 * Path behavior controls: move from the start of the path to the end then turn around and go back to the start, over and over.
 		 */
-		static public const PATH_YOYO:uint				= 0x001000;
+		static public const PATH_YOYO:UInt				= 0x001000;
 		/**
 		 * Path behavior controls: ignores any vertical component to the path data, only follows side to side.
 		 */
-		static public const PATH_HORIZONTAL_ONLY:uint	= 0x010000;
+		static public const PATH_HORIZONTAL_ONLY:UInt	= 0x010000;
 		/**
 		 * Path behavior controls: ignores any horizontal component to the path data, only follows up and down.
 		 */
-		static public const PATH_VERTICAL_ONLY:uint		= 0x100000;
+		static public const PATH_VERTICAL_ONLY:UInt		= 0x100000;
 		
 		/**
 		 * X position of the upper left corner of this object in world space.
 		 */
-		public var x:Number;
+		public var x:Float;
 		/**
 		 * Y position of the upper left corner of this object in world space.
 		 */
-		public var y:Number;
+		public var y:Float;
 		/**
 		 * The width of this object.
 		 */
-		public var width:Number;
+		public var width:Float;
 		/**
 		 * The height of this object.
 		 */
-		public var height:Number;
+		public var height:Float;
 
 		/**
 		 * Whether an object will move/alter position after a collision.
 		 */
-		public var immovable:Boolean;
+		public var immovable:Bool;
 		
 		/**
 		 * The basic speed of this object.
@@ -118,11 +118,11 @@ package org.flixel
 		 * Currently only used with <code>elasticity</code> during collision resolution.
 		 * Change at your own risk; effects seem crazy unpredictable so far!
 		 */
-		public var mass:Number;
+		public var mass:Float;
 		/**
 		 * The bounciness of this object.  Only affects collisions.  Default value is 0, or "not bouncy at all."
 		 */
-		public var elasticity:Number;
+		public var elasticity:Float;
 		/**
 		 * How fast the speed of this object is changing.
 		 * Useful for smooth movement and gravity.
@@ -143,23 +143,23 @@ package org.flixel
 		 * WARNING: rotating sprites decreases rendering
 		 * performance for this sprite by a factor of 10x!
 		 */
-		public var angle:Number;
+		public var angle:Float;
 		/**
 		 * This is how fast you want this sprite to spin.
 		 */
-		public var angularVelocity:Number;
+		public var angularVelocity:Float;
 		/**
 		 * How fast the spin speed should change.
 		 */
-		public var angularAcceleration:Number;
+		public var angularAcceleration:Float;
 		/**
 		 * Like <code>drag</code> but for spinning.
 		 */
-		public var angularDrag:Number;
+		public var angularDrag:Float;
 		/**
 		 * Use in conjunction with <code>angularAcceleration</code> for fluid spin speed control.
 		 */
-		public var maxAngular:Number;
+		public var maxAngular:Float;
 		/**
 		 * Should always represent (0,0) - useful for different things, for avoiding unnecessary <code>new</code> calls.
 		 */
@@ -176,15 +176,15 @@ package org.flixel
 		/**
 		 * Internal helper used for retro-style flickering.
 		 */
-		protected var _flicker:Boolean;
+		protected var _flicker:Bool;
 		/**
 		 * Internal helper used for retro-style flickering.
 		 */
-		protected var _flickerTimer:Number;
+		protected var _flickerTimer:Float;
 		/**
 		 * Handy for storing health percentage or armor points or whatever.
 		 */
-		public var health:Number;
+		public var health:Float;
 		/**
 		 * This is just a pre-allocated x-y point container to be used however you like
 		 */
@@ -198,26 +198,26 @@ package org.flixel
 		 * FlxObject and FlxSprite default to true.
 		 * FlxText, FlxTileblock, FlxTilemap and FlxSound default to false.
 		 */
-		public var moves:Boolean;
+		public var moves:Bool;
 		/**
 		 * Bit field of flags (use with UP, DOWN, LEFT, RIGHT, etc) indicating surface contacts.
 		 * Use bitwise operators to check the values stored here, or use touching(), justStartedTouching(), etc.
 		 * You can even use them broadly as boolean values if you're feeling saucy!
 		 */
-		public var touching:uint;
+		public var touching:UInt;
 		/**
 		 * Bit field of flags (use with UP, DOWN, LEFT, RIGHT, etc) indicating surface contacts from the previous game loop step.
 		 * Use bitwise operators to check the values stored here, or use touching(), justStartedTouching(), etc.
 		 * You can even use them broadly as boolean values if you're feeling saucy!
 		 */
-		public var wasTouching:uint;
+		public var wasTouching:UInt;
 		/**
 		 * Bit field of flags (use with UP, DOWN, LEFT, RIGHT, etc) indicating collision directions.
 		 * Use bitwise operators to check the values stored here.
 		 * Useful for things like one-way platforms (e.g. allowCollisions = UP;)
 		 * The accessor "solid" just flips this variable between NONE and ANY.
 		 */
-		public var allowCollisions:uint;
+		public var allowCollisions:UInt;
 		
 		/**
 		 * Important variable for collision processing.
@@ -236,27 +236,27 @@ package org.flixel
 		 * will NOT be nulled out.  So <code>pathSpeed</code> is a good way
 		 * to check if this object is currently following a path or not.
 		 */
-		public var pathSpeed:Number;
+		public var pathSpeed:Float;
 		/**
 		 * The angle in degrees between this object and the next node, where 0 is directly upward, and 90 is to the right.
 		 */
-		public var pathAngle:Number;
+		public var pathAngle:Float;
 		/**
 		 * Internal helper, tracks which node of the path this object is moving toward.
 		 */
-		protected var _pathNodeIndex:int;
+		protected var _pathNodeIndex:Int;
 		/**
 		 * Internal tracker for path behavior flags (like looping, horizontal only, etc).
 		 */
-		protected var _pathMode:uint;
+		protected var _pathMode:UInt;
 		/**
 		 * Internal helper for node navigation, specifically yo-yo and backwards movement.
 		 */
-		protected var _pathInc:int;
+		protected var _pathInc:Int;
 		/**
 		 * Internal flag for whether hte object's angle should be adjusted to the path angle during path follow behavior.
 		 */
-		protected var _pathRotate:Boolean;
+		protected var _pathRotate:Bool;
 		
 		/**
 		 * Instantiates a <code>FlxObject</code>.
@@ -266,7 +266,7 @@ package org.flixel
 		 * @param	Width	Desired width of the rectangle.
 		 * @param	Height	Desired height of the rectangle.
 		 */
-		public function FlxObject(X:Number=0,Y:Number=0,Width:Number=0,Height:Number=0)
+		public function FlxObject(X:Float=0,Y:Float=0,Width:Float=0,Height:Float=0)
 		{
 			x = X;
 			y = Y;
@@ -311,7 +311,7 @@ package org.flixel
 		 * manually call destroy() on class members if necessary.
 		 * Don't forget to call super.destroy()!
 		 */
-		override public function destroy():void
+		override public function destroy():Void
 		{
 			velocity = null;
 			acceleration = null;
@@ -333,7 +333,7 @@ package org.flixel
 		 * tracking the last coordinates for collision purposes,
 		 * and checking if the object is moving along a path or not.
 		 */
-		override public function preUpdate():void
+		override public function preUpdate():Void
 		{
 			_ACTIVECOUNT++;
 			
@@ -362,7 +362,7 @@ package org.flixel
 		 * In <code>FlxObject</code> this function handles integrating the objects motion
 		 * based on the velocity and acceleration settings, and tracking/clearing the <code>touching</code> flags.
 		 */
-		override public function postUpdate():void
+		override public function postUpdate():Void
 		{
 			if(moves)
 				updateMotion();
@@ -376,10 +376,10 @@ package org.flixel
 		 * Useful for cases when you need to update this but are buried down in too many supers.
 		 * Does a slightly fancier-than-normal integration to help with higher fidelity framerate-independenct motion.
 		 */
-		protected function updateMotion():void
+		protected function updateMotion():Void
 		{
-			var delta:Number;
-			var velocityDelta:Number;
+			var delta:Float;
+			var velocityDelta:Float;
 
 			velocityDelta = (FlxU.computeVelocity(angularVelocity,angularAcceleration,angularDrag,maxAngular) - angularVelocity)/2;
 			angularVelocity += velocityDelta; 
@@ -402,13 +402,13 @@ package org.flixel
 		/**
 		 * Rarely called, and in this case just increments the visible objects count and calls <code>drawDebug()</code> if necessary.
 		 */
-		override public function draw():void
+		override public function draw():Void
 		{
 			if(cameras == null)
 				cameras = FlxG.cameras;
 			var camera:FlxCamera;
-			var i:uint = 0;
-			var l:uint = cameras.length;
+			var i:UInt = 0;
+			var l:UInt = cameras.length;
 			while(i < l)
 			{
 				camera = cameras[i++];
@@ -426,24 +426,24 @@ package org.flixel
 		 * 
 		 * @param	Camera	Which camera to draw the debug visuals to.
 		 */
-		override public function drawDebug(Camera:FlxCamera=null):void
+		override public function drawDebug(Camera:FlxCamera=null):Void
 		{
 			if(Camera == null)
 				Camera = FlxG.camera;
 
 			//get bounding box coordinates
-			var boundingBoxX:Number = x - int(Camera.scroll.x*scrollFactor.x); //copied from getScreenXY()
-			var boundingBoxY:Number = y - int(Camera.scroll.y*scrollFactor.y);
+			var boundingBoxX:Float = x - int(Camera.scroll.x*scrollFactor.x); //copied from getScreenXY()
+			var boundingBoxY:Float = y - int(Camera.scroll.y*scrollFactor.y);
 			boundingBoxX = int(boundingBoxX + ((boundingBoxX > 0)?0.0000001:-0.0000001));
 			boundingBoxY = int(boundingBoxY + ((boundingBoxY > 0)?0.0000001:-0.0000001));
-			var boundingBoxWidth:int = (width != int(width))?width:width-1;
-			var boundingBoxHeight:int = (height != int(height))?height:height-1;
+			var boundingBoxWidth:Int = (width != int(width))?width:width-1;
+			var boundingBoxHeight:Int = (height != int(height))?height:height-1;
 
 			//fill static graphics object with square shape
 			var gfx:Graphics = FlxG.flashGfx;
 			gfx.clear();
 			gfx.moveTo(boundingBoxX,boundingBoxY);
-			var boundingBoxColor:uint;
+			var boundingBoxColor:UInt;
 			if(allowCollisions)
 			{
 				if(allowCollisions != ANY)
@@ -475,7 +475,7 @@ package org.flixel
 		 * @param	Mode		Optional, controls the behavior of the object following the path using the path behavior constants.  Can use multiple flags at once, for example PATH_YOYO|PATH_HORIZONTAL_ONLY will make an object move back and forth along the X axis of the path only.
 		 * @param	AutoRotate	Automatically point the object toward the next node.  Assumes the graphic is pointing upward.  Default behavior is false, or no automatic rotation.
 		 */
-		public function followPath(Path:FlxPath,Speed:Number=100,Mode:uint=PATH_FORWARD,AutoRotate:Boolean=false):void
+		public function followPath(Path:FlxPath,Speed:Float=100,Mode:UInt=PATH_FORWARD,AutoRotate:Bool=false):Void
 		{
 			if(Path.nodes.length <= 0)
 			{
@@ -506,7 +506,7 @@ package org.flixel
 		 * 
 		 * @param	DestroyPath		Tells this function whether to call destroy on the path object.  Default value is false.
 		 */
-		public function stopFollowingPath(DestroyPath:Boolean=false):void
+		public function stopFollowingPath(DestroyPath:Bool=false):Void
 		{
 			pathSpeed = 0;
 			if(DestroyPath && (path != null))
@@ -521,7 +521,7 @@ package org.flixel
 		 * 
 		 * @return	The node (a <code>FlxPoint</code> object) we are aiming for next.
 		 */
-		protected function advancePath(Snap:Boolean=true):FlxPoint
+		protected function advancePath(Snap:Bool=true):FlxPoint
 		{
 			if(Snap)
 			{
@@ -599,17 +599,17 @@ package org.flixel
 		 * The first half of the function decides if the object can advance to the next node in the path,
 		 * while the second half handles actually picking a velocity toward the next node.
 		 */
-		protected function updatePathMotion():void
+		protected function updatePathMotion():Void
 		{
 			//first check if we need to be pointing at the next node yet
 			_point.x = x + width*0.5;
 			_point.y = y + height*0.5;
 			var node:FlxPoint = path.nodes[_pathNodeIndex];
-			var deltaX:Number = node.x - _point.x;
-			var deltaY:Number = node.y - _point.y;
+			var deltaX:Float = node.x - _point.x;
+			var deltaY:Float = node.y - _point.y;
 			
-			var horizontalOnly:Boolean = (_pathMode & PATH_HORIZONTAL_ONLY) > 0;
-			var verticalOnly:Boolean = (_pathMode & PATH_VERTICAL_ONLY) > 0;
+			var horizontalOnly:Bool = (_pathMode & PATH_HORIZONTAL_ONLY) > 0;
+			var verticalOnly:Bool = (_pathMode & PATH_VERTICAL_ONLY) > 0;
 			
 			if(horizontalOnly)
 			{
@@ -680,12 +680,12 @@ package org.flixel
 		 * 
 		 * @return	Whether or not the two objects overlap.
 		 */
-		public function overlaps(ObjectOrGroup:FlxBasic,InScreenSpace:Boolean=false,Camera:FlxCamera=null):Boolean
+		public function overlaps(ObjectOrGroup:FlxBasic,InScreenSpace:Bool=false,Camera:FlxCamera=null):Bool
 		{
 			if(ObjectOrGroup is FlxGroup)
 			{
-				var results:Boolean = false;
-				var i:uint = 0;
+				var results:Bool = false;
+				var i:UInt = 0;
 				var members:Array = (ObjectOrGroup as FlxGroup).members;
 				while(i < length)
 				{
@@ -730,13 +730,13 @@ package org.flixel
 		 * 
 		 * @return	Whether or not the two objects overlap.
 		 */
-		public function overlapsAt(X:Number,Y:Number,ObjectOrGroup:FlxBasic,InScreenSpace:Boolean=false,Camera:FlxCamera=null):Boolean
+		public function overlapsAt(X:Float,Y:Float,ObjectOrGroup:FlxBasic,InScreenSpace:Bool=false,Camera:FlxCamera=null):Bool
 		{
 			if(ObjectOrGroup is FlxGroup)
 			{
-				var results:Boolean = false;
+				var results:Bool = false;
 				var basic:FlxBasic;
-				var i:uint = 0;
+				var i:UInt = 0;
 				var members:Array = (ObjectOrGroup as FlxGroup).members;
 				while(i < length)
 				{
@@ -783,15 +783,15 @@ package org.flixel
 		 * 
 		 * @return	Whether or not the point overlaps this object.
 		 */
-		public function overlapsPoint(Point:FlxPoint,InScreenSpace:Boolean=false,Camera:FlxCamera=null):Boolean
+		public function overlapsPoint(Point:FlxPoint,InScreenSpace:Bool=false,Camera:FlxCamera=null):Bool
 		{
 			if(!InScreenSpace)
 				return (Point.x > x) && (Point.x < x + width) && (Point.y > y) && (Point.y < y + height);
 
 			if(Camera == null)
 				Camera = FlxG.camera;
-			var X:Number = Point.x - Camera.scroll.x;
-			var Y:Number = Point.y - Camera.scroll.y;
+			var X:Float = Point.x - Camera.scroll.x;
+			var Y:Float = Point.y - Camera.scroll.y;
 			getScreenXY(_point,Camera);
 			return (X > _point.x) && (X < _point.x+width) && (Y > _point.y) && (Y < _point.y+height);
 		}
@@ -803,7 +803,7 @@ package org.flixel
 		 * 
 		 * @return	Whether the object is on screen or not.
 		 */
-		public function onScreen(Camera:FlxCamera=null):Boolean
+		public function onScreen(Camera:FlxCamera=null):Bool
 		{
 			if(Camera == null)
 				Camera = FlxG.camera;
@@ -838,7 +838,7 @@ package org.flixel
 		 * 
 		 * @param	Duration	How many seconds to flicker for.
 		 */
-		public function flicker(Duration:Number=1):void
+		public function flicker(Duration:Float=1):Void
 		{
 			_flickerTimer = Duration;
 			if(_flickerTimer == 0)
@@ -850,7 +850,7 @@ package org.flixel
 		 * 
 		 * @return	Whether the object is flickering or not.
 		 */
-		public function get flickering():Boolean
+		public function get flickering():Bool
 		{
 			return _flickerTimer != 0;
 		}
@@ -860,7 +860,7 @@ package org.flixel
 		 * the object will collide from, use collision constants (like LEFT, FLOOR, etc)
 		 * to set the value of allowCollisions directly.
 		 */
-		public function get solid():Boolean
+		public function get solid():Bool
 		{
 			return (allowCollisions & ANY) > NONE;
 		}
@@ -868,7 +868,7 @@ package org.flixel
 		/**
 		 * @private
 		 */
-		public function set solid(Solid:Boolean):void
+		public function set solid(Solid:Bool):Void
 		{
 			if(Solid)
 				allowCollisions = ANY;
@@ -899,7 +899,7 @@ package org.flixel
 		 * @param	X	The new X position of this object.
 		 * @param	Y	The new Y position of this object.
 		 */
-		public function reset(X:Number,Y:Number):void
+		public function reset(X:Float,Y:Float):Void
 		{
 			revive();
 			touching = NONE;
@@ -921,7 +921,7 @@ package org.flixel
 		 * 
 		 * @return	Whether the object is touching an object in (any of) the specified direction(s) this frame.
 		 */
-		public function isTouching(Direction:uint):Boolean
+		public function isTouching(Direction:UInt):Bool
 		{
 			return (touching & Direction) > NONE;
 		}
@@ -933,7 +933,7 @@ package org.flixel
 		 * 
 		 * @return	Whether the object just landed on (any of) the specified surface(s) this frame.
 		 */
-		public function justTouched(Direction:uint):Boolean
+		public function justTouched(Direction:UInt):Bool
 		{
 			return ((touching & Direction) > NONE) && ((wasTouching & Direction) <= NONE);
 		}
@@ -944,7 +944,7 @@ package org.flixel
 		 * 
 		 * @param	Damage		How much health to take away (use a negative number to give a health bonus).
 		 */
-		public function hurt(Damage:Number):void
+		public function hurt(Damage:Float):Void
 		{
 			health = health - Damage;
 			if(health <= 0)
@@ -959,10 +959,10 @@ package org.flixel
 		 * 
 		 * @return	Whether the objects in fact touched and were separated.
 		 */
-		static public function separate(Object1:FlxObject, Object2:FlxObject):Boolean
+		static public function separate(Object1:FlxObject, Object2:FlxObject):Bool
 		{
-			var separatedX:Boolean = separateX(Object1,Object2);
-			var separatedY:Boolean = separateY(Object1,Object2);
+			var separatedX:Bool = separateX(Object1,Object2);
+			var separatedY:Bool = separateY(Object1,Object2);
 			return separatedX || separatedY;
 		}
 		
@@ -974,11 +974,11 @@ package org.flixel
 		 * 
 		 * @return	Whether the objects in fact touched and were separated along the X axis.
 		 */
-		static public function separateX(Object1:FlxObject, Object2:FlxObject):Boolean
+		static public function separateX(Object1:FlxObject, Object2:FlxObject):Bool
 		{
 			//can't separate two immovable objects
-			var obj1immovable:Boolean = Object1.immovable;
-			var obj2immovable:Boolean = Object2.immovable;
+			var obj1immovable:Bool = Object1.immovable;
+			var obj2immovable:Bool = Object2.immovable;
 			if(obj1immovable && obj2immovable)
 				return false;
 			
@@ -989,19 +989,19 @@ package org.flixel
 				return (Object2 as FlxTilemap).overlapsWithCallback(Object1,separateX,true);
 			
 			//First, get the two object deltas
-			var overlap:Number = 0;
-			var obj1delta:Number = Object1.x - Object1.last.x;
-			var obj2delta:Number = Object2.x - Object2.last.x;
+			var overlap:Float = 0;
+			var obj1delta:Float = Object1.x - Object1.last.x;
+			var obj2delta:Float = Object2.x - Object2.last.x;
 			if(obj1delta != obj2delta)
 			{
 				//Check if the X hulls actually overlap
-				var obj1deltaAbs:Number = (obj1delta > 0)?obj1delta:-obj1delta;
-				var obj2deltaAbs:Number = (obj2delta > 0)?obj2delta:-obj2delta;
+				var obj1deltaAbs:Float = (obj1delta > 0)?obj1delta:-obj1delta;
+				var obj2deltaAbs:Float = (obj2delta > 0)?obj2delta:-obj2delta;
 				var obj1rect:FlxRect = new FlxRect(Object1.x-((obj1delta > 0)?obj1delta:0),Object1.last.y,Object1.width+((obj1delta > 0)?obj1delta:-obj1delta),Object1.height);
 				var obj2rect:FlxRect = new FlxRect(Object2.x-((obj2delta > 0)?obj2delta:0),Object2.last.y,Object2.width+((obj2delta > 0)?obj2delta:-obj2delta),Object2.height);
 				if((obj1rect.x + obj1rect.width > obj2rect.x) && (obj1rect.x < obj2rect.x + obj2rect.width) && (obj1rect.y + obj1rect.height > obj2rect.y) && (obj1rect.y < obj2rect.y + obj2rect.height))
 				{
-					var maxOverlap:Number = obj1deltaAbs + obj2deltaAbs + OVERLAP_BIAS;
+					var maxOverlap:Float = obj1deltaAbs + obj2deltaAbs + OVERLAP_BIAS;
 					
 					//If they did overlap (and can), figure out by how much and flip the corresponding flags
 					if(obj1delta > obj2delta)
@@ -1032,8 +1032,8 @@ package org.flixel
 			//Then adjust their positions and velocities accordingly (if there was any overlap)
 			if(overlap != 0)
 			{
-				var obj1v:Number = Object1.velocity.x;
-				var obj2v:Number = Object2.velocity.x;
+				var obj1v:Float = Object1.velocity.x;
+				var obj2v:Float = Object2.velocity.x;
 				
 				if(!obj1immovable && !obj2immovable)
 				{
@@ -1041,9 +1041,9 @@ package org.flixel
 					Object1.x = Object1.x - overlap;
 					Object2.x += overlap;
 
-					var obj1velocity:Number = Math.sqrt((obj2v * obj2v * Object2.mass)/Object1.mass) * ((obj2v > 0)?1:-1);
-					var obj2velocity:Number = Math.sqrt((obj1v * obj1v * Object1.mass)/Object2.mass) * ((obj1v > 0)?1:-1);
-					var average:Number = (obj1velocity + obj2velocity)*0.5;
+					var obj1velocity:Float = Math.sqrt((obj2v * obj2v * Object2.mass)/Object1.mass) * ((obj2v > 0)?1:-1);
+					var obj2velocity:Float = Math.sqrt((obj1v * obj1v * Object1.mass)/Object2.mass) * ((obj1v > 0)?1:-1);
+					var average:Float = (obj1velocity + obj2velocity)*0.5;
 					obj1velocity -= average;
 					obj2velocity -= average;
 					Object1.velocity.x = average + obj1velocity * Object1.elasticity;
@@ -1073,11 +1073,11 @@ package org.flixel
 		 * 
 		 * @return	Whether the objects in fact touched and were separated along the Y axis.
 		 */
-		static public function separateY(Object1:FlxObject, Object2:FlxObject):Boolean
+		static public function separateY(Object1:FlxObject, Object2:FlxObject):Bool
 		{
 			//can't separate two immovable objects
-			var obj1immovable:Boolean = Object1.immovable;
-			var obj2immovable:Boolean = Object2.immovable;
+			var obj1immovable:Bool = Object1.immovable;
+			var obj2immovable:Bool = Object2.immovable;
 			if(obj1immovable && obj2immovable)
 				return false;
 			
@@ -1088,19 +1088,19 @@ package org.flixel
 				return (Object2 as FlxTilemap).overlapsWithCallback(Object1,separateY,true);
 
 			//First, get the two object deltas
-			var overlap:Number = 0;
-			var obj1delta:Number = Object1.y - Object1.last.y;
-			var obj2delta:Number = Object2.y - Object2.last.y;
+			var overlap:Float = 0;
+			var obj1delta:Float = Object1.y - Object1.last.y;
+			var obj2delta:Float = Object2.y - Object2.last.y;
 			if(obj1delta != obj2delta)
 			{
 				//Check if the Y hulls actually overlap
-				var obj1deltaAbs:Number = (obj1delta > 0)?obj1delta:-obj1delta;
-				var obj2deltaAbs:Number = (obj2delta > 0)?obj2delta:-obj2delta;
+				var obj1deltaAbs:Float = (obj1delta > 0)?obj1delta:-obj1delta;
+				var obj2deltaAbs:Float = (obj2delta > 0)?obj2delta:-obj2delta;
 				var obj1rect:FlxRect = new FlxRect(Object1.x,Object1.y-((obj1delta > 0)?obj1delta:0),Object1.width,Object1.height+obj1deltaAbs);
 				var obj2rect:FlxRect = new FlxRect(Object2.x,Object2.y-((obj2delta > 0)?obj2delta:0),Object2.width,Object2.height+obj2deltaAbs);
 				if((obj1rect.x + obj1rect.width > obj2rect.x) && (obj1rect.x < obj2rect.x + obj2rect.width) && (obj1rect.y + obj1rect.height > obj2rect.y) && (obj1rect.y < obj2rect.y + obj2rect.height))
 				{
-					var maxOverlap:Number = obj1deltaAbs + obj2deltaAbs + OVERLAP_BIAS;
+					var maxOverlap:Float = obj1deltaAbs + obj2deltaAbs + OVERLAP_BIAS;
 					
 					//If they did overlap (and can), figure out by how much and flip the corresponding flags
 					if(obj1delta > obj2delta)
@@ -1131,8 +1131,8 @@ package org.flixel
 			//Then adjust their positions and velocities accordingly (if there was any overlap)
 			if(overlap != 0)
 			{
-				var obj1v:Number = Object1.velocity.y;
-				var obj2v:Number = Object2.velocity.y;
+				var obj1v:Float = Object1.velocity.y;
+				var obj2v:Float = Object2.velocity.y;
 				
 				if(!obj1immovable && !obj2immovable)
 				{
@@ -1140,9 +1140,9 @@ package org.flixel
 					Object1.y = Object1.y - overlap;
 					Object2.y += overlap;
 
-					var obj1velocity:Number = Math.sqrt((obj2v * obj2v * Object2.mass)/Object1.mass) * ((obj2v > 0)?1:-1);
-					var obj2velocity:Number = Math.sqrt((obj1v * obj1v * Object1.mass)/Object2.mass) * ((obj1v > 0)?1:-1);
-					var average:Number = (obj1velocity + obj2velocity)*0.5;
+					var obj1velocity:Float = Math.sqrt((obj2v * obj2v * Object2.mass)/Object1.mass) * ((obj2v > 0)?1:-1);
+					var obj2velocity:Float = Math.sqrt((obj1v * obj1v * Object1.mass)/Object2.mass) * ((obj1v > 0)?1:-1);
+					var average:Float = (obj1velocity + obj2velocity)*0.5;
 					obj1velocity -= average;
 					obj2velocity -= average;
 					Object1.velocity.y = average + obj1velocity * Object1.elasticity;

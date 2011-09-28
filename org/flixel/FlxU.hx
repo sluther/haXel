@@ -14,7 +14,7 @@ package org.flixel
 		 * 
 		 * @param	URL		The address of the web page.
 		 */
-		static public function openURL(URL:String):void
+		static public function openURL(URL:String):Void
 		{
 			navigateToURL(new URLRequest(URL), "_blank");
 		}
@@ -26,7 +26,7 @@ package org.flixel
 		 * 
 		 * @return	The absolute value of that number.
 		 */
-		static public function abs(Value:Number):Number
+		static public function abs(Value:Float):Float
 		{
 			return (Value>0)?Value:-Value;
 		}
@@ -38,9 +38,9 @@ package org.flixel
 		 * 
 		 * @return	The rounded value of that number.
 		 */
-		static public function floor(Value:Number):Number
+		static public function floor(Value:Float):Float
 		{
-			var number:Number = int(Value);
+			var number:Float = int(Value);
 			return (Value>0)?(number):((number!=Value)?(number-1):(number));
 		}
 		
@@ -51,9 +51,9 @@ package org.flixel
 		 * 
 		 * @return	The rounded value of that number.
 		 */
-		static public function ceil(Value:Number):Number
+		static public function ceil(Value:Float):Float
 		{
-			var number:Number = int(Value);
+			var number:Float = int(Value);
 			return (Value>0)?((number!=Value)?(number+1):(number)):(number);
 		}
 		
@@ -64,9 +64,9 @@ package org.flixel
 		 * 
 		 * @return	The rounded value of that number.
 		 */
-		static public function round(Value:Number):Number
+		static public function round(Value:Float):Float
 		{
-			var number:Number = int(Value+((Value>0)?0.5:-0.5));
+			var number:Float = int(Value+((Value>0)?0.5:-0.5));
 			return (Value>0)?(number):((number!=Value)?(number-1):(number));
 		}
 		
@@ -78,9 +78,9 @@ package org.flixel
 		 * 
 		 * @return	The smaller of the two numbers.
 		 */
-		static public function min(Number1:Number,Number2:Number):Number
+		static public function min(Number1:Float,Number2:Float):Float
 		{
-			return (Number1 <= Number2)?Number1:Number2;
+			return (Number1 <= Number2)?Number1:Float2;
 		}
 		
 		/**
@@ -91,9 +91,9 @@ package org.flixel
 		 * 
 		 * @return	The larger of the two numbers.
 		 */
-		static public function max(Number1:Number,Number2:Number):Number
+		static public function max(Number1:Float,Number2:Float):Float
 		{
-			return (Number1 >= Number2)?Number1:Number2;
+			return (Number1 >= Number2)?Number1:Float2;
 		}
 		
 		/**
@@ -107,9 +107,9 @@ package org.flixel
 		 * 
 		 * @return	The bounded value of the number.
 		 */
-		static public function bound(Value:Number,Min:Number,Max:Number):Number
+		static public function bound(Value:Float,Min:Float,Max:Float):Float
 		{
-			var lowerBound:Number = (Value<Min)?Min:Value;
+			var lowerBound:Float = (Value<Min)?Min:Value;
 			return (lowerBound>Max)?Max:lowerBound;
 		}
 		
@@ -120,7 +120,7 @@ package org.flixel
 		 * 
 		 * @return	A <code>Number</code> between 0 and 1.
 		 */
-		static public function srand(Seed:Number):Number
+		static public function srand(Seed:Float):Float
 		{
 			return ((69621 * int(Seed * 0x7FFFFFFF)) % 0x7FFFFFFF) / 0x7FFFFFFF;
 		}
@@ -135,11 +135,11 @@ package org.flixel
 		 * 
 		 * @return	The same Flash <code>Array</code> object that you passed in in the first place.
 		 */
-		static public function shuffle(Objects:Array,HowManyTimes:uint):Array
+		static public function shuffle(Objects:Array,HowManyTimes:UInt):Array
 		{
-			var i:uint = 0;
-			var index1:uint;
-			var index2:uint;
+			var i:UInt = 0;
+			var index1:UInt;
+			var index2:UInt;
 			var object:Object;
 			while(i < HowManyTimes)
 			{
@@ -165,11 +165,11 @@ package org.flixel
 		 * 
 		 * @return	The random object that was selected.
 		 */
-		static public function getRandom(Objects:Array,StartIndex:uint=0,Length:uint=0):Object
+		static public function getRandom(Objects:Array,StartIndex:UInt=0,Length:UInt=0):Object
 		{
 			if(Objects != null)
 			{
-				var l:uint = Length;
+				var l:UInt = Length;
 				if((l == 0) || (l > Objects.length - StartIndex))
 					l = Objects.length - StartIndex;
 				if(l > 0)
@@ -184,7 +184,7 @@ package org.flixel
 		 * 
 		 * @return	A <code>uint</code> to be passed to <code>FlxU.endProfile()</code>.
 		 */
-		static public function getTicks():uint
+		static public function getTicks():UInt
 		{
 			return getTimer();
 		}
@@ -198,7 +198,7 @@ package org.flixel
 		 * 
 		 * @return	A <code>String</code> containing the formatted time elapsed information.
 		 */
-		static public function formatTicks(StartTicks:uint,EndTicks:uint):String
+		static public function formatTicks(StartTicks:UInt,EndTicks:UInt):String
 		{
 			return ((EndTicks-StartTicks)/1000)+"s"
 		}
@@ -213,7 +213,7 @@ package org.flixel
 		 * 
 		 * @return  The color as a <code>uint</code>.
 		 */
-		static public function makeColor(Red:uint, Green:uint, Blue:uint, Alpha:Number=1.0):uint
+		static public function makeColor(Red:UInt, Green:UInt, Blue:UInt, Alpha:Float=1.0):UInt
 		{
 			return (((Alpha>1)?Alpha:(Alpha * 255)) & 0xFF) << 24 | (Red & 0xFF) << 16 | (Green & 0xFF) << 8 | (Blue & 0xFF);
 		}
@@ -228,11 +228,11 @@ package org.flixel
 		 * 
 		 * @return	The color as a <code>uint</code>.
 		 */
-		static public function makeColorFromHSB(Hue:Number,Saturation:Number,Brightness:Number,Alpha:Number=1.0):uint
+		static public function makeColorFromHSB(Hue:Float,Saturation:Float,Brightness:Float,Alpha:Float=1.0):UInt
 		{
-			var red:Number;
-			var green:Number;
-			var blue:Number;
+			var red:Float;
+			var green:Float;
+			var blue:Float;
 			if(Saturation == 0.0)
 			{
 				red   = Brightness;
@@ -243,11 +243,11 @@ package org.flixel
 			{
 				if(Hue == 360)
 					Hue = 0;
-				var slice:int = Hue/60;
-				var hf:Number = Hue/60 - slice;
-				var aa:Number = Brightness*(1 - Saturation);
-				var bb:Number = Brightness*(1 - Saturation*hf);
-				var cc:Number = Brightness*(1 - Saturation*(1.0 - hf));
+				var slice:Int = Hue/60;
+				var hf:Float = Hue/60 - slice;
+				var aa:Float = Brightness*(1 - Saturation);
+				var bb:Float = Brightness*(1 - Saturation*hf);
+				var cc:Float = Brightness*(1 - Saturation*(1.0 - hf));
 				switch (slice)
 				{
 					case 0: red = Brightness; green = cc;   blue = aa;  break;
@@ -272,7 +272,7 @@ package org.flixel
 		 * 
 		 * @return	An <code>Array</code> object containing the Red, Green, Blue and Alpha values of the given color.
 		 */
-		static public function getRGBA(Color:uint,Results:Array=null):Array
+		static public function getRGBA(Color:UInt,Results:Array=null):Array
 		{
 			if(Results == null)
 				Results = new Array();
@@ -293,20 +293,20 @@ package org.flixel
 		 * 
 		 * @return	An <code>Array</code> object containing the Red, Green, Blue and Alpha values of the given color.
 		 */
-		static public function getHSB(Color:uint,Results:Array=null):Array
+		static public function getHSB(Color:UInt,Results:Array=null):Array
 		{
 			if(Results == null)
 				Results = new Array();
 			
-			var red:Number = Number((Color >> 16) & 0xFF) / 255;
-			var green:Number = Number((Color >> 8) & 0xFF) / 255;
-			var blue:Number = Number((Color) & 0xFF) / 255;
+			var red:Float = Number((Color >> 16) & 0xFF) / 255;
+			var green:Float = Number((Color >> 8) & 0xFF) / 255;
+			var blue:Float = Number((Color) & 0xFF) / 255;
 			
-			var m:Number = (red>green)?red:green;
-			var dmax:Number = (m>blue)?m:blue;
+			var m:Float = (red>green)?red:green;
+			var dmax:Float = (m>blue)?m:blue;
 			m = (red>green)?green:red;
-			var dmin:Number = (m>blue)?blue:m;
-			var range:Number = dmax - dmin;
+			var dmin:Float = (m>blue)?blue:m;
+			var range:Float = dmax - dmin;
 			
 			Results[2] = dmax;
 			Results[1] = 0;
@@ -339,10 +339,10 @@ package org.flixel
 		 * 
 		 * @return	A nicely formatted <code>String</code>, like "1:03".
 		 */
-		static public function formatTime(Seconds:Number,ShowMS:Boolean=false):String
+		static public function formatTime(Seconds:Float,ShowMS:Bool=false):String
 		{
 			var timeString:String = int(Seconds/60) + ":";
-			var timeStringHelper:int = int(Seconds)%60;
+			var timeStringHelper:Int = int(Seconds)%60;
 			if(timeStringHelper < 10)
 				timeString += "0";
 			timeString += timeStringHelper;
@@ -370,8 +370,8 @@ package org.flixel
 			if((AnyArray == null) || (AnyArray.length <= 0))
 				return "";
 			var string:String = AnyArray[0].toString();
-			var i:uint = 0;
-			var l:uint = AnyArray.length;
+			var i:UInt = 0;
+			var l:UInt = AnyArray.length;
 			while(i < l)
 				string += ", " + AnyArray[i++].toString();
 			return string;
@@ -389,10 +389,10 @@ package org.flixel
 		 * 
 		 * @return	A nicely formatted <code>String</code>.  Does not include a dollar sign or anything!
 		 */
-		static public function formatMoney(Amount:Number,ShowDecimal:Boolean=true,EnglishStyle:Boolean=true):String
+		static public function formatMoney(Amount:Float,ShowDecimal:Bool=true,EnglishStyle:Bool=true):String
 		{
-			var helper:int;
-			var amount:int = Amount;
+			var helper:Int;
+			var amount:Int = Amount;
 			var string:String = "";
 			var comma:String = "";
 			var zeroes:String = "";
@@ -435,7 +435,7 @@ package org.flixel
 		 * 
 		 * @return	The name of the <code>Class</code> as a <code>String</code> object.
 		 */
-		static public function getClassName(Obj:Object,Simple:Boolean=false):String
+		static public function getClassName(Obj:Object,Simple:Bool=false):String
 		{
 			var string:String = getQualifiedClassName(Obj);
 			string = string.replace("::",".");
@@ -452,7 +452,7 @@ package org.flixel
 		 * 
 		 * @return	Whether they have the same class name or not.
 		 */
-		static public function compareClassNames(Object1:Object,Object2:Object):Boolean
+		static public function compareClassNames(Object1:Object,Object2:Object):Bool
 		{
 			return getQualifiedClassName(Object1) == getQualifiedClassName(Object2);
 		}
@@ -480,13 +480,13 @@ package org.flixel
 		 * 
 		 * @return	The altered Velocity value.
 		 */
-		static public function computeVelocity(Velocity:Number, Acceleration:Number=0, Drag:Number=0, Max:Number=10000):Number
+		static public function computeVelocity(Velocity:Float, Acceleration:Float=0, Drag:Float=0, Max:Float=10000):Float
 		{
 			if(Acceleration != 0)
 				Velocity += Acceleration*FlxG.elapsed;
 			else if(Drag != 0)
 			{
-				var drag:Number = Drag*FlxG.elapsed;
+				var drag:Float = Drag*FlxG.elapsed;
 				if(Velocity - drag > 0)
 					Velocity = Velocity - drag;
 				else if(Velocity + drag < 0)
@@ -518,11 +518,11 @@ package org.flixel
 		 * 
 		 * @return	A <code>FlxPoint</code> containing the coordinates of the rotated point.
 		 */
-		static public function rotatePoint(X:Number, Y:Number, PivotX:Number, PivotY:Number, Angle:Number,Point:FlxPoint=null):FlxPoint
+		static public function rotatePoint(X:Float, Y:Float, PivotX:Float, PivotY:Float, Angle:Float,Point:FlxPoint=null):FlxPoint
 		{
-			var sin:Number = 0;
-			var cos:Number = 0;
-			var radians:Number = Angle * -0.017453293;
+			var sin:Float = 0;
+			var cos:Float = 0;
+			var radians:Float = Angle * -0.017453293;
 			while (radians < -3.14159265)
 				radians += 6.28318531;
 			while (radians >  3.14159265)
@@ -565,8 +565,8 @@ package org.flixel
 					cos = .225 * (cos * cos - cos) + cos;
 			}
 			
-			var dx:Number = X-PivotX;
-			var dy:Number = PivotY+Y; //Y axis is inverted in flash, normally this would be a subtract operation
+			var dx:Float = X-PivotX;
+			var dy:Float = PivotY+Y; //Y axis is inverted in flash, normally this would be a subtract operation
 			if(Point == null)
 				Point = new FlxPoint();
 			Point.x = PivotX + cos*dx - sin*dy;
@@ -582,16 +582,16 @@ package org.flixel
 		 * 
 		 * @return	The angle in degrees, between -180 and 180.
 		 */
-		static public function getAngle(Point1:FlxPoint, Point2:FlxPoint):Number
+		static public function getAngle(Point1:FlxPoint, Point2:FlxPoint):Float
 		{
-			var x:Number = Point2.x - Point1.x;
-			var y:Number = Point2.y - Point1.y;
+			var x:Float = Point2.x - Point1.x;
+			var y:Float = Point2.y - Point1.y;
 			if((x == 0) && (y == 0))
 				return 0;
-			var c1:Number = 3.14159265 * 0.25;
-			var c2:Number = 3 * c1;
-			var ay:Number = (y < 0)?-y:y;
-			var angle:Number = 0;
+			var c1:Float = 3.14159265 * 0.25;
+			var c2:Float = 3 * c1;
+			var ay:Float = (y < 0)?-y:y;
+			var angle:Float = 0;
 			if (x >= 0)
 				angle = c1 - c1 * ((x - ay) / (x + ay));
 			else
@@ -612,10 +612,10 @@ package org.flixel
 		 * 
 		 * @return	The distance between the two points as a floating point <code>Number</code> object.
 		 */
-		static public function getDistance(Point1:FlxPoint,Point2:FlxPoint):Number
+		static public function getDistance(Point1:FlxPoint,Point2:FlxPoint):Float
 		{
-			var dx:Number = Point1.x - Point2.x;
-			var dy:Number = Point1.y - Point2.y;
+			var dx:Float = Point1.x - Point2.x;
+			var dy:Float = Point1.y - Point2.y;
 			return Math.sqrt(dx * dx + dy * dy);
 		}
 	}

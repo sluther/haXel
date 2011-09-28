@@ -18,14 +18,14 @@ package org.flixel
 		 * NOTE: this is a maximum, not a minimum; the object
 		 * could get recycled before its lifespan is up.
 		 */
-		public var lifespan:Number;
+		public var lifespan:Float;
 		
 		/**
 		 * Determines how quickly the particles come to rest on the ground.
 		 * Only used if the particle has gravity-like acceleration applied.
 		 * @default 500
 		 */
-		public var friction:Number;
+		public var friction:Float;
 		
 		/**
 		 * Instantiate a new particle.  Like <code>FlxSprite</code>, all meaningful creation
@@ -42,7 +42,7 @@ package org.flixel
 		 * The particle's main update logic.  Basically it checks to see if it should
 		 * be dead yet, and then has some special bounce behavior if there is some gravity on it.
 		 */
-		override public function update():void
+		override public function update():Void
 		{
 			//lifespan behavior
 			if(lifespan <= 0)
@@ -86,7 +86,7 @@ package org.flixel
 		 * Triggered whenever this object is launched by a <code>FlxEmitter</code>.
 		 * You can override this to add custom behavior like a sound or AI or something.
 		 */
-		public function onEmit():void
+		public function onEmit():Void
 		{
 		}
 	}
