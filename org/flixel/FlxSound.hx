@@ -116,7 +116,7 @@ package org.flixel
 		/**
 		 * The FlxSound constructor gets all the variables initialized, but NOT ready to play a sound yet.
 		 */
-		public function FlxSound()
+		public function new()
 		{
 			super();
 			createSound();

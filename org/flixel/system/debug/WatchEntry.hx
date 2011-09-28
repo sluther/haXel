@@ -58,7 +58,7 @@ package org.flixel.system.debug
 		 * @param Field			The variable name we want to watch.
 		 * @param Custom		A custom display name (optional).
 		 */
-		public function WatchEntry(Y:Float,NameWidth:Float,ValueWidth:Float,Obj:Object,Field:String,Custom:String=null)
+		public function new(Y:Float,NameWidth:Float,ValueWidth:Float,Obj:Object,Field:String,Custom:String=null)
 		{
 			editing = false;
 			

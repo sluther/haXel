@@ -31,7 +31,7 @@ package org.flixel
 		 * Instantiate a new particle.  Like <code>FlxSprite</code>, all meaningful creation
 		 * happens during <code>loadGraphic()</code> or <code>makeGraphic()</code> or whatever.
 		 */
-		public function FlxParticle()
+		public function new()
 		{
 			super();
 			lifespan = 0;

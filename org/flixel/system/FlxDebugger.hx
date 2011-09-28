@@ -67,7 +67,7 @@ package org.flixel.system
 		 * @param Width		The width of the screen.
 		 * @param Height	The height of the screen.
 		 */
-		public function FlxDebugger(Width:Float,Height:Float)
+		public function new(Width:Float,Height:Float)
 		{
 			super();
 			visible = false;

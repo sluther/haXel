@@ -21,7 +21,7 @@ package org.flixel.system
 		/**
 		 * Creates a new link, and sets <code>object</code> and <code>next</code> to <code>null</code>.
 		 */
-		public function FlxList()
+		public function new()
 		{
 			object = null;
 			next = null;

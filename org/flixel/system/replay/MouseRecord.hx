@@ -32,7 +32,7 @@ package org.flixel.system.replay
 		 * @param Button	The state of the left mouse button.
 		 * @param Wheel		The state of the mouse wheel.
 		 */
-		public function MouseRecord(X:Int,Y:Int,Button:Int,Wheel:Int)
+		public function new(X:Int,Y:Int,Button:Int,Wheel:Int)
 		{
 			x = X;
 			y = Y;

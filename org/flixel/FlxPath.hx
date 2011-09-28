@@ -45,7 +45,7 @@ package org.flixel
 		 * 
 		 * @param	Nodes	Optional, can specify all the points for the path up front if you want.
 		 */
-		public function FlxPath(Nodes:Array=null)
+		public function new(Nodes:Array=null)
 		{
 			if(Nodes == null)
 				nodes = new Array();

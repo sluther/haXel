@@ -57,7 +57,7 @@ package org.flixel.system
 		 * @param HeightInTiles	How many tiles tall the tilemap is.
 		 * @param Camera		Which camera this buffer relates to.
 		 */
-		public function FlxTilemapBuffer(TileWidth:Float,TileHeight:Float,WidthInTiles:UInt,HeightInTiles:UInt,Camera:FlxCamera=null)
+		public function new(TileWidth:Float,TileHeight:Float,WidthInTiles:UInt,HeightInTiles:UInt,Camera:FlxCamera=null)
 		{
 			if(Camera == null)
 				Camera = FlxG.camera;

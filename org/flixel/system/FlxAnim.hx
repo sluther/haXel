@@ -32,7 +32,7 @@ package org.flixel.system
 		 * @param	FrameRate	The speed in frames per second that the animation should play at (e.g. 40)
 		 * @param	Looped		Whether or not the animation is looped or just plays once
 		 */
-		public function FlxAnim(Name:String, Frames:Array, FrameRate:Float=0, Looped:Bool=true)
+		public function new(Name:String, Frames:Array, FrameRate:Float=0, Looped:Bool=true)
 		{
 			name = Name;
 			delay = 0;

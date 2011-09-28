@@ -163,7 +163,7 @@ package org.flixel
 		 * @param	Y				The initial Y position of the sprite.
 		 * @param	SimpleGraphic	The graphic you want to display (OPTIONAL - for simple stuff only, do NOT use for animated images!).
 		 */
-		public function FlxSprite(X:Float=0,Y:Float=0,SimpleGraphic:Class=null)
+		public function new(X:Float=0,Y:Float=0,SimpleGraphic:Class=null)
 		{
 			super(X,Y);
 			

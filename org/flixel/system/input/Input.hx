@@ -24,7 +24,7 @@ package org.flixel.system.input
 		/**
 		 * Constructor
 		 */
-		public function Input()
+		public function new()
 		{
 			_lookup = new Object();
 			_map = new Array(_total);

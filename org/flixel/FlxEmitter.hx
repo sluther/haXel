@@ -111,7 +111,7 @@ package org.flixel
 		 * @param	Y		The Y position of the emitter.
 		 * @param	Size	Optional, specifies a maximum capacity for this emitter.
 		 */
-		public function FlxEmitter(X:Float=0, Y:Float=0, Size:Float=0)
+		public function new(X:Float=0, Y:Float=0, Size:Float=0)
 		{
 			super(Size);
 			x = X;

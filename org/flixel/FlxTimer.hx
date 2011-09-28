@@ -46,7 +46,7 @@ package org.flixel
 		/**
 		 * Instantiate the timer.  Does not set or start the timer.
 		 */
-		public function FlxTimer()
+		public function new()
 		{
 			time = 0;
 			loops = 0;

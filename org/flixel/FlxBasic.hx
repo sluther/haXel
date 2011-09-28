@@ -50,7 +50,7 @@ package org.flixel
 		/**
 		 * Instantiate the basic flixel object.
 		 */
-		public function FlxBasic()
+		public function new()
 		{
 			ID = -1;
 			exists = true;

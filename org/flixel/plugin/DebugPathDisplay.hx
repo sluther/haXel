@@ -34,7 +34,7 @@ package org.flixel.plugin
 		/**
 		 * Instantiates a new debug path display manager.
 		 */
-		public function DebugPathDisplay()
+		public function new()
 		{
 			_paths = new Array();
 			active = false; //don't call update on this plugin

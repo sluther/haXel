@@ -34,7 +34,7 @@ package org.flixel.plugin
 		/**
 		 * Instantiates a new timer manager.
 		 */
-		public function TimerManager()
+		public function new()
 		{
 			_timers = new Array();
 			visible = false; //don't call draw on this plugin

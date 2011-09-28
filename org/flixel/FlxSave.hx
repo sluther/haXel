@@ -44,7 +44,7 @@ package org.flixel
 		/**
 		 * Blanks out the containers.
 		 */
-		public function FlxSave()
+		public function new()
 		{
 			destroy();
 		}

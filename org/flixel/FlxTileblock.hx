@@ -19,7 +19,7 @@ package org.flixel
 		 * @param	Width		The width of the block.
 		 * @param	Height		The height of the block.
 		 */
-		public function FlxTileblock(X:Int,Y:Int,Width:UInt,Height:UInt)
+		public function new(X:Int,Y:Int,Width:UInt,Height:UInt)
 		{
 			super(X,Y);
 			makeGraphic(Width,Height,0,true);

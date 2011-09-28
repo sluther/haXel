@@ -25,7 +25,7 @@ package org.flixel.system.debug
 		/**
 		 * Instantiate the visual debugger panel.
 		 */
-		public function Vis()
+		public function new()
 		{
 			super();
 			

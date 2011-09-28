@@ -38,7 +38,7 @@ package org.flixel
 		 * @param	Text			The actual text you would like to display initially.
 		 * @param	EmbeddedFont	Whether this text field uses embedded fonts or nto
 		 */
-		public function FlxText(X:Float, Y:Float, Width:UInt, Text:String=null, EmbeddedFont:Bool=true)
+		public function new(X:Float, Y:Float, Width:UInt, Text:String=null, EmbeddedFont:Bool=true)
 		{
 			super(X,Y);
 			makeGraphic(Width,1,0);

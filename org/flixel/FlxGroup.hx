@@ -51,7 +51,7 @@ package org.flixel
 		/**
 		 * Constructor
 		 */
-		public function FlxGroup(MaxSize:UInt=0)
+		public function new(MaxSize:UInt=0)
 		{
 			super();
 			members = new Array();

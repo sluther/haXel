@@ -77,7 +77,7 @@ package org.flixel.system.debug
 		/**
 		 * Creates the "VCR" control panel for debugger pausing, stepping, and recording.
 		 */
-		public function VCR()
+		public function new()
 		{
 			super();
 			

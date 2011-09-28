@@ -266,7 +266,7 @@ package org.flixel
 		 * @param	Width	Desired width of the rectangle.
 		 * @param	Height	Desired height of the rectangle.
 		 */
-		public function FlxObject(X:Float=0,Y:Float=0,Width:Float=0,Height:Float=0)
+		public function new(X:Float=0,Y:Float=0,Width:Float=0,Height:Float=0)
 		{
 			x = X;
 			y = Y;

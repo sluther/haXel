@@ -176,7 +176,7 @@ package org.flixel
 		 * @param	FlashFramerate	Sets the actual display framerate for Flash player (default is 30 times per second).
 		 * @param	UseSystemCursor	Whether to use the default OS mouse pointer, or to use custom flixel ones.
 		 */
-		public function FlxGame(GameSizeX:UInt,GameSizeY:UInt,InitialState:Class,Zoom:Float=1,GameFramerate:UInt=60,FlashFramerate:UInt=30,UseSystemCursor:Bool=false)
+		public function new(GameSizeX:UInt,GameSizeY:UInt,InitialState:Class,Zoom:Float=1,GameFramerate:UInt=60,FlashFramerate:UInt=30,UseSystemCursor:Bool=false)
 		{
 			//super high priority init stuff (focus, mouse, etc)
 			_lostFocus = false;

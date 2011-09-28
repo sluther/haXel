@@ -48,7 +48,7 @@ package org.flixel.system
 		/**
 		 * Instantiate a new replay object.  Doesn't actually do much until you call create() or load().
 		 */
-		public function FlxReplay()
+		public function new()
 		{
 			seed = 0;
 			frame = 0;

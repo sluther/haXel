@@ -122,7 +122,7 @@ package org.flixel
 		/**
 		 * The tilemap constructor just initializes some basic variables.
 		 */
-		public function FlxTilemap()
+		public function new()
 		{
 			super();
 			auto = OFF;

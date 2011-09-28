@@ -192,7 +192,7 @@ package org.flixel.system
 		 * @param	Height		Desired height of this node.
 		 * @param	Parent		The parent branch or node.  Pass null to create a root.
 		 */
-		public function FlxQuadTree(X:Float, Y:Float, Width:Float, Height:Float, Parent:FlxQuadTree=null)
+		public function new(X:Float, Y:Float, Width:Float, Height:Float, Parent:FlxQuadTree=null)
 		{
 			super(X,Y,Width,Height);
 			_headA = _tailA = new FlxList();

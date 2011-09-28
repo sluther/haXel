@@ -80,7 +80,7 @@ package org.flixel.system
 		/**
 		 * Constructor
 		 */
-		public function FlxPreloader()
+		public function new()
 		{
 			minDisplayTime = 0;
 			

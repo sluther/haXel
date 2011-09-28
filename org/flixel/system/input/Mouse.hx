@@ -63,7 +63,7 @@ package org.flixel.system.input
 		/**
 		 * Constructor.
 		 */
-		public function Mouse(CursorContainer:Sprite)
+		public function new(CursorContainer:Sprite)
 		{
 			super();
 			_cursorContainer = CursorContainer;

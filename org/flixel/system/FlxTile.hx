@@ -52,7 +52,7 @@ package org.flixel.system
 		 * @param Visible			Whether the tile is visible or not.
 		 * @param AllowCollisions	The collision flags for the object.  By default this value is ANY or NONE depending on the parameters sent to loadMap().
 		 */
-		public function FlxTile(Tilemap:FlxTilemap, Index:UInt, Width:Float, Height:Float, Visible:Bool, AllowCollisions:UInt)
+		public function new(Tilemap:FlxTilemap, Index:UInt, Width:Float, Height:Float, Visible:Bool, AllowCollisions:UInt)
 		{
 			super(0, 0, Width, Height);
 			immovable = true;

@@ -211,7 +211,7 @@ package org.flixel
 		 * @param Height	The height of the camera display in pixels.
 		 * @param Zoom		The initial zoom level of the camera.  A zoom level of 2 will make all pixels display at 2x resolution.
 		 */
-		public function FlxCamera(X:Int,Y:Int,Width:Int,Height:Int,Zoom:Float=0)
+		public function new(X:Int,Y:Int,Width:Int,Height:Int,Zoom:Float=0)
 		{
 			x = X;
 			y = Y;

@@ -101,7 +101,7 @@ package org.flixel.system.input
 		public var LEFT:Bool;
 		public var RIGHT:Bool;
 
-		public function Keyboard()
+		public function new()
 		{
 			var i:UInt;
 			
