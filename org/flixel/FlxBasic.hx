@@ -1,5 +1,4 @@
-package org.flixel
-{	
+package org.flixel;	
 	/**
 	 * This is a useful "generic" Flixel object.
 	 * Both <code>FlxObject</code> and <code>FlxGroup</code> extend this class,
@@ -151,4 +150,3 @@ package org.flixel
 			return FlxU.getClassName(this,true);
 		}
 	}
-}

@@ -1,5 +1,4 @@
-package org.flixel.system.debug
-{
+package org.flixel.system.debug;
 	import flash.display.Sprite;
 	import flash.geom.Rectangle;
 	import flash.text.TextField;
@@ -211,4 +210,3 @@ package org.flixel.system.debug
 				(_watching[i++] as WatchEntry).updateWidth(_width/2,_width/2-10);
 		}
 	}
-}

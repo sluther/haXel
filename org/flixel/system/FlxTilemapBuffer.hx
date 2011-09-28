@@ -1,5 +1,4 @@
-package org.flixel.system
-{
+package org.flixel.system;
 	import flash.display.BitmapData;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;

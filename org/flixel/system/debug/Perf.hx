@@ -1,5 +1,4 @@
-package org.flixel.system.debug
-{
+package org.flixel.system.debug;
 	import flash.geom.Rectangle;
 	import flash.system.System;
 	import flash.text.TextField;
@@ -207,4 +206,3 @@ package org.flixel.system.debug
 			_visibleObject[_visibleObjectMarker++] = Count;
 		}
 	}
-}

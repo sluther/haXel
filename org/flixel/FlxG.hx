@@ -1,5 +1,4 @@
-package org.flixel
-{
+package org.flixel;
 	import flash.display.BitmapData;
 	import flash.display.Graphics;
 	import flash.display.Sprite;
@@ -1255,4 +1254,3 @@ package org.flixel
 			}
 		}
 	}
-}

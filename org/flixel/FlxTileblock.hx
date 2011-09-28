@@ -1,5 +1,4 @@
-package org.flixel
-{
+package org.flixel;
 	import flash.display.BitmapData;
 	import flash.geom.Rectangle;
 	
@@ -92,4 +91,3 @@ package org.flixel
 			return this;
 		}
 	}
-}

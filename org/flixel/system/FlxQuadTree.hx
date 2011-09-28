@@ -1,5 +1,4 @@
-package org.flixel.system
-{
+package org.flixel.system;
 	import org.flixel.FlxBasic;
 	import org.flixel.FlxGroup;
 	import org.flixel.FlxObject;
@@ -574,4 +573,3 @@ package org.flixel.system
 			return overlapProcessed;
 		}
 	}
-}

@@ -1,5 +1,4 @@
-package org.flixel
-{
+package org.flixel;
 	
 	/**
 	 * This is a simple particle class that extends the default behavior
@@ -90,4 +89,3 @@ package org.flixel
 		{
 		}
 	}
-}

@@ -1,5 +1,4 @@
-package org.flixel
-{
+package org.flixel;
 	import flash.events.MouseEvent;
 	
 	/**
@@ -352,4 +351,3 @@ package org.flixel
 				soundUp.play(true);
 		}
 	}
-}

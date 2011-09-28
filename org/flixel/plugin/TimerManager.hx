@@ -1,5 +1,4 @@
-package org.flixel.plugin
-{
+package org.flixel.plugin;
 	import org.flixel.FlxBasic;
 	import org.flixel.FlxButton;
 	import org.flixel.FlxCamera;

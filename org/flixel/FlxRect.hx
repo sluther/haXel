@@ -1,5 +1,4 @@
-package org.flixel
-{
+package org.flixel;
 	import flash.geom.Rectangle;
 
 	/**
@@ -169,4 +168,3 @@ package org.flixel
 			return (Rect.x + Rect.width > x) && (Rect.x < x+width) && (Rect.y + Rect.height > y) && (Rect.y < y+height);
 		}
 	}
-}

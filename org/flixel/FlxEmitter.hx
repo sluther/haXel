@@ -1,5 +1,4 @@
-package org.flixel
-{
+package org.flixel;
 
 	/**
 	 * <code>FlxEmitter</code> is a lightweight particle emitter.
@@ -378,4 +377,3 @@ package org.flixel
 			y = _point.y - (height>>1);
 		}
 	}
-}

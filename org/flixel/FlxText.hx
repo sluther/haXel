@@ -1,5 +1,4 @@
-package org.flixel
-{
+package org.flixel;
 	import flash.display.BitmapData;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
@@ -297,4 +296,3 @@ package org.flixel
 			return new TextFormat(defaultTextFormat.font,defaultTextFormat.size,defaultTextFormat.color,defaultTextFormat.bold,defaultTextFormat.italic,defaultTextFormat.underline,defaultTextFormat.url,defaultTextFormat.target,defaultTextFormat.align);
 		}
 	}
-}

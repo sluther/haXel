@@ -1,5 +1,4 @@
-package org.flixel.system.input
-{
+package org.flixel.system.input;
 	import flash.events.KeyboardEvent;
 	
 	/**
@@ -203,4 +202,3 @@ package org.flixel.system.input
 			this[object.name] = false;
 		}
 	}
-}

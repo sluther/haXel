@@ -1,5 +1,4 @@
-package org.flixel.system.debug
-{
+package org.flixel.system.debug;
 	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
 	import flash.text.TextField;

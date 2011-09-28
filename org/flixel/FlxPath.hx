@@ -1,5 +1,4 @@
-package org.flixel
-{
+package org.flixel;
 	import flash.display.Graphics;
 	
 	import org.flixel.plugin.DebugPathDisplay;

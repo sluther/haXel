@@ -1,5 +1,4 @@
-package org.flixel
-{
+package org.flixel;
 	/**
 	 * This is an organizational class that can update and render a bunch of <code>FlxBasic</code>s.
 	 * NOTE: Although <code>FlxGroup</code> extends <code>FlxBasic</code>, it will not automatically
@@ -572,4 +571,3 @@ package org.flixel
 			return 0;
 		}
 	}
-}

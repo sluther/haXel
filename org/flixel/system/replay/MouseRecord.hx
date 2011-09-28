@@ -1,5 +1,4 @@
-package org.flixel.system.replay
-{
+package org.flixel.system.replay;
 	/**
 	 * A helper class for the frame records, part of the replay/demo/recording system.
 	 * 

@@ -1,5 +1,4 @@
-package org.flixel
-{
+package org.flixel;
 	import flash.events.NetStatusEvent;
 	import flash.net.SharedObject;
 	import flash.net.SharedObjectFlushStatus;
@@ -192,4 +191,3 @@ package org.flixel
 			return true;
 		}
 	}
-}

@@ -1,5 +1,4 @@
-package org.flixel.system.replay
-{
+package org.flixel.system.replay;
 	
 	/**
 	 * Helper class for the new replay system.  Represents all the game inputs for one "frame" or "step" of the game loop.
@@ -24,7 +23,7 @@ package org.flixel.system.replay
 		/**
 		 * Instantiate array new frame record.
 		 */
-		public function FrameRecord()
+		public function new()
 		{
 			frame = 0;
 			keys = null;
@@ -140,4 +139,3 @@ package org.flixel.system.replay
 			return this;
 		}
 	}
-}

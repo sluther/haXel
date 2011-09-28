@@ -1,5 +1,4 @@
-package org.flixel.system
-{
+package org.flixel.system;
 	import org.flixel.FlxObject;
 	
 	/**

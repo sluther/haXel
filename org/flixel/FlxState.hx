@@ -1,5 +1,4 @@
-package org.flixel
-{
+package org.flixel;
 	import org.flixel.system.FlxQuadTree;
 	
 	/**
@@ -22,4 +21,3 @@ package org.flixel
 			
 		}
 	}
-}

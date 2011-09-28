@@ -1,5 +1,4 @@
-package org.flixel
-{
+package org.flixel;
 	import org.flixel.plugin.TimerManager;
 	
 	/**

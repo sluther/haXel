@@ -1,5 +1,4 @@
-package org.flixel.system.debug
-{
+package org.flixel.system.debug;
 	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	import flash.text.TextFormat;

@@ -1,5 +1,4 @@
-package org.flixel.system.debug
-{
+package org.flixel.system.debug;
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.events.Event;

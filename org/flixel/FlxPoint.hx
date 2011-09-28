@@ -1,5 +1,4 @@
-package org.flixel
-{
+package org.flixel;
 	import flash.geom.Point;
 	
 	/**
@@ -99,4 +98,3 @@ package org.flixel
 			return FlashPoint;
 		}
 	}
-}

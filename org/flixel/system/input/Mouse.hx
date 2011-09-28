@@ -1,5 +1,4 @@
-package org.flixel.system.input
-{
+package org.flixel.system.input;
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;

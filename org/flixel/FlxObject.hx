@@ -1,5 +1,4 @@
-package org.flixel
-{
+package org.flixel;
 	import flash.display.Graphics;
 	import flash.display.Sprite;
 	import flash.geom.Point;
@@ -1170,4 +1169,3 @@ package org.flixel
 				return false;
 		}
 	}
-}

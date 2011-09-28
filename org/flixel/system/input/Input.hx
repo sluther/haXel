@@ -1,5 +1,4 @@
-package org.flixel.system.input
-{
+package org.flixel.system.input;
 	/**
 	 * Basic input class that manages the fast-access :Bools and detailed key-state tracking.
 	 * Keyboard extends this with actual specific key data.
@@ -184,4 +183,3 @@ package org.flixel.system.input
 			_map = null;
 		}
 	}
-}

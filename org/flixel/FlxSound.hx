@@ -1,5 +1,4 @@
-package org.flixel
-{
+package org.flixel;
 	import flash.events.Event;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
@@ -539,4 +538,3 @@ package org.flixel
 			_sound.removeEventListener(Event.ID3, gotID3);
 		}
 	}
-}

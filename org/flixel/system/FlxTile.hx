@@ -1,5 +1,4 @@
-package org.flixel.system
-{
+package org.flixel.system;
 	import org.flixel.FlxObject;
 	import org.flixel.FlxTilemap;
 	
@@ -78,4 +77,3 @@ package org.flixel.system
 			tilemap = null;
 		}
 	}
-}

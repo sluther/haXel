@@ -1,5 +1,4 @@
-package org.flixel.system
-{
+package org.flixel.system;
 	/**
 	 * Just a helper structure for the FlxSprite animation system.
 	 * 

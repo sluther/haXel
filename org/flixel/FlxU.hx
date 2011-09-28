@@ -1,5 +1,4 @@
-package org.flixel
-{
+package org.flixel;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
 	import flash.utils.getDefinitionByName;
@@ -619,4 +618,3 @@ package org.flixel
 			return Math.sqrt(dx * dx + dy * dy);
 		}
 	}
-}

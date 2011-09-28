@@ -1,5 +1,4 @@
-package org.flixel.system
-{
+package org.flixel.system;
 	import org.flixel.FlxG;
 	import org.flixel.system.replay.FrameRecord;
 	import org.flixel.system.replay.MouseRecord;
@@ -199,4 +198,3 @@ package org.flixel.system
 			finished = false;
 		}
 	}
-}
