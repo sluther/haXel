@@ -15,8 +15,8 @@ package org.haxel.system.debug;
 	 */
 	class Watch extends HxlWindow
 	{
-		private static const MAX_LOG_LINES:UInt = 1024;
-		private static const LINE_HEIGHT:UInt = 15;
+		private static inline var MAX_LOG_LINES:UInt = 1024;
+		private static inline var LINE_HEIGHT:UInt = 15;
 		
 		/**
 		 * Whether a watch entry is currently being edited or not. 

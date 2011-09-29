@@ -11,11 +11,11 @@ package org.haxel;
 		/**
 		 * Use with <code>sort()</code> to sort in ascending order.
 		 */
-		public static const ASCENDING:Int = -1;
+		public static inline var ASCENDING:Int = -1;
 		/**
 		 * Use with <code>sort()</code> to sort in descending order.
 		 */
-		public static const DESCENDING:Int = 1;
+		public static inline var DESCENDING:Int = 1;
 		
 		/**
 		 * Array of all the <code>HxlBasic</code>s that exist in this group.

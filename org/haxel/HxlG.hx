@@ -44,54 +44,54 @@ package org.haxel;
 		/**
 		 * Debugger overlay layout preset: Wide but low windows at the bottom of the screen.
 		 */
-		public static const DEBUGGER_STANDARD:UInt = 0;
+		public static inline var DEBUGGER_STANDARD:UInt = 0;
 		/**
 		 * Debugger overlay layout preset: Tiny windows in the screen corners.
 		 */
-		public static const DEBUGGER_MICRO:UInt = 1;
+		public static inline var DEBUGGER_MICRO:UInt = 1;
 		/**
 		 * Debugger overlay layout preset: Large windows taking up bottom half of screen.
 		 */
-		public static const DEBUGGER_BIG:UInt = 2;
+		public static inline var DEBUGGER_BIG:UInt = 2;
 		/**
 		 * Debugger overlay layout preset: Wide but low windows at the top of the screen.
 		 */
-		public static const DEBUGGER_TOP:UInt = 3;
+		public static inline var DEBUGGER_TOP:UInt = 3;
 		/**
 		 * Debugger overlay layout preset: Large windows taking up left third of screen.
 		 */
-		public static const DEBUGGER_LEFT:UInt = 4;
+		public static inline var DEBUGGER_LEFT:UInt = 4;
 		/**
 		 * Debugger overlay layout preset: Large windows taking up right third of screen.
 		 */
-		public static const DEBUGGER_RIGHT:UInt = 5;
+		public static inline var DEBUGGER_RIGHT:UInt = 5;
 		
 		/**
 		 * Some handy color presets.  Less glaring than pure RGB full values.
 		 * Primarily used in the visual debugger mode for bounding box displays.
 		 * Red is used to indicate an active, movable, solid object.
 		 */
-		public static const RED:UInt = 0xffff0012;
+		public static inline var RED:UInt = 0xffff0012;
 		/**
 		 * Green is used to indicate solid but immovable objects.
 		 */
-		public static const GREEN:UInt = 0xff00f225;
+		public static inline var GREEN:UInt = 0xff00f225;
 		/**
 		 * Blue is used to indicate non-solid objects.
 		 */
-		public static const BLUE:UInt = 0xff0090e9;
+		public static inline var BLUE:UInt = 0xff0090e9;
 		/**
 		 * Pink is used to indicate objects that are only partially solid, like one-way platforms.
 		 */
-		public static const PINK:UInt = 0xfff01eff;
+		public static inline var PINK:UInt = 0xfff01eff;
 		/**
 		 * White... for white stuff.
 		 */
-		public static const WHITE:UInt = 0xffffffff;
+		public static inline var WHITE:UInt = 0xffffffff;
 		/**
 		 * And black too.
 		 */
-		public static const BLACK:UInt = 0xff000000;
+		public static inline var BLACK:UInt = 0xff000000;
 
 		/**
 		 * Internal tracker for game object.

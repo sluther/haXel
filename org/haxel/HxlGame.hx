@@ -31,7 +31,7 @@ package org.haxel;
 	 */
 	class HxlGame extends Sprite
 	{
-/*		[Embed(source="data/nokiafc22.ttf",fontFamily="system",embedAsCFF="false")] private var junk:String;
+		/*[Embed(source="data/nokiafc22.ttf",fontFamily="system",embedAsCFF="false")] private var junk:String;
 		[Embed(source="data/beep.mp3")] private var SndBeep:Class;
 		[Embed(source="data/logo.png")] private var ImgLogo:Class;*/
 
@@ -64,7 +64,7 @@ package org.haxel;
 		/**
 		 * Class type of the initial/first game state for the game, usually MenuState or something like that.
 		 */
-		private var _iState:Class;
+		private var _iState:Class<HxlState>;
 		/**
 		 * Whether the game object's basic initialization has finished yet.
 		 */
@@ -228,7 +228,7 @@ package org.haxel;
 			var globalVolume:UInt = Math.round(HxlG.volume*10);
 			if(HxlG.mute)
 				globalVolume = 0;
-			for (var i:UInt = 0; i < _soundTrayBars.length; i++)
+			for (i in 0..._soundTrayBars.length)
 			{
 				if(i < globalVolume) _soundTrayBars[i].alpha = 1;
 				else _soundTrayBars[i].alpha = 0.5;
@@ -348,7 +348,7 @@ package org.haxel;
 				var l:UInt = _replayCancelKeys.length;
 				while(i < l)
 				{
-					replayCancelKey = _replayCancelKeys[i++] as String;
+					replayCancelKey = UInt<_replayCancelKeys[i++]> cast String;
 					if((replayCancelKey == "MOUSE") || (replayCancelKey == "ANY"))
 					{
 						if(_replayCallback != null)
@@ -512,7 +512,7 @@ package org.haxel;
 			if(_requestedReset)
 			{
 				_requestedReset = false;
-				_requestedState = new _iState();
+				_requestedState = Type.createInstance(_iState, []);
 				_replayTimer = 0;
 				_replayCancelKeys = null;
 				HxlG.reset();
@@ -612,7 +612,7 @@ package org.haxel;
 						if(soundPrefs.bind("flixel"))
 						{
 							if(soundPrefs.data.sound == null)
-								soundPrefs.data.sound = new Object;
+								soundPrefs.data.sound = {};
 							soundPrefs.data.sound.mute = HxlG.mute;
 							soundPrefs.data.sound.volume = HxlG.volume;
 							soundPrefs.close();
@@ -723,7 +723,7 @@ package org.haxel;
 			text.embedFonts = true;
 			text.antiAliasType = AntiAliasType.NORMAL;
 			text.gridFitType = GridFitType.PIXEL;
-			text.defaultTextFormat = new TextFormat("system",8,0xffffff,null,null,null,null,null,"center");;
+			text.defaultTextFormat = new TextFormat("system",8,0xffffff,null,null,null,null,null,"center");
 			_soundTray.addChild(text);
 			text.text = "VOLUME";
 			text.y = 16;

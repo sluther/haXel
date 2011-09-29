@@ -39,7 +39,7 @@ package org.haxel;
 		 * point at the main camera list out in <code>HxlG</code> unless you already set it.
 		 * You can also change it afterward too, very flexible!
 		 */
-		public var cameras:Array;
+		public var cameras:Array<HxlCamera>;
 		/**
 		 * Setting this to true will prevent the object from appearing
 		 * when the visual debug mode in the debugger overlay is toggled on.

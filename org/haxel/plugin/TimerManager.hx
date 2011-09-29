@@ -58,7 +58,7 @@ package org.haxel.plugin;
 			var timer:HxlTimer;
 			while(i >= 0)
 			{
-				timer = _timers[i--] as HxlTimer;
+				timer = Array<_timers[i--]> cast HxlTimer;
 				if((timer != null) && !timer.paused && !timer.finished && (timer.time > 0))
 					timer.update();
 			}
@@ -97,11 +97,10 @@ package org.haxel.plugin;
 			var timer:HxlTimer;
 			while(i >= 0)
 			{
-				timer = _timers[i--] as HxlTimer;
+				timer = Array<_timers[i--]> cast HxlTimer;
 				if(timer != null)
 					timer.destroy();
 			}
 			_timers.length = 0;
 		}
 	}
-}

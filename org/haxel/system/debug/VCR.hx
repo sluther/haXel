@@ -34,8 +34,8 @@ package org.haxel.system.debug;
 		[Embed(source="../../data/vcr/play.png")] private var ImgPlay:Class;
 		[Embed(source="../../data/vcr/step.png")] private var ImgStep:Class;
 		
-		private static const FILE_TYPES:Array = [new FileFilter("Haxel Game Recording", "*.fgr")];
-		private static const DEFAULT_FILE_NAME:String = "replay.fgr";
+		private static inline var FILE_TYPES:Array = [new FileFilter("Haxel Game Recording", "*.fgr")];
+		private static inline var DEFAULT_FILE_NAME:String = "replay.fgr";
 		
 		/**
 		 * Whether the debugger has been paused. 

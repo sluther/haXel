@@ -82,7 +82,7 @@ package org.haxel.plugin;
 			var path:HxlPath;
 			while(i >= 0)
 			{
-				path = _paths[i--] as HxlPath;
+				path = HxlPath<_paths[i--]> cast HxlPath;
 				if((path != null) && !path.ignoreDrawDebug)
 					path.drawDebug(Camera);
 			}
@@ -121,11 +121,10 @@ package org.haxel.plugin;
 			var path:HxlPath;
 			while(i >= 0)
 			{
-				path = _paths[i--] as HxlPath;
+				path = HxlPath<_paths[i--]> cast HxlPath;
 				if(path != null)
 					path.destroy();
 			}
 			_paths.length = 0;
 		}
 	}
-}

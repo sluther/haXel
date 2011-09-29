@@ -17,74 +17,74 @@ package org.haxel;
 		/**
 		 * Generic value for "left" Used by <code>facing</code>, <code>allowCollisions</code>, and <code>touching</code>.
 		 */
-		public static const LEFT:UInt	= 0x0001;
+		public static inline var LEFT:UInt	= 0x0001;
 		/**
 		 * Generic value for "right" Used by <code>facing</code>, <code>allowCollisions</code>, and <code>touching</code>.
 		 */
-		public static const RIGHT:UInt	= 0x0010;
+		public static inline var RIGHT:UInt	= 0x0010;
 		/**
 		 * Generic value for "up" Used by <code>facing</code>, <code>allowCollisions</code>, and <code>touching</code>.
 		 */
-		public static const UP:UInt		= 0x0100;
+		public static inline var UP:UInt		= 0x0100;
 		/**
 		 * Generic value for "down" Used by <code>facing</code>, <code>allowCollisions</code>, and <code>touching</code>.
 		 */
-		public static const DOWN:UInt	= 0x1000;
+		public static inline var DOWN:UInt	= 0x1000;
 		
 		/**
 		 * Special-case constant meaning no collisions, used mainly by <code>allowCollisions</code> and <code>touching</code>.
 		 */
-		public static const NONE:UInt	= 0;
+		public static inline var NONE:UInt	= 0;
 		/**
 		 * Special-case constant meaning up, used mainly by <code>allowCollisions</code> and <code>touching</code>.
 		 */
-		public static const CEILING:UInt= UP;
+		public static inline var CEILING:UInt= UP;
 		/**
 		 * Special-case constant meaning down, used mainly by <code>allowCollisions</code> and <code>touching</code>.
 		 */
-		public static const FLOOR:UInt	= DOWN;
+		public static inline var FLOOR:UInt	= DOWN;
 		/**
 		 * Special-case constant meaning only the left and right sides, used mainly by <code>allowCollisions</code> and <code>touching</code>.
 		 */
-		public static const WALL:UInt	= LEFT | RIGHT;
+		public static inline var WALL:UInt	= LEFT | RIGHT;
 		/**
 		 * Special-case constant meaning any direction, used mainly by <code>allowCollisions</code> and <code>touching</code>.
 		 */
-		public static const ANY:UInt	= LEFT | RIGHT | UP | DOWN;
+		public static inline var ANY:UInt	= LEFT | RIGHT | UP | DOWN;
 		
 		/**
 		 * Handy constant used during collision resolution (see <code>separateX()</code> and <code>separateY()</code>).
 		 */
-		public static const OVERLAP_BIAS:Float = 4;
+		public static inline var OVERLAP_BIAS:Float = 4;
 		
 		/**
 		 * Path behavior controls: move from the start of the path to the end then stop.
 		 */
-		public static const PATH_FORWARD:UInt			= 0x000000;
+		public static inline var PATH_FORWARD:UInt			= 0x000000;
 		/**
 		 * Path behavior controls: move from the end of the path to the start then stop.
 		 */
-		public static const PATH_BACKWARD:UInt			= 0x000001;
+		public static inline var PATH_BACKWARD:UInt			= 0x000001;
 		/**
 		 * Path behavior controls: move from the start of the path to the end then directly back to the start, and start over.
 		 */
-		public static const PATH_LOOP_FORWARD:UInt		= 0x000010;
+		public static inline var PATH_LOOP_FORWARD:UInt		= 0x000010;
 		/**
 		 * Path behavior controls: move from the end of the path to the start then directly back to the end, and start over.
 		 */
-		public static const PATH_LOOP_BACKWARD:UInt		= 0x000100;
+		public static inline var PATH_LOOP_BACKWARD:UInt		= 0x000100;
 		/**
 		 * Path behavior controls: move from the start of the path to the end then turn around and go back to the start, over and over.
 		 */
-		public static const PATH_YOYO:UInt				= 0x001000;
+		public static inline var PATH_YOYO:UInt				= 0x001000;
 		/**
 		 * Path behavior controls: ignores any vertical component to the path data, only follows side to side.
 		 */
-		public static const PATH_HORIZONTAL_ONLY:UInt	= 0x010000;
+		public static inline var PATH_HORIZONTAL_ONLY:UInt	= 0x010000;
 		/**
 		 * Path behavior controls: ignores any horizontal component to the path data, only follows up and down.
 		 */
-		public static const PATH_VERTICAL_ONLY:UInt		= 0x100000;
+		public static inline var PATH_VERTICAL_ONLY:UInt		= 0x100000;
 		
 		/**
 		 * X position of the upper left corner of this object in world space.
@@ -162,7 +162,7 @@ package org.haxel;
 		/**
 		 * Should always represent (0,0) - useful for different things, for avoiding unnecessary <code>new</code> calls.
 		 */
-		private static const _pZero:HxlPoint = new HxlPoint();
+		private static inline var _pZero:HxlPoint = new HxlPoint();
 		
 		/**
 		 * A point that can store numbers from 0 to 1 (for X and Y independently)
@@ -681,11 +681,11 @@ package org.haxel;
 		 */
 		public function overlaps(ObjectOrGroup:HxlBasic,InScreenSpace:Bool=false,Camera:HxlCamera=null):Bool
 		{
-			if(ObjectOrGroup is HxlGroup)
+			if(Type.getClass(ObjectOrGroup) == HxlGroup)
 			{
 				var results:Bool = false;
 				var i:UInt = 0;
-				var members:Array = (ObjectOrGroup as HxlGroup).members;
+				var members:Array = (HxlBasic<ObjectOrGroup> cast HxlGroup).members;
 				while(i < length)
 				{
 					if(overlaps(members[i++],InScreenSpace,Camera))
@@ -694,14 +694,14 @@ package org.haxel;
 				return results;
 			}
 			
-			if(ObjectOrGroup is HxlTilemap)
+			if(Type.getClass(ObjectOrGroup == HxlTilemap))
 			{
 				//Since tilemap's have to be the caller, not the target, to do proper tile-based collisions,
 				// we redirect the call to the tilemap overlap here.
-				return (ObjectOrGroup as HxlTilemap).overlaps(this,InScreenSpace,Camera);
+				return (HxlBasic<ObjectOrGroup> cast HxlTilemap).overlaps(this,InScreenSpace,Camera);
 			}
 			
-			var object:HxlObject = ObjectOrGroup as HxlObject;
+			var object:HxlObject = HxlBasic<ObjectOrGroup> cast HxlObject;
 			if(!InScreenSpace)
 			{
 				return	(object.x + object.width > x) && (object.x < x + width) &&
@@ -731,12 +731,12 @@ package org.haxel;
 		 */
 		public function overlapsAt(X:Float,Y:Float,ObjectOrGroup:HxlBasic,InScreenSpace:Bool=false,Camera:HxlCamera=null):Bool
 		{
-			if(ObjectOrGroup is HxlGroup)
+			if(Type.getClass(ObjectOrGroup) == HxlGroup)
 			{
 				var results:Bool = false;
 				var basic:HxlBasic;
 				var i:UInt = 0;
-				var members:Array = (ObjectOrGroup as HxlGroup).members;
+				var members:Array = (HxlBasic<ObjectOrGroup> cast HxlGroup).members;
 				while(i < length)
 				{
 					if(overlapsAt(X,Y,members[i++],InScreenSpace,Camera))
@@ -745,17 +745,17 @@ package org.haxel;
 				return results;
 			}
 			
-			if(ObjectOrGroup is HxlTilemap)
+			if(Type.getClass(ObjectOrGroup) == HxlTilemap)
 			{
 				//Since tilemap's have to be the caller, not the target, to do proper tile-based collisions,
 				// we redirect the call to the tilemap overlap here.
 				//However, since this is overlapsAt(), we also have to invent the appropriate position for the tilemap.
 				//So we calculate the offset between the player and the requested position, and subtract that from the tilemap.
-				var tilemap:HxlTilemap = ObjectOrGroup as HxlTilemap;
+				var tilemap:HxlTilemap = HxlBasic<ObjectOrGroup> cast HxlTilemap;
 				return tilemap.overlapsAt(tilemap.x - (X - x),tilemap.y - (Y - y),this,InScreenSpace,Camera);
 			}
 			
-			var object:HxlObject = ObjectOrGroup as HxlObject;
+			var object:HxlObject = HxlBasic<ObjectOrGroup> cast HxlObject;
 			if(!InScreenSpace)
 			{
 				return	(object.x + object.width > X) && (object.x < X + width) &&
@@ -849,7 +849,7 @@ package org.haxel;
 		 * 
 		 * @return	Whether the object is flickering or not.
 		 */
-		public function get flickering():Bool
+		public function isFlickering():Bool
 		{
 			return _flickerTimer != 0;
 		}
@@ -859,7 +859,7 @@ package org.haxel;
 		 * the object will collide from, use collision constants (like LEFT, FLOOR, etc)
 		 * to set the value of allowCollisions directly.
 		 */
-		public function get solid():Bool
+		public function getSolid():Bool
 		{
 			return (allowCollisions & ANY) > NONE;
 		}
@@ -867,7 +867,7 @@ package org.haxel;
 		/**
 		 * @private
 		 */
-		public function set solid(Solid:Bool):Void
+		public function setSolid(Solid:Bool):Void
 		{
 			if(Solid)
 				allowCollisions = ANY;
@@ -982,10 +982,10 @@ package org.haxel;
 				return false;
 			
 			//If one of the objects is a tilemap, just pass it off.
-			if(Object1 is HxlTilemap)
-				return (Object1 as HxlTilemap).overlapsWithCallback(Object2,separateX);
-			if(Object2 is HxlTilemap)
-				return (Object2 as HxlTilemap).overlapsWithCallback(Object1,separateX,true);
+			if(Type.getClass(Object1) == HxlTilemap)
+				return (HxlObject<Object1> cast HxlTilemap).overlapsWithCallback(Object2,separateX);
+			if(Type.getClass(Object2) == HxlTilemap)
+				return (HxlObject<Object2> cast HxlTilemap).overlapsWithCallback(Object1,separateX,true);
 			
 			//First, get the two object deltas
 			var overlap:Float = 0;
@@ -1081,10 +1081,10 @@ package org.haxel;
 				return false;
 			
 			//If one of the objects is a tilemap, just pass it off.
-			if(Object1 is HxlTilemap)
-				return (Object1 as HxlTilemap).overlapsWithCallback(Object2,separateY);
-			if(Object2 is HxlTilemap)
-				return (Object2 as HxlTilemap).overlapsWithCallback(Object1,separateY,true);
+			if(Type.getClass(Object1) == HxlTilemap)
+				return (HxlObject<Object1> cast HxlTilemap).overlapsWithCallback(Object2,separateY);
+			if(Type.getClass(Object2) == HxlTilemap)
+				return (HxlObject<Object2> cast HxlTilemap).overlapsWithCallback(Object1,separateY,true);
 
 			//First, get the two object deltas
 			var overlap:Float = 0;

@@ -17,7 +17,7 @@ package org.haxel;
 	 */
 	class HxlSprite extends HxlObject
 	{
-		[Embed(source="data/default.png")] private var ImgDefault:Class;
+		/*[Embed(source="data/default.png")] private var ImgDefault:Class;*/
 		
 		/**
 		 * WARNING: The origin of the sprite will default to its center.
@@ -722,7 +722,8 @@ package org.haxel;
 		 * Set <code>pixels</code> to any <code>BitmapData</code> object.
 		 * Automatically adjust graphic size and render helpers.
 		 */
-		public function get pixels():BitmapData
+		public var pixels(getPixels, setPixels):BitmapData;
+		public function getPixels():BitmapData
 		{
 			return _pixels;
 		}
@@ -730,7 +731,7 @@ package org.haxel;
 		/**
 		 * @private
 		 */
-		public function set pixels(Pixels:BitmapData):Void
+		public function setPixels(Pixels:BitmapData):Void
 		{
 			_pixels = Pixels;
 			width = frameWidth = _pixels.width;
@@ -743,7 +744,8 @@ package org.haxel;
 		 * <code>UP</code>, and <code>DOWN</code> to take advantage of
 		 * flipped sprites and/or just track player orientation more easily.
 		 */
-		public function get facing():UInt
+		public var facing(getFacing, setFacing):UInt;
+		public function getFacing():UInt
 		{
 			return _facing;
 		}
@@ -751,7 +753,7 @@ package org.haxel;
 		/**
 		 * @private
 		 */
-		public function set facing(Direction:UInt):Void
+		public function setFacing(Direction:UInt):Void
 		{
 			if(_facing != Direction)
 				dirty = true;
@@ -761,7 +763,8 @@ package org.haxel;
 		/**
 		 * Set <code>alpha</code> to a number between 0 and 1 to change the opacity of the sprite.
 		 */
-		public function get alpha():Float
+		public var alpha(getAlpha, setAlpha):Void;
+		public function getAlpha():Float
 		{
 			return _alpha;
 		}
@@ -769,7 +772,7 @@ package org.haxel;
 		/**
 		 * @private
 		 */
-		public function set alpha(Alpha:Float):Void
+		public function setAlpha(Alpha:Float):Void
 		{
 			if(Alpha > 1)
 				Alpha = 1;
@@ -790,7 +793,8 @@ package org.haxel;
 		 * <code>color</code> IGNORES ALPHA.  To change the opacity use <code>alpha</code>.
 		 * Tints the whole sprite to be this color (similar to OpenGL vertex colors).
 		 */
-		public function get color():UInt
+		public var color(getColor, setColor):UInt;
+		public function getColor():UInt
 		{
 			return _color;
 		}
@@ -798,7 +802,7 @@ package org.haxel;
 		/**
 		 * @private
 		 */
-		public function set color(Color:UInt):Void
+		public function setColor(Color:UInt):Void
 		{
 			Color &= 0x00ffffff;
 			if(_color == Color)
@@ -816,7 +820,8 @@ package org.haxel;
 		 * 
 		 * @param	Frame	The frame you want to display.
 		 */
-		public function get frame():UInt
+		public var frame(getFrame, setFrame):UInt;
+		public function getFrame():UInt
 		{
 			return _curIndex;
 		}
@@ -824,7 +829,7 @@ package org.haxel;
 		/**
 		 * @private
 		 */
-		public function set frame(Frame:UInt):Void
+		public function setFrame(Frame:UInt):Void
 		{
 			_curAnim = null;
 			_curIndex = Frame;
@@ -916,4 +921,3 @@ package org.haxel;
 			dirty = false;
 		}
 	}
-}

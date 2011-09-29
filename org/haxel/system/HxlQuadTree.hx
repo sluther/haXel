@@ -16,11 +16,11 @@ package org.haxel.system;
 		/**
 		 * Flag for specifying that you want to add an object to the A list.
 		 */
-		public static const A_LIST:UInt = 0;
+		public static inline var A_LIST:UInt = 0;
 		/**
 		 * Flag for specifying that you want to add an object to the B list.
 		 */
-		public static const B_LIST:UInt = 1;
+		public static inline var B_LIST:UInt = 1;
 		
 		/**
 		 * Controls the granularity of the quad tree.  Default is 6 (decent performance on large and small worlds).

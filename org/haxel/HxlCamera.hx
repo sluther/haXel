@@ -1,56 +1,56 @@
 package org.haxel;
-	import flash.display.Bitmap;
-	import flash.display.BitmapData;
-	import flash.display.Sprite;
-	import flash.geom.ColorTransform;
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
+import flash.display.Bitmap;
+import flash.display.BitmapData;
+import flash.display.Sprite;
+import flash.geom.ColorTransform;
+import flash.geom.Point;
+import flash.geom.Rectangle;
 
+/**
+ * The camera class is used to display the game's visuals in the Flash player.
+ * By default one camera is created automatically, that is the same size as the Flash player.
+ * You can add more cameras or even replace the main camera using utilities in <code>HxlG</code>.
+ * 
+ * @author Adam Atomic
+ */
+class HxlCamera extends HxlBasic
+{
 	/**
-	 * The camera class is used to display the game's visuals in the Flash player.
-	 * By default one camera is created automatically, that is the same size as the Flash player.
-	 * You can add more cameras or even replace the main camera using utilities in <code>HxlG</code>.
-	 * 
-	 * @author Adam Atomic
+	 * Camera "follow" style preset: camera has no deadzone, just tracks the focus object directly.
 	 */
-	class HxlCamera extends HxlBasic
-	{
-		/**
-		 * Camera "follow" style preset: camera has no deadzone, just tracks the focus object directly.
-		 */
-		public static const STYLE_LOCKON:UInt = 0;
-		/**
-		 * Camera "follow" style preset: camera deadzone is narrow but tall.
-		 */
-		public static const STYLE_PLATFORMER:UInt = 1;
-		/**
-		 * Camera "follow" style preset: camera deadzone is a medium-size square around the focus object.
-		 */
-		public static const STYLE_TOPDOWN:UInt = 2;
-		/**
-		 * Camera "follow" style preset: camera deadzone is a small square around the focus object.
-		 */
-		public static const STYLE_TOPDOWN_TIGHT:UInt = 3;
-		
-		/**
-		 * Camera "shake" effect preset: shake camera on both the X and Y axes.
-		 */
-		public static const SHAKE_BOTH_AXES:UInt = 0;
-		/**
-		 * Camera "shake" effect preset: shake camera on the X axis only.
-		 */
-		public static const SHAKE_HORIZONTAL_ONLY:UInt = 1;
-		/**
-		 * Camera "shake" effect preset: shake camera on the Y axis only.
-		 */
-		public static const SHAKE_VERTICAL_ONLY:UInt = 2;
-		
-		/**
-		 * While you can alter the zoom of each camera after the fact,
-		 * this variable determines what value the camera will start at when created.
-		 */
-		public static var defaultZoom:Float;
-		
+	public static inline var STYLE_LOCKON:UInt = 0;
+	/**
+	 * Camera "follow" style preset: camera deadzone is narrow but tall.
+	 */
+	public static inline var STYLE_PLATFORMER:UInt = 1;
+	/**
+	 * Camera "follow" style preset: camera deadzone is a medium-size square around the focus object.
+	 */
+	public static inline var STYLE_TOPDOWN:UInt = 2;
+	/**
+	 * Camera "follow" style preset: camera deadzone is a small square around the focus object.
+	 */
+	public static inline var STYLE_TOPDOWN_TIGHT:UInt = 3;
+	
+	/**
+	 * Camera "shake" effect preset: shake camera on both the X and Y axes.
+	 */
+	public static inline var SHAKE_BOTH_AXES:UInt = 0;
+	/**
+	 * Camera "shake" effect preset: shake camera on the X axis only.
+	 */
+	public static inline var SHAKE_HORIZONTAL_ONLY:UInt = 1;
+	/**
+	 * Camera "shake" effect preset: shake camera on the Y axis only.
+	 */
+	public static inline var SHAKE_VERTICAL_ONLY:UInt = 2;
+	
+	/**
+	 * While you can alter the zoom of each camera after the fact,
+	 * this variable determines what value the camera will start at when created.
+	 */
+	public static var defaultZoom:Float;
+	
 		/**
 		 * The X position of this camera's display.  Zoom does NOT affect this number.
 		 * Measured in pixels from the left side of the flash window.
@@ -538,6 +538,7 @@ package org.haxel;
 		/**
 		 * The zoom level of this camera. 1 = 1:1, 2 = 2x zoom, etc.
 		 */
+		public var zoom(getZoom, setZoom):Float;
 		public function getZoom():Float
 		{
 			return _zoom;
@@ -558,6 +559,7 @@ package org.haxel;
 		/**
 		 * The alpha value of this camera display (a Number between 0.0 and 1.0).
 		 */
+		public var alpha(getAlpha, setAlpha):Float;
 		public function getAlpha():Float
 		{
 			return _flashBitmap.alpha;
@@ -576,6 +578,7 @@ package org.haxel;
 		 * Currently yields weird display results,
 		 * since cameras aren't nested in an extra display object yet.
 		 */
+		public var angle(getAngle, setAngle):Float;
 		public function getAngle():Float
 		{
 			return _flashSprite.rotation;
@@ -592,6 +595,7 @@ package org.haxel;
 		/**
 		 * The color tint of the camera display.
 		 */
+		public var color(getColor, setColor):UInt;
 		public function getColor():UInt
 		{
 			return _color;
@@ -614,6 +618,7 @@ package org.haxel;
 		 * Whether the camera display is smooth and filtered, or chunky and pixelated.
 		 * Default behavior is chunky-style.
 		 */
+		public var antialiasing(getAntialiasing, setAntialisaing):Bool;
 		public function getAntialiasing():Bool
 		{
 			return _flashBitmap.smoothing;
@@ -632,6 +637,7 @@ package org.haxel;
 		 * Currently yields weird display results,
 		 * since cameras aren't nested in an extra display object yet.
 		 */
+		public var scale(getScale, setScale):HxlPoint;
 		public function getScale():HxlPoint
 		{
 			return _point.make(_flashSprite.scaleX,_flashSprite.scaleY);

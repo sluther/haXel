@@ -26,15 +26,15 @@ package org.haxel;
 		/**
 		 * No auto-tiling.
 		 */
-		public static const OFF:UInt = 0;
+		public static inline var OFF:UInt = 0;
 		/**
 		 * Good for levels with thin walls that don'tile need interior corner art.
 		 */
-		public static const AUTO:UInt = 1;
+		public static inline var AUTO:UInt = 1;
 		/**
 		 * Better for levels with thick walls that look better with interior corner art.
 		 */
-		public static const ALT:UInt = 2;
+		public static inline var ALT:UInt = 2;
 
 		/**
 		 * Set this flag to use one of the 16-tile binary auto-tile algorithms (OFF, AUTO, or ALT).

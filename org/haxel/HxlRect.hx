@@ -44,7 +44,7 @@ package org.haxel;
 		/**
 		 * The X coordinate of the left side of the rectangle.  Read-only.
 		 */
-		public function get left():Float
+		public function getLeft():Float
 		{
 			return x;
 		}
@@ -52,7 +52,7 @@ package org.haxel;
 		/**
 		 * The X coordinate of the right side of the rectangle.  Read-only.
 		 */
-		public function get right():Float
+		public function getRight():Float
 		{
 			return x + width;
 		}
@@ -60,7 +60,7 @@ package org.haxel;
 		/**
 		 * The Y coordinate of the top of the rectangle.  Read-only.
 		 */
-		public function get top():Float
+		public function getTop():Float
 		{
 			return y;
 		}
@@ -68,7 +68,7 @@ package org.haxel;
 		/**
 		 * The Y coordinate of the bottom of the rectangle.  Read-only.
 		 */
-		public function get bottom():Float
+		public function getBottom():Float
 		{
 			return y + height;
 		}

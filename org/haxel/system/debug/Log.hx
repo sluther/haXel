@@ -11,7 +11,7 @@ package org.haxel.system.debug;
 	 */
 	class Log extends HxlWindow
 	{
-		private static const MAX_LOG_LINES:UInt = 200;
+		private static inline var MAX_LOG_LINES:UInt = 200;
 
 		private var _text:TextField;
 		private var _lines:Array;

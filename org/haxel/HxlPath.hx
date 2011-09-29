@@ -218,7 +218,7 @@ package org.haxel;
 			while(i < l)
 			{
 				//get a reference to the current node
-				node = nodes[i] as HxlPoint;
+				node = HxlPoint<nodes[i]> cast HxlPoint;
 				
 				//find the screen position of the node on this camera
 				_point.x = node.x - int(Camera.scroll.x*debugScrollFactor.x); //copied from getScreenXY()
@@ -270,10 +270,14 @@ package org.haxel;
 			//then stamp the path down onto the game buffer
 			Camera.buffer.draw(HxlG.flashGfxSprite);
 		}
-		
-		public static function get manager():DebugPathDisplay
+		public var manager(getManager, setManager):DebugPathDisplay;
+		public static function getManager():DebugPathDisplay
 		{
-			return HxlG.getPlugin(DebugPathDisplay) as DebugPathDisplay;
+			return DebugPathDisplay<HxlG.getPlugin(DebugPathDisplay)> cast DebugPathDisplay;
+		}
+		public static function setManager():DebugPathDisplay
+		{
+			// This method is only here to please the haXe compiler,
+			// as a setter is needed for every property that has a getter
 		}
 	}
-}

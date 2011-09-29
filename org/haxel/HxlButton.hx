@@ -8,8 +8,8 @@ package org.haxel;
 	 */
 	class HxlButton extends HxlSprite
 	{
-		[Embed(source="data/button.png")] private var ImgDefaultButton:Class;
-		[Embed(source="data/beep.mp3")] private var SndBeep:Class;
+		/*[Embed(source="data/button.png")] private var ImgDefaultButton:Class;
+		[Embed(source="data/beep.mp3")] private var SndBeep:Class;*/
 		
 		/**
 		 * Used with public variable <code>status</code>, means not highlighted or pressed.
@@ -215,7 +215,7 @@ package org.haxel;
 				var offAll:Bool = true;
 				while(i < l)
 				{
-					camera = cameras[i++] as HxlCamera;
+					camera = HxlCamera<cameras[i++]> cast HxlCamera;
 					HxlG.mouse.getWorldPosition(camera,_point);
 					if(overlapsPoint(_point,true,camera))
 					{
@@ -325,7 +325,8 @@ package org.haxel;
 		/**
 		 * Use this to toggle checkbox-style behavior.
 		 */
-		public function get on():Bool
+		public var on(getOn, setOn):Bool;
+		public function getOn():Bool
 		{
 			return _onToggle;
 		}
@@ -333,7 +334,7 @@ package org.haxel;
 		/**
 		 * @private
 		 */
-		public function set on(On:Bool):Void
+		public function setOn(On:Bool):Void
 		{
 			_onToggle = On;
 		}
