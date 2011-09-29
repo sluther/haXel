@@ -454,7 +454,8 @@ package org.haxel;
 		/**
 		 * Set <code>volume</code> to a value between 0 and 1 to change how this sound is.
 		 */
-		public function get volume():Float
+		public var volume(getVolume, setVolume):Float;
+		public function getVolume():Float
 		{
 			return _volume;
 		}
@@ -462,7 +463,7 @@ package org.haxel;
 		/**
 		 * @private
 		 */
-		public function set volume(Volume:Float):Void
+		public function setVolume(Volume:Float):Void
 		{
 			_volume = Volume;
 			if(_volume < 0)

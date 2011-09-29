@@ -275,7 +275,7 @@ package org.haxel;
 		{
 			return DebugPathDisplay<HxlG.getPlugin(DebugPathDisplay)> cast DebugPathDisplay;
 		}
-		public static function setManager():DebugPathDisplay
+		public static function setManager(DebugPathDisplay:DebugPathDisplay):Void
 		{
 			// This method is only here to please the haXe compiler,
 			// as a setter is needed for every property that has a getter

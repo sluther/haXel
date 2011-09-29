@@ -115,11 +115,16 @@ package org.haxel.system.input;
 		/**
 		 * Read only, check visibility of mouse cursor.
 		 */
-		public function get visible():Bool
+		public var visible(getVisible, setVisible):Bool;
+		public function getVisible():Bool
 		{
 			return _cursorContainer.visible;
 		}
 		
+		public function setVisible(visible:Bool):Void {
+			// This method is only here to please the haXe compiler,
+			// as a setter is needed for every property that has a getter	
+		}
 		/**
 		 * Load a new mouse cursor graphic
 		 * 

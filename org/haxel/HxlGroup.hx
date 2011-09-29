@@ -126,7 +126,8 @@ package org.haxel;
 		/**
 		 * The maximum capacity of this group.  Default is 0, meaning no max capacity, and the group can just grow.
 		 */
-		public function get maxSize():UInt
+		public var maxSize(getMaxSize, setMaxSize):UInt;
+		public function getMaxSize():UInt
 		{
 			return _maxSize;
 		}
@@ -134,7 +135,7 @@ package org.haxel;
 		/**
 		 * @private
 		 */
-		public function set maxSize(Size:UInt):Void
+		public function setMaxSize(Size:UInt):Void
 		{
 			_maxSize = Size;
 			if(_marker >= _maxSize)

@@ -135,23 +135,36 @@ package org.haxel;
 		/**
 		 * Read-only: check how much time is left on the timer.
 		 */
-		public function get timeLeft():Float
+		public var timeLeft(getTimeLeft, setTimeLeft);
+		public function getTimeLeft():Float
 		{
 			return time-_timeCounter;
+		}
+		
+		public function setTimeLeft(Volume:Float):Void {
+			// This method is only here to please the haXe compiler,
+			// as a setter is needed for every property that has a getter
 		}
 		
 		/**
 		 * Read-only: check how many loops are left on the timer.
 		 */
-		public function get loopsLeft():Int
+		public var loopsLeft(getLoopsLeft, setLoopsLeft):Int;
+		public function getLoopsLeft():Int
 		{
 			return loops-_loopsCounter;
+		}
+		
+		public function setLoopsLeft(loopsLeft:Int):Void {
+			// This method is only here to please the haXe compiler,
+			// as a setter is needed for every property that has a getter	
 		}
 		
 		/**
 		 * Read-only: how far along the timer is, on a scale of 0.0 to 1.0.
 		 */
-		public function get progress():Float
+		public var progress(getProgress, setProgress):Float;
+		public function getProgress():Float
 		{
 			if(time > 0)
 				return _timeCounter/time;
@@ -159,9 +172,20 @@ package org.haxel;
 				return 0;
 		}
 		
-		public static function get manager():TimerManager
+		public function setProgress(progress:Float):Void {
+			// This method is only here to please the haXe compiler,
+			// as a setter is needed for every property that has a getter	
+		}
+		
+		public var manager(getManager, setManager):TimerManager;
+		public static function getManager():TimerManager
 		{
 			return HxlG.getPlugin(TimerManager) as TimerManager;
+		}
+		
+		public static function setManager(TimerManager:TimerManager)::Void {
+			// This method is only here to please the haXe compiler,
+			// as a setter is needed for every property that has a getter
 		}
 	}
 }
