@@ -107,7 +107,8 @@ package org.haxel;
 		/**
 		 * The text being displayed.
 		 */
-		public function get text():String
+		public var text(getText, setText):String;
+		public function getText():String
 		{
 			return _textField.text;
 		}
@@ -115,7 +116,7 @@ package org.haxel;
 		/**
 		 * @private
 		 */
-		public function set text(Text:String):Void
+		public function setText(Text:String):Void
 		{
 			var ot:String = _textField.text;
 			_textField.text = Text;
@@ -129,7 +130,8 @@ package org.haxel;
 		/**
 		 * The size of the text being displayed.
 		 */
-		 public function get size():Float
+		 public var size(getSize, setSize):Float;
+		 public function getSize():Float
 		{
 			return _textField.defaultTextFormat.size as Number;
 		}
@@ -137,7 +139,7 @@ package org.haxel;
 		/**
 		 * @private
 		 */
-		public function set size(Size:Float):Void
+		public function setSize(Size:Float):Void
 		{
 			var format:TextFormat = dtfCopy();
 			format.size = Size;
@@ -150,7 +152,8 @@ package org.haxel;
 		/**
 		 * The color of the text being displayed.
 		 */
-		override public function get color():UInt
+		public var color(getColor, setColor):UInt
+		override public function getColor():UInt
 		{
 			return _textField.defaultTextFormat.color as uint;
 		}
@@ -158,7 +161,7 @@ package org.haxel;
 		/**
 		 * @private
 		 */
-		override public function set color(Color:UInt):Void
+		override public function setColor(Color:UInt):Void
 		{
 			var format:TextFormat = dtfCopy();
 			format.color = Color;
@@ -171,7 +174,8 @@ package org.haxel;
 		/**
 		 * The font used for this text.
 		 */
-		public function get font():String
+		public var font(getFont, setFont):String
+		public function getFont():String
 		{
 			return _textField.defaultTextFormat.font;
 		}
@@ -179,7 +183,7 @@ package org.haxel;
 		/**
 		 * @private
 		 */
-		public function set font(Font:String):Void
+		public function setFont(Font:String):Void
 		{
 			var format:TextFormat = dtfCopy();
 			format.font = Font;
@@ -192,7 +196,8 @@ package org.haxel;
 		/**
 		 * The alignment of the font ("left", "right", or "center").
 		 */
-		public function get alignment():String
+		public var alignment(getAlignment, setAlignment):String;
+		public function getAlignment():String
 		{
 			return _textField.defaultTextFormat.align;
 		}
@@ -200,7 +205,7 @@ package org.haxel;
 		/**
 		 * @private
 		 */
-		public function set alignment(Alignment:String):Void
+		public function setAlignment(Alignment:String):Void
 		{
 			var format:TextFormat = dtfCopy();
 			format.align = Alignment;
@@ -212,7 +217,8 @@ package org.haxel;
 		/**
 		 * The color of the text shadow in 0xAARRGGBB hex format.
 		 */
-		public function get shadow():UInt
+		public var shadow(getShadow, setShadow):UInt
+		public function getShadow():UInt
 		{
 			return _shadow;
 		}
@@ -220,7 +226,7 @@ package org.haxel;
 		/**
 		 * @private
 		 */
-		public function set shadow(Color:UInt):Void
+		public function setShadow(Color:UInt):Void
 		{
 			_shadow = Color;
 			calcFrame();

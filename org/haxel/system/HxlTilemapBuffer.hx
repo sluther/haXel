@@ -99,11 +99,18 @@ package org.haxel.system;
 		 * 
 		 * @return	The buffer bitmap data.
 		 */
-		public function get pixels():BitmapData
+		public var pixels(getPixels, setPixels):BitmapData;
+		public function getPixels():BitmapData
 		{
 			return _pixels;
 		}
 		
+		public function setPixels(holder:BitmapData):BitmapData
+		{
+			// Placeholder to make haXe compiler happy.
+		}
+
+
 		/**
 		 * Just stamps this buffer onto the specified camera at the specified location.
 		 * 
