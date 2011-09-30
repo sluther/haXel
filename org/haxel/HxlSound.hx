@@ -249,7 +249,7 @@ package org.haxel;
 		 * 
 		 * @return	This <code>HxlSound</code> instance (nice for chaining stuff together, if you're into that).
 		 */
-		public function loadEmbedded(EmbeddedSound:Class, Looped:Bool=false, AutoDestroy:Bool=false):HxlSound
+		public function loadEmbedded(EmbeddedSound:Class<HxlSound>, Looped:Bool=false, AutoDestroy:Bool=false):HxlSound
 		{
 			stop();
 			createSound();

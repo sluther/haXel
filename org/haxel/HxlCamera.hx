@@ -155,7 +155,7 @@ class HxlCamera extends HxlBasic
 		/**
 		 * Internal, used to control the "flash" special effect.
 		 */
-		private var _fxFlashComplete:Function;
+		private var _fxFlashComplete:Dynamic;
 		/**
 		 * Internal, used to control the "flash" special effect.
 		 */
@@ -171,7 +171,7 @@ class HxlCamera extends HxlBasic
 		/**
 		 * Internal, used to control the "fade" special effect.
 		 */
-		private var _fxFadeComplete:Function;
+		private var _fxFadeComplete:Dynamic;
 		/**
 		 * Internal, used to control the "fade" special effect.
 		 */
@@ -187,7 +187,7 @@ class HxlCamera extends HxlBasic
 		/**
 		 * Internal, used to control the "shake" special effect.
 		 */
-		private var _fxShakeComplete:Function;
+		private var _fxShakeComplete:Dynamic;
 		/**
 		 * Internal, used to control the "shake" special effect.
 		 */
@@ -439,7 +439,7 @@ class HxlCamera extends HxlBasic
 		 * @param	OnComplete	A function you want to run when the flash finishes.
 		 * @param	Force		Force the effect to reset.
 		 */
-		public function flash(Color:UInt=0xffffffff, Duration:Float=1, OnComplete:Function=null, Force:Bool=false):Void
+		public function flash(Color:UInt=0xffffffff, Duration:Float=1, OnComplete:Dynamic=null, Force:Bool=false):Void
 		{
 			if(!Force && (_fxFlashAlpha > 0.0))
 				return;
@@ -459,7 +459,7 @@ class HxlCamera extends HxlBasic
 		 * @param	OnComplete	A function you want to run when the fade finishes.
 		 * @param	Force		Force the effect to reset.
 		 */
-		public function fade(Color:UInt=0xff000000, Duration:Float=1, OnComplete:Function=null, Force:Bool=false):Void
+		public function fade(Color:UInt=0xff000000, Duration:Float=1, OnComplete:Dynamic=null, Force:Bool=false):Void
 		{
 			if(!Force && (_fxFadeAlpha > 0.0))
 				return;
@@ -480,7 +480,7 @@ class HxlCamera extends HxlBasic
 		 * @param	Force		Force the effect to reset (default = true, unlike flash() and fade()!).
 		 * @param	Direction	Whether to shake on both axes, just up and down, or just side to side (use class constants SHAKE_BOTH_AXES, SHAKE_VERTICAL_ONLY, or SHAKE_HORIZONTAL_ONLY).
 		 */
-		public function shake(Intensity:Float=0.05, Duration:Float=0.5, OnComplete:Function=null, Force:Bool=true, Direction:UInt=SHAKE_BOTH_AXES):Void
+		public function shake(Intensity:Float=0.05, Duration:Float=0.5, OnComplete:Dynamic=null, Force:Bool=true, Direction:UInt=SHAKE_BOTH_AXES):Void
 		{
 			if(!Force && ((_fxShakeOffset.x != 0) || (_fxShakeOffset.y != 0)))
 				return;

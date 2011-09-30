@@ -20,7 +20,7 @@ package org.haxel;
 		/**
 		 * Array of all the <code>HxlBasic</code>s that exist in this group.
 		 */
-		public var members:Array;
+		public var members:Array<HxlBasic>;
 		/**
 		 * The number of entries in the members array.
 		 * For performance and safety you should check this variable
@@ -72,7 +72,7 @@ package org.haxel;
 				var i:UInt = 0;
 				while(i < length)
 				{
-					basic = members[i++] as HxlBasic;
+					basic = cast(members[i++], HxlBasic);
 					if(basic != null)
 						basic.destroy();
 				}
@@ -98,7 +98,7 @@ package org.haxel;
 			var i:UInt = 0;
 			while(i < length)
 			{
-				basic = members[i++] as HxlBasic;
+				basic = cast(members[i++], HxlBasic);
 				if((basic != null) && basic.exists && basic.active)
 				{
 					basic.preUpdate();
@@ -117,7 +117,7 @@ package org.haxel;
 			var i:UInt = 0;
 			while(i < length)
 			{
-				basic = members[i++] as HxlBasic;
+				basic = cast(members[i++], HxlBasic);
 				if((basic != null) && basic.exists && basic.visible)
 					basic.draw();
 			}
@@ -149,7 +149,7 @@ package org.haxel;
 			var l:UInt = members.length;
 			while(i < l)
 			{
-				basic = members[i++] as HxlBasic;
+				basic = cast(members[i++], HxlBasic);
 				if(basic != null)
 					basic.destroy();
 			}
@@ -231,9 +231,9 @@ package org.haxel;
 		 * 
 		 * @param	ObjectClass		The class type you want to recycle (e.g. HxlSprite, EvilRobot, etc). Do NOT "new" the class in the parameter!
 		 * 
-		 * @return	A reference to the object that was created.  Don't forget to cast it back to the Class you want (e.g. myObject = myGroup.recycle(myObjectClass) as myObjectClass;).
+		 * @return	A reference to the object that was created.  Don't forget to cast it back to the Class you want cast(myObjectClass;, ).
 		 */
-		public function recycle(ObjectClass:Class=null):HxlBasic
+		public function recycle(ObjectClass:Class<HxlBasic>=null):HxlBasic
 		{
 			var basic:HxlBasic;
 			if(_maxSize > 0)
@@ -242,7 +242,7 @@ package org.haxel;
 				{
 					if(ObjectClass == null)
 						return null;
-					return add(new ObjectClass() as HxlBasic);
+					return add(cast(Type.createInstance(ObjectClass), HxlBasic));
 				}
 				else
 				{
@@ -259,7 +259,7 @@ package org.haxel;
 					return basic;
 				if(ObjectClass == null)
 					return null;
-				return add(new ObjectClass() as HxlBasic);
+				return add(cast(Type.createInstance(ObjectClass), HxlBasic));
 			}
 		}
 		
@@ -327,17 +327,17 @@ package org.haxel;
 		 * @param	Value			The value you want to assign to that variable.
 		 * @param	Recurse			Default value is true, meaning if <code>setAll()</code> encounters a member that is a group, it will call <code>setAll()</code> on that group rather than modifying its variable.
 		 */
-		public function setAll(VariableName:String,Value:Object,Recurse:Bool=true):Void
+		public function setAll(VariableName:String,Value:Class<HxlBasic>,Recurse:Bool=true):Void
 		{
 			var basic:HxlBasic;
 			var i:UInt = 0;
 			while(i < length)
 			{
-				basic = members[i++] as HxlBasic;
+				basic = cast(members[i++], HxlBasic);
 				if(basic != null)
 				{
-					if(Recurse && (basic is HxlGroup))
-						(basic as HxlGroup).setAll(VariableName,Value,Recurse);
+					if(Recurse && Std.is(basic, HxlGroup))
+						cast(Basic, HxlGroup).setAll(VariableName,Value,Recurse);
 					else
 						basic[VariableName] = Value;
 				}
@@ -357,11 +357,11 @@ package org.haxel;
 			var i:UInt = 0;
 			while(i < length)
 			{
-				basic = members[i++] as HxlBasic;
+				basic = cast(members[i++], HxlBasic);
 				if(basic != null)
 				{
-					if(Recurse && (basic is HxlGroup))
-						(basic as HxlGroup).callAll(FunctionName,Recurse);
+					if(Recurse && Std.is(basic, HxlGroup))
+						cast(basic, HxlGroup).callAll(FunctionName,Recurse);
 					else
 						basic[FunctionName]();
 				}
@@ -376,14 +376,14 @@ package org.haxel;
 		 * 
 		 * @return	A <code>HxlBasic</code> currently flagged as not existing.
 		 */
-		public function getFirstAvailable(ObjectClass:Class=null):HxlBasic
+		public function getFirstAvailable(ObjectClass:Class<HxlBasic>=null):HxlBasic
 		{
 			var basic:HxlBasic;
 			var i:UInt = 0;
 			while(i < length)
 			{
-				basic = members[i++] as HxlBasic;
-				if((basic != null) && !basic.exists && ((ObjectClass == null) || (basic is ObjectClass)))
+				basic = cast(members[i++], HxlBasic);
+				if((basic != null) && !basic.exists && ((ObjectClass == null) || Std.is(basic, ObjectClass)))
 					return basic;
 			}
 			return null;
@@ -422,7 +422,7 @@ package org.haxel;
 			var i:UInt = 0;
 			while(i < length)
 			{
-				basic = members[i++] as HxlBasic;
+				basic = cast(members[i++], HxlBasic);
 				if((basic != null) && basic.exists)
 					return basic;
 			}
@@ -441,7 +441,7 @@ package org.haxel;
 			var i:UInt = 0;
 			while(i < length)
 			{
-				basic = members[i++] as HxlBasic;
+				basic = cast(members[i++], HxlBasic);
 				if((basic != null) && basic.exists && basic.alive)
 					return basic;
 			}
@@ -460,7 +460,7 @@ package org.haxel;
 			var i:UInt = 0;
 			while(i < length)
 			{
-				basic = members[i++] as HxlBasic;
+				basic = cast(members[i++], HxlBasic);
 				if((basic != null) && !basic.alive)
 					return basic;
 			}
@@ -479,7 +479,7 @@ package org.haxel;
 			var i:UInt = 0;
 			while(i < length)
 			{
-				basic = members[i++] as HxlBasic;
+				basic = cast(members[i++], HxlBasic);
 				if(basic != null)
 				{
 					if(count < 0)
@@ -503,7 +503,7 @@ package org.haxel;
 			var i:UInt = 0;
 			while(i < length)
 			{
-				basic = members[i++] as HxlBasic;
+				basic = cast(members[i++], HxlBasic);
 				if(basic != null)
 				{
 					if(count < 0)
@@ -527,7 +527,7 @@ package org.haxel;
 		{
 			if(Length == 0)
 				Length = length;
-			return HxlG.getRandom(members,StartIndex,Length) as HxlBasic;
+			return cast(HxlG.getRandom(members,StartIndex,Length), HxlBasic);
 		}
 		
 		/**
@@ -548,7 +548,7 @@ package org.haxel;
 			var i:UInt = 0;
 			while(i < length)
 			{
-				basic = members[i++] as HxlBasic;
+				basic = cast(members[i++], HxlBasic);
 				if((basic != null) && basic.exists)
 					basic.kill();
 			}

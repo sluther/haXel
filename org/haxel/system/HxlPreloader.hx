@@ -153,8 +153,8 @@ package org.haxel.system;
                 var mainClass:Class = Class(getDefinitionByName(className));
 	            if(mainClass)
 	            {
-	                var app:Object = new mainClass();
-	                addChild(app as DisplayObject);
+	                var app:Dynamic = new mainClass();
+	                addChildcast(app, DisplayObject);
 	            }
                 destroy();
             }

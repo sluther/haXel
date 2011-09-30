@@ -18,7 +18,7 @@ package org.haxel.system;
 	 */
 	class HxlWindow extends Sprite
 	{
-		[Embed(source="../data/handle.png")] private var ImgHandle:Class;
+		/*[Embed(source="../data/handle.png")] private var ImgHandle:Class;*/
 
 		/**
 		 * Minimum allowed X and Y dimensions for this window.

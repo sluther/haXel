@@ -14,7 +14,7 @@ package org.haxel.system.replay;
 		/**
 		 * An array of simple integer pairs referring to what key is pressed, and what state its in.
 		 */
-		public var keys:Array;
+		public var keys:Array<UInt>;
 		/**
 		 * A container for the 4 mouse state integers.
 		 */
@@ -40,7 +40,7 @@ package org.haxel.system.replay;
 		 * @return A reference to this <code>FrameRecord</code> object.
 		 * 
 		 */
-		public function create(Frame:Float,Keys:Array=null,Mouse:MouseRecord=null):FrameRecord
+		public function create(Frame:Float,Keys:Array<UInt>=null,Mouse:MouseRecord=null):FrameRecord
 		{
 			frame = Frame;
 			keys = Keys;
@@ -68,7 +68,7 @@ package org.haxel.system.replay;
 			
 			if(keys != null)
 			{
-				var object:Object;
+				var object:Dynamic;
 				var i:UInt = 0;
 				var l:UInt = keys.length;
 				while(i < l)
@@ -99,10 +99,10 @@ package org.haxel.system.replay;
 			
 			//get frame number
 			var array:Array = Data.split("k");
-			frame = int(array[0] as String);
+			frame = cast(int(array[0], String));
 			
 			//split up keyboard and mouse data
-			array = (array[1] as String).split("m");
+			array = cast(array[i], String).split("m");
 			var keyData:String = array[0];
 			var mouseData:String = array[1];
 			
@@ -118,12 +118,12 @@ package org.haxel.system.replay;
 				l = array.length;
 				while(i < l)
 				{
-					keyPair = (array[i++] as String).split(":");
+					keyPair = cast(array[i++], String).split(":");
 					if(keyPair.length == 2)
 					{
 						if(keys == null)
 							keys = new Array();
-						keys.push({code:Int(keyPair[0] as String),value:Int(keyPair[1] as String)});
+						keys.push({code:Int(cast(keyPair[0], String)),value:Int(cast(keyPair[1], String))});
 					}
 				}
 			}
@@ -133,7 +133,7 @@ package org.haxel.system.replay;
 			{
 				array = mouseData.split(",");
 				if(array.length >= 4)
-					mouse = new MouseRecord(int(array[0] as String),int(array[1] as String),int(array[2] as String),int(array[3] as String));
+					mouse = new MouseRecord(int(cast(array[0], String)),int(cast(array[1], String)),int(cast(array[2], String)),int(cast(array[3], String)));
 			}
 			
 			return this;
