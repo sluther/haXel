@@ -95,9 +95,9 @@ class HxlReplay
 	{
 		init();
 		
-		var lines:Array = FileContents.split("\n");
+		var lines:Array<String> = FileContents.split("\n");
 		
-		seed = Number(lines[0]);
+		seed = cast(lines[0], Float);
 		
 		var line:String;
 		var i:UInt = 1;
@@ -111,7 +111,7 @@ class HxlReplay
 				if(frameCount >= _capacity)
 				{
 					_capacity *= 2;
-					_frames.length = _capacity;
+/*					_frames.length = _capacity;*/
 				}
 			}
 		}
@@ -125,7 +125,7 @@ class HxlReplay
 	private function init():Void
 	{
 		_capacity = 100;
-		_frames = new Array(_capacity);
+		_frames = new Array();
 		frameCount = 0;
 	}
 	

@@ -74,7 +74,7 @@ class Log extends HxlWindow
 		}
 		else
 			_text.appendText(Text+"\n");
-		_text.scrollV = _text.height;
+		_text.scrollV = cast(_text.height, Int);
 	}
 	
 	/**

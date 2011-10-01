@@ -60,15 +60,15 @@ class Perf extends HxlWindow
 		_text.defaultTextFormat = new TextFormat("Courier",12,0xffffff);
 		addChild(_text);
 		
-		_flixelUpdate = new Array(32);
+		_flixelUpdate = new Array();
 		_flixelUpdateMarker = 0;
-		_flixelDraw = new Array(32);
+		_flixelDraw = new Array();
 		_flixelDrawMarker = 0;
-		_flash = new Array(32);
+		_flash = new Array();
 		_flashMarker = 0;
-		_activeObject = new Array(32);
+		_activeObject = new Array();
 		_objectMarker = 0;
-		_visibleObject = new Array(32);
+		_visibleObject = new Array();
 		_visibleObjectMarker = 0;
 	}
 	

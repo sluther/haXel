@@ -22,7 +22,7 @@ class WatchEntry
 	/**
 	 * The member variable of that object.
 	 */
-	public var field:String;
+	public var field:Int;
 	/**
 	 * A custom display name for this object, if there is any.
 	 */

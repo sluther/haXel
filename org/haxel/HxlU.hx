@@ -76,7 +76,7 @@ class HxlU
 	 */
 	public static function min(Number1:Float,Number2:Float):Float
 	{
-		return (Number1 <= Number2)?Number1:Float2;
+		return (Number1 <= Number2)?Number1:Number2;
 	}
 	
 	/**
@@ -89,7 +89,7 @@ class HxlU
 	 */
 	public static function max(Number1:Float,Number2:Float):Float
 	{
-		return (Number1 >= Number2)?Number1:Float2;
+		return (Number1 >= Number2)?Number1:Number2;
 	}
 	
 	/**
@@ -462,7 +462,8 @@ class HxlU
 	 */
 	public static function getClass(Name:String):Class<Dynamic>
 	{
-		return Type.createInstance(Name);
+		
+		return Type.createInstance(Type.resolveClass(Name), []);
 	}
 	
 	/**

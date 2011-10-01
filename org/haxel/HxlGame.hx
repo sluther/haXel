@@ -9,6 +9,7 @@ import flash.events.Event;
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 import flash.geom.Point;
+import flash.media.Sound;
 import flash.text.AntiAliasType;
 import flash.text.GridFitType;
 import flash.text.TextField;
@@ -31,9 +32,9 @@ import org.haxel.system.HxlReplay;
  */
 class HxlGame extends Sprite
 {
-	/*[Embed(source="data/nokiafc22.ttf",fontFamily="system",embedAsCFF="false")] private var junk:String;
-	[Embed(source="data/beep.mp3")] private var SndBeep:Class;
-	[Embed(source="data/logo.png")] private var ImgLogo:Class;*/
+	private var junk:String;
+	private var SndBeep:Class<Sound>;
+	private var ImgLogo:Class<HxlSprite>;
 
 	/**
 	 * Sets 0, -, and + to control the global volume sound volume.
@@ -175,7 +176,7 @@ class HxlGame extends Sprite
 	 * @param	FlashFramerate	Sets the actual display framerate for Flash player (default is 30 times per second).
 	 * @param	UseSystemCursor	Whether to use the default OS mouse pointer, or to use custom flixel ones.
 	 */
-	public function new(GameSizeX:UInt,GameSizeY:UInt,InitialState:Class<Dynamic>,Zoom:Float=1,GameFramerate:UInt=60,FlashFramerate:UInt=30,UseSystemCursor:Bool=false)
+	public function new(GameSizeX:UInt,GameSizeY:UInt,InitialState:Class<HxlState>,Zoom:Float=1,GameFramerate:UInt=60,FlashFramerate:UInt=30,UseSystemCursor:Bool=false)
 	{
 		//super high priority init stuff (focus, mouse, etc)
 		_lostFocus = false;
@@ -283,7 +284,7 @@ class HxlGame extends Sprite
 			    		showSoundTray();
 						return;
 					default:
-						break;
+						return;
 				}
 			}
 		}
@@ -309,7 +310,7 @@ class HxlGame extends Sprite
 			var l:UInt = _replayCancelKeys.length;
 			while(i < l)
 			{
-				replayCancelKey = _replayCancelKeys[i++];
+				replayCancelKey = cast(_replayCancelKeys[i++], String);
 				if((replayCancelKey == "ANY") || (HxlG.keys.getKeyCode(replayCancelKey) == FlashEvent.keyCode))
 				{
 					if(_replayCallback != null)
@@ -348,7 +349,7 @@ class HxlGame extends Sprite
 			var l:UInt = _replayCancelKeys.length;
 			while(i < l)
 			{
-				replayCancelKey = UInt<_replayCancelKeys[i++]> cast String;
+				replayCancelKey = cast(_replayCancelKeys[i++], String);
 				if((replayCancelKey == "MOUSE") || (replayCancelKey == "ANY"))
 				{
 					if(_replayCallback != null)
@@ -723,7 +724,7 @@ class HxlGame extends Sprite
 		text.embedFonts = true;
 		text.antiAliasType = AntiAliasType.NORMAL;
 		text.gridFitType = GridFitType.PIXEL;
-		text.defaultTextFormat = new TextFormat("system",8,0xffffff,null,null,null,null,null,"center");
+		text.defaultTextFormat = new TextFormat("system",8,0xffffff,false,false,false,"","","center", 0, 0, 0, 0);
 		_soundTray.addChild(text);
 		text.text = "VOLUME";
 		text.y = 16;
@@ -764,8 +765,8 @@ class HxlGame extends Sprite
 	private function createFocusScreen():Void
 	{
 		var gfx:Graphics = _focus.graphics;
-		var screenWidth:UInt = HxlG.width*HxlCamera.defaultZoom;
-		var screenHeight:UInt = HxlG.height*HxlCamera.defaultZoom;
+		var screenWidth:Float = HxlG.width*HxlCamera.defaultZoom;
+		var screenHeight:Float = HxlG.height*HxlCamera.defaultZoom;
 		
 		//draw transparent black backdrop
 		gfx.moveTo(0,0);
@@ -777,9 +778,9 @@ class HxlGame extends Sprite
 		gfx.endFill();
 		
 		//draw white arrow
-		var halfWidth:UInt = screenWidth/2;
-		var halfHeight:UInt = screenHeight/2;
-		var helper:UInt = HxlU.min(halfWidth,halfHeight)/3;
+		var halfWidth:Float = screenWidth/2;
+		var halfHeight:Float = screenHeight/2;
+		var helper:Float = HxlU.min(halfWidth,halfHeight)/3;
 		gfx.moveTo(halfWidth-helper,halfHeight-helper);
 		gfx.beginFill(0xffffff,0.65);
 		gfx.lineTo(halfWidth+helper,halfHeight);
@@ -788,7 +789,7 @@ class HxlGame extends Sprite
 		gfx.endFill();
 		
 		var logo:Bitmap = new ImgLogo();
-		logo.scaleX = int(helper/10);
+		logo.scaleX = Std.parseInt(helper/10);
 		if(logo.scaleX < 1)
 			logo.scaleX = 1;
 		logo.scaleY = logo.scaleX;

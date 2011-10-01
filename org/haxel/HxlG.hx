@@ -4,10 +4,10 @@ import flash.display.BitmapData;
 import flash.display.Graphics;
 import flash.display.Sprite;
 import flash.display.Stage;
-import flash.media.Sound;
 import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Rectangle;
+import flash.media.Sound;
 
 import org.haxel.plugin.DebugPathDisplay;
 import org.haxel.plugin.TimerManager;
@@ -31,7 +31,7 @@ class HxlG
 	 * If you build and maintain your own version of flixel,
 	 * you can give it your own name here.
 	 */
-	public static var LIBRARY_NAME:String = "flixel";
+	public static var LIBRARY_NAME:String = "haxel";
 	/**
 	 * Assign a major version to your library.
 	 * Appears before the decimal in the console.
@@ -249,7 +249,7 @@ class HxlG
 	public static function log(Data:Dynamic):Void
 	{
 		if((_game != null) && (_game._debugger != null))
-			_game._debugger.log.add((Data == null)?"ERROR: null object":((getClass(Data) == Array)?HxlU.formatArray(cast(Data, Array)):Data.toString()));
+			_game._debugger.log.add((Data == null)?"ERROR: null object":Data.toString());
 	}
 	
 	/**
@@ -284,7 +284,7 @@ class HxlG
 	 * More updates usually means better collisions and smoother motion.
 	 * NOTE: This is NOT the same thing as the Flash Player framerate!
 	 */
-	public var framerate(getFramerate, setFramerate):Float;
+	public static var framerate(getFramerate, setFramerate):Float;
 	public static function getFramerate():Float
 	{
 		return 1000/_game._step;
@@ -293,7 +293,7 @@ class HxlG
 	/**
 	 * @private
 	 */
-	public static function setFramerate(Framerate:Float):Void
+	public static function setFramerate(Framerate:Float):Float
 	{
 		_game._step = 1000/Framerate;
 		if(_game._maxAccumulation < _game._step)
@@ -305,7 +305,7 @@ class HxlG
 	 * More updates usually means better collisions and smoother motion.
 	 * NOTE: This is NOT the same thing as the Flash Player framerate!
 	 */
-	public var flashFramerate(getFlashFramerate, setFlashFramerate):Float;
+	public static var flashFramerate(getFlashFramerate, setFlashFramerate):Float;
 	public static function getFlashFramerate():Float
 	{
 		if(_game.root != null)
@@ -317,7 +317,7 @@ class HxlG
 	/**
 	 * @private
 	 */
-	public static function setFlashFramerate(Framerate:Float):Void
+	public static function setFlashFramerate(Framerate:Float):Float
 	{
 		_game._flashFramerate = Framerate;
 		if(_game.root != null)
@@ -400,7 +400,7 @@ class HxlG
 	 * @param	Timeout		Optional parameter: set a time limit for the replay.  CancelKeys will override this if pressed.
 	 * @param	Callback	Optional parameter: if set, called when the replay finishes.  Running to the end, CancelKeys, and Timeout will all trigger Callback(), but only once, and CancelKeys and Timeout will NOT call HxlG.stopReplay() if Callback is set!
 	 */
-	public static function loadReplay(Data:String,State:HxlState=null,CancelKeys:Array<String>=null,Timeout:Float=0,Callback:Dynamic=null):Void
+	public static function loadReplay(Data:String,State:HxlState=null,CancelKeys:Array<UInt>=null,Timeout:Int=0,Callback:Dynamic=null):Void
 	{
 		_game._replay.load(Data);
 		if(State == null)
@@ -471,7 +471,7 @@ class HxlG
 	 */
 	public static function resetState():Void
 	{
-		_game._requestedState = Type.createinstance(HxlU.getClass(HxlU.getClassName(_game._state,false)))();
+		_game._requestedState = Type.createInstance(HxlU.getClass(HxlU.getClassName(_game._state,false)), []);
 	}
 	
 	/**
@@ -528,7 +528,7 @@ class HxlG
 			HxlG.log("WARNING: HxlG.loadSound() requires either\nan embedded sound or a URL to work.");
 			return null;
 		}
-		var sound:HxlSound = HxlGroup<sounds.recycle(HxlSound)> cast HxlSound;
+		var sound:HxlSound = cast(sounds.recycle(HxlSound), HxlSound);
 		if(EmbeddedSound != null)
 			sound.loadEmbedded(EmbeddedSound,Looped,AutoDestroy);
 		else
@@ -576,7 +576,7 @@ class HxlG
 	 * 
 	 * @default 0.5
 	 */
-	 public var volume(getVolume, setVolume):Float;
+	 public static var volume(getVolume, setVolume):Float;
 	 public static function getVolume():Float
 	 {
 		 return _volume;
@@ -585,7 +585,7 @@ class HxlG
 	/**
 	 * @private
 	 */
-	public static function setVolume(Volume:Float):Void
+	public static function setVolume(Volume:Float):Float
 	{
 		_volume = Volume;
 		if(_volume < 0)
@@ -642,7 +642,7 @@ class HxlG
 		var l:UInt = sounds.length;
 		while(i < l)
 		{
-			sound = HxlSound<sounds.members[i++]> cast HxlSound;
+			sound = cast(sounds.members[i++], HxlSound);
 			if((sound != null) && sound.exists && sound.active)
 				sound.pause();
 		}
@@ -660,7 +660,7 @@ class HxlG
 		var l:UInt = sounds.length;
 		while(i < l)
 		{
-			sound = HxlSound<sounds.members[i++]> cast HxlSound;
+			sound = cast(sounds.members[i++], HxlSound);
 			if((sound != null) && sound.exists)
 				sound.resume();
 		}
@@ -741,12 +741,12 @@ class HxlG
 		//If there is no data for this key, generate the requested graphic
 		if(!checkBitmapCache(Key))
 		{
-			_cache[Key] = (Type.createInstance(Graphic)).bitmapData;
+			_cache[Key] = (Type.createInstance(Graphic, [])).bitmapData;
 			if(Reverse)
 				needReverse = true;
 		}
 		var pixels:BitmapData = _cache[Key];
-		if(!needReverse && Reverse && (pixels.width == (Type.createInstance(Graphic)).bitmapData.width))
+		if(!needReverse && Reverse && (pixels.width == (Type.createInstance(Graphic, [])).bitmapData.width))
 			needReverse = true;
 		if(needReverse)
 		{
@@ -782,7 +782,7 @@ class HxlG
 		return null;
 	}
 	
-	public static function setStage(stage:Stage):Void {
+	public static function setStage(stage:Stage):Stage {
 		// This method is only here to please the haXe compiler,
 		// as a setter is needed for every property that has a getter
 	}
@@ -796,7 +796,7 @@ class HxlG
 		return _game._state;
 	}
 	
-	public static function setState(state:HxlState):Void {
+	public static function setState(state:HxlState):HxlState {
 		// This method is only here to please the haXe compiler,
 		// as a setter is needed for every property that has a getter
 	}
@@ -1065,7 +1065,7 @@ class HxlG
 	public static function removePlugin(Plugin:HxlBasic):HxlBasic
 	{
 		//Don't add repeats
-		var pluginList:Array = HxlG.plugins;
+		var pluginList:Array<HxlBasic> = HxlG.plugins;
 		var i:Int = pluginList.length-1;
 		while(i >= 0)
 		{
@@ -1087,7 +1087,7 @@ class HxlG
 	{
 		//Don't add repeats
 		var results:Bool = false;
-		var pluginList:Array = HxlG.plugins;
+		var pluginList:Array<HxlBasic> = HxlG.plugins;
 		var i:Int = pluginList.length-1;
 		while(i >= 0)
 		{

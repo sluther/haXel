@@ -72,8 +72,10 @@ class HxlDebugger extends Sprite
 		visible = false;
 		hasMouse = false;
 		_screen = new Point(Width,Height);
-
-		addChild(new Bitmap(new BitmapData(Width,15,true,0x7f000000)));
+		
+		// cast as int because BitmapData requires it to be an Int
+		var width:Int = cast(Width, Int);
+		addChild(new Bitmap(new BitmapData(width,15,true,0x7f000000)));
 		
 		var txt:TextField = new TextField();
 		txt.x = 2;
@@ -190,35 +192,30 @@ class HxlDebugger extends Sprite
 				watch.resize(_screen.x/4,68);
 				watch.reposition(_screen.x,_screen.y);
 				perf.reposition(_screen.x,0);
-				break;
 			case HxlG.DEBUGGER_BIG:
 				log.resize((_screen.x-_gutter*3)/2,_screen.y/2);
 				log.reposition(0,_screen.y);
 				watch.resize((_screen.x-_gutter*3)/2,_screen.y/2);
 				watch.reposition(_screen.x,_screen.y);
 				perf.reposition(_screen.x,0);
-				break;
 			case HxlG.DEBUGGER_TOP:
 				log.resize((_screen.x-_gutter*3)/2,_screen.y/4);
 				log.reposition(0,0);
 				watch.resize((_screen.x-_gutter*3)/2,_screen.y/4);
 				watch.reposition(_screen.x,0);
 				perf.reposition(_screen.x,_screen.y);
-				break;
 			case HxlG.DEBUGGER_LEFT:
 				log.resize(_screen.x/3,(_screen.y-15-_gutter*2.5)/2);
 				log.reposition(0,0);
 				watch.resize(_screen.x/3,(_screen.y-15-_gutter*2.5)/2);
 				watch.reposition(0,_screen.y);
 				perf.reposition(_screen.x,0);
-				break;
 			case HxlG.DEBUGGER_RIGHT:
 				log.resize(_screen.x/3,(_screen.y-15-_gutter*2.5)/2);
 				log.reposition(_screen.x,0);
 				watch.resize(_screen.x/3,(_screen.y-15-_gutter*2.5)/2);
 				watch.reposition(_screen.x,_screen.y);
 				perf.reposition(0,0);
-				break;
 			case HxlG.DEBUGGER_STANDARD:
 			default:
 				log.resize((_screen.x-_gutter*3)/2,_screen.y/4);
@@ -226,7 +223,6 @@ class HxlDebugger extends Sprite
 				watch.resize((_screen.x-_gutter*3)/2,_screen.y/4);
 				watch.reposition(_screen.x,_screen.y);
 				perf.reposition(_screen.x,0);
-				break;
 		}
 	}
 }

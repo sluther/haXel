@@ -141,7 +141,7 @@ class HxlTimer
 		return time-_timeCounter;
 	}
 	
-	public function setTimeLeft(Volume:Float):Void {
+	public function setTimeLeft(Volume:Float):Float {
 		// This method is only here to please the haXe compiler,
 		// as a setter is needed for every property that has a getter
 	}
@@ -155,7 +155,7 @@ class HxlTimer
 		return loops-_loopsCounter;
 	}
 	
-	public function setLoopsLeft(loopsLeft:Int):Void {
+	public function setLoopsLeft(loopsLeft:Int):Int {
 		// This method is only here to please the haXe compiler,
 		// as a setter is needed for every property that has a getter	
 	}
@@ -172,7 +172,7 @@ class HxlTimer
 			return 0;
 	}
 	
-	public function setProgress(progress:Float):Void {
+	public function setProgress(progress:Float):Float {
 		// This method is only here to please the haXe compiler,
 		// as a setter is needed for every property that has a getter	
 	}

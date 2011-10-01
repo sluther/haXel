@@ -121,7 +121,7 @@ class Mouse extends HxlPoint
 		return _cursorContainer.visible;
 	}
 	
-	public function setVisible(visible:Bool):Void {
+	public function setVisible(visible:Bool):Bool {
 		// This method is only here to please the haXe compiler,
 		// as a setter is needed for every property that has a getter	
 	}

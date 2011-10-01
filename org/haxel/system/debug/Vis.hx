@@ -15,8 +15,8 @@ import org.haxel.HxlG;
  */
 class Vis extends Sprite
 {
-/*	[Embed(source="../../data/vis/bounds.png")] private var ImgBounds:Class;*/
-
+/*	[Embed(source="../../data/vis/bounds.png")] */
+	private var ImgBounds:Class<Bitmap>;
 	private var _bounds:Bitmap;
 	private var _overBounds:Bool;
 	private var _pressingBounds:Bool;
@@ -30,7 +30,7 @@ class Vis extends Sprite
 		
 		var spacing:UInt = 7;
 		
-		_bounds = new ImgBounds();
+		_bounds = Type.createInstance(ImgBounds, []);
 		addChild(_bounds);
 		
 		unpress();

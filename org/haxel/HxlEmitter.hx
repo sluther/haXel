@@ -179,7 +179,7 @@ class HxlEmitter extends HxlGroup
 			if(particleClass == null)
 				particle = new HxlParticle();
 			else
-				particle = Type.createInstance(particleClass);
+				particle = Type.createInstance(particleClass, []);
 			if(Multiple)
 			{
 				randomFrame = HxlG.random()*totalFrames;

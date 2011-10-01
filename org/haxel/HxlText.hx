@@ -117,7 +117,7 @@ class HxlText extends HxlSprite
 	/**
 	 * @private
 	 */
-	public function setText(Text:String):Void
+	public function setText(Text:String):String
 	{
 		var ot:String = _textField.text;
 		_textField.text = Text;
@@ -140,7 +140,7 @@ class HxlText extends HxlSprite
 	/**
 	 * @private
 	 */
-	public function setSize(Size:Float):Void
+	public function setSize(Size:Float):Float
 	{
 		var format:TextFormat = dtfCopy();
 		format.size = Size;
@@ -184,7 +184,7 @@ class HxlText extends HxlSprite
 	/**
 	 * @private
 	 */
-	public function setFont(Font:String):Void
+	public function setFont(Font:String):String
 	{
 		var format:TextFormat = dtfCopy();
 		format.font = Font;
@@ -206,7 +206,7 @@ class HxlText extends HxlSprite
 	/**
 	 * @private
 	 */
-	public function setAlignment(Alignment:String):Void
+	public function setAlignment(Alignment:String):String
 	{
 		var format:TextFormat = dtfCopy();
 		format.align = Alignment;
@@ -227,7 +227,7 @@ class HxlText extends HxlSprite
 	/**
 	 * @private
 	 */
-	public function setShadow(Color:UInt):Void
+	public function setShadow(Color:UInt):UInt
 	{
 		_shadow = Color;
 		calcFrame();

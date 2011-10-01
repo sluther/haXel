@@ -1428,7 +1428,7 @@ class HxlTilemap extends HxlObject
 	 */
 	public static function imageToCSV(ImageFile:Class<Bitmap>,Invert:Bool=false,Scale:UInt=1):String
 	{
-		return bitmapToCSV(Type.createInstance(ImageFile).bitmapData,Invert,Scale);
+		return bitmapToCSV(Type.createInstance(ImageFile, []).bitmapData,Invert,Scale);
 	}
 	
 	/**

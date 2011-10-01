@@ -24,15 +24,26 @@ import org.haxel.system.replay.MouseRecord;
  */
 class VCR extends Sprite
 {
-/*	[Embed(source="../../data/vcr/open.png")] private var ImgOpen:Class;
-	[Embed(source="../../data/vcr/record_off.png")] private var ImgRecordOff:Class;
-	[Embed(source="../../data/vcr/record_on.png")] private var ImgRecordOn:Class;
-	[Embed(source="../../data/vcr/stop.png")] private var ImgStop:Class;
-	[Embed(source="../../data/vcr/flixel.png")] private var ImgHaxel:Class;
-	[Embed(source="../../data/vcr/restart.png")] private var ImgRestart:Class;
-	[Embed(source="../../data/vcr/pause.png")] private var ImgPause:Class;
-	[Embed(source="../../data/vcr/play.png")] private var ImgPlay:Class;
-	[Embed(source="../../data/vcr/step.png")] private var ImgStep:Class;*/
+
+/*	[Embed(source="../../data/vcr/open.png")]
+	[Embed(source="../../data/vcr/record_off.png")]
+	[Embed(source="../../data/vcr/record_on.png")]
+	[Embed(source="../../data/vcr/stop.png")]
+	[Embed(source="../../data/vcr/flixel.png")]
+	[Embed(source="../../data/vcr/restart.png")]
+	[Embed(source="../../data/vcr/pause.png")]
+	[Embed(source="../../data/vcr/play.png")]
+	[Embed(source="../../data/vcr/step.png")]*/
+	
+	private var ImgOpen:Class<HxlBasic>;
+	private var ImgRecordOff:Class<HxlBasic>;
+	private var ImgRecordOn:Class<HxlBasic>;
+	private var ImgStop:Class<HxlBasic>;
+	private var ImgHaxel:Class<HxlBasic>;
+	private var ImgRestart:Class<HxlBasic>;
+	private var ImgPause:Class<HxlBasic>;
+	private var ImgPlay:Class<HxlBasic>;
+	private var ImgStep:Class<HxlBasic>;
 	
 	private static inline var FILE_TYPES:Array<Dynamic> = [new FileFilter("Haxel Game Recording", "*.fgr")];
 	private static inline var DEFAULT_FILE_NAME:String = "replay.fgr";
@@ -127,7 +138,7 @@ class VCR extends Sprite
 		_runtimeDisplay.multiline = false;
 		_runtimeDisplay.wordWrap = false;
 		_runtimeDisplay.selectable = false;
-		_runtimeDisplay.defaultTextFormat = new TextFormat("Courier",12,0xffffff,null,null,null,null,null,"center");
+		_runtimeDisplay.defaultTextFormat = new TextFormat("Courier",12,0xffffff,false,false,false,null,null,"center", null, null, null, null);
 		_runtimeDisplay.visible = false;
 		addChild(_runtimeDisplay);
 		_runtime = 0;

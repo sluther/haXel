@@ -19,10 +19,6 @@ class Input
 	 * @private
 	 */
 	private static inline var _total:UInt = 256;
-	/**
-	 * @private
-	 */
-	private static inline var _maxItems:UInt = 115;
 	
 	/**
 	 * Constructor
@@ -30,17 +26,7 @@ class Input
 	public function new()
 	{
 		_lookup = {}
-		var remainder:UInt = _total % _maxItems;
-
 		_map = new Array();
-		if(remainder > 0) {
-			var total:UInt = _total - remainder;
-			var arrays:UInt = total / _maxItems;
-			for(i in 0...arrays) {
-				_map.concat(new Array(arrays[i++]));
-			}
-			_map.concat(new Array(remainder));
-		}
 	}
 	
 	/**
@@ -69,7 +55,7 @@ class Input
 		{
 			var o:Dynamic = _map[i++];
 			if(o == null) continue;
-			this[o.name] = false;
+			o.name = false;
 			o.current = 0;
 			o.last = 0;
 		}
@@ -177,14 +163,14 @@ class Input
 	}
 	
 	/**
-	 * An public helper function used to build the key array.
+	 * An internal helper function used to build the key array.
 	 * 
 	 * @param	KeyName		String name of the key (e.g. "LEFT" or "A")
 	 * @param	KeyCode		The numeric Flash code for this key.
 	 */
 	private function addKey(KeyName:String,KeyCode:UInt):Void
 	{
-		_lookup[KeyName] = KeyCode;
+		_lookup.KeyName = KeyCode;
 		_map[KeyCode] = { name: KeyName, current: 0, last: 0 };
 	}
 	

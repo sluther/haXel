@@ -156,7 +156,7 @@ class Watch extends HxlWindow
 			watchEntry.destroy();
 			i++;
 		}
-		_watching.length = 0;
+		/*_watching.length = 0;*/
 	}
 
 	/**

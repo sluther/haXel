@@ -186,7 +186,7 @@ class Keyboard extends Input
 		if(object == null) return;
 		if(object.current > 0) object.current = 1;
 		else object.current = 2;
-		this[object.name] = true;
+		object.name = true;
 	}
 	
 	/**
@@ -200,6 +200,6 @@ class Keyboard extends Input
 		if(object == null) return;
 		if(object.current > 0) object.current = -1;
 		else object.current = 0;
-		this[object.name] = false;
+		object.name = false;
 	}
 }

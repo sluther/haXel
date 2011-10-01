@@ -142,7 +142,7 @@ class HxlObject extends HxlBasic
 	 * WARNING: rotating sprites decreases rendering
 	 * performance for this sprite by a factor of 10x!
 	 */
-	public var angle:Float;
+	public var angle:Int;
 	/**
 	 * This is how fast you want this sprite to spin.
 	 */

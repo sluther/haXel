@@ -335,7 +335,7 @@ class HxlButton extends HxlSprite
 	/**
 	 * @private
 	 */
-	public function setOn(On:Bool):Void
+	public function setOn(On:Bool):Bool
 	{
 		_onToggle = On;
 	}

@@ -734,7 +734,7 @@ class HxlSprite extends HxlObject
 	/**
 	 * @private
 	 */
-	public function setPixels(Pixels:BitmapData):Void
+	public function setPixels(Pixels:BitmapData):BitmapData
 	{
 		_pixels = Pixels;
 		width = frameWidth = _pixels.width;
@@ -756,7 +756,7 @@ class HxlSprite extends HxlObject
 	/**
 	 * @private
 	 */
-	public function setFacing(Direction:UInt):Void
+	public function setFacing(Direction:UInt):UInt
 	{
 		if(_facing != Direction)
 			dirty = true;
@@ -766,7 +766,7 @@ class HxlSprite extends HxlObject
 	/**
 	 * Set <code>alpha</code> to a number between 0 and 1 to change the opacity of the sprite.
 	 */
-	public var alpha(getAlpha, setAlpha):Void;
+	public var alpha(getAlpha, setAlpha):Float;
 	public function getAlpha():Float
 	{
 		return _alpha;
@@ -775,7 +775,7 @@ class HxlSprite extends HxlObject
 	/**
 	 * @private
 	 */
-	public function setAlpha(Alpha:Float):Void
+	public function setAlpha(Alpha:Float):Float
 	{
 		if(Alpha > 1)
 			Alpha = 1;
@@ -805,7 +805,7 @@ class HxlSprite extends HxlObject
 	/**
 	 * @private
 	 */
-	public function setColor(Color:UInt):Void
+	public function setColor(Color:UInt):UInt
 	{
 		Color &= 0x00ffffff;
 		if(_color == Color)
@@ -832,7 +832,7 @@ class HxlSprite extends HxlObject
 	/**
 	 * @private
 	 */
-	public function setFrame(Frame:UInt):Void
+	public function setFrame(Frame:UInt):UInt
 	{
 		_curAnim = null;
 		_curIndex = Frame;
